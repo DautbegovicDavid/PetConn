@@ -29,16 +29,21 @@ namespace PetConn.WinUI.Login_Register
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbPassVisibilty = new System.Windows.Forms.CheckBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label6
@@ -78,6 +83,7 @@ namespace PetConn.WinUI.Login_Register
             this.btnClear.TabIndex = 21;
             this.btnClear.Text = "CLEAR";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnLogin
             // 
@@ -94,25 +100,28 @@ namespace PetConn.WinUI.Login_Register
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // checkBox1
+            // cbPassVisibilty
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.Gray;
-            this.checkBox1.Location = new System.Drawing.Point(126, 242);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(122, 21);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Show Password";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbPassVisibilty.AutoSize = true;
+            this.cbPassVisibilty.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPassVisibilty.ForeColor = System.Drawing.Color.Gray;
+            this.cbPassVisibilty.Location = new System.Drawing.Point(126, 242);
+            this.cbPassVisibilty.Name = "cbPassVisibilty";
+            this.cbPassVisibilty.Size = new System.Drawing.Size(122, 21);
+            this.cbPassVisibilty.TabIndex = 19;
+            this.cbPassVisibilty.Text = "Show Password";
+            this.cbPassVisibilty.UseVisualStyleBackColor = true;
+            this.cbPassVisibilty.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // txtPassword
             // 
             this.txtPassword.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassword.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(46, 206);
             this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(200, 30);
             this.txtPassword.TabIndex = 16;
             // 
@@ -131,6 +140,7 @@ namespace PetConn.WinUI.Login_Register
             // 
             this.txtUsername.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsername.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(46, 138);
             this.txtUsername.Multiline = true;
             this.txtUsername.Name = "txtUsername";
@@ -153,12 +163,40 @@ namespace PetConn.WinUI.Login_Register
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Teal;
-            this.label7.Location = new System.Drawing.Point(46, 41);
+            this.label7.Location = new System.Drawing.Point(83, 64);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(143, 32);
             this.label7.TabIndex = 12;
             this.label7.Text = "Get Started";
             this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "close-button-four-color-material-600w-487479274.jpg");
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.White;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ImageIndex = 0;
+            this.btnClose.ImageList = this.imageList1;
+            this.btnClose.Location = new System.Drawing.Point(258, 1);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(1);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(42, 41);
+            this.btnClose.TabIndex = 10;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmLogin
             // 
@@ -166,20 +204,21 @@ namespace PetConn.WinUI.Login_Register
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(300, 480);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.cbPassVisibilty);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label7);
             this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Gray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";
@@ -194,11 +233,14 @@ namespace PetConn.WinUI.Login_Register
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbPassVisibilty;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnClose;
     }
 }

@@ -147,7 +147,17 @@ namespace PetConn.WebAPI.Services
             return _mapper.Map<Model.Partner>(partners);
 
         }
+        public Model.Partner getUloga(KorisnikSearchRequest request)
+        {
+            var user = _context.Korisniks.Where(x => x.KorisnickoIme == request.KorisnickoIme).FirstOrDefault();
+            var userID = user.KorisnikId;
+            var partner = _context.Uposleniks.Find(userID);
+            var partnerID = partner.PartnerId;
+            var partners = _context.Partneris.Find(partnerID);
+            return _mapper.Map<Model.Partner>(partners);
 
-        
+        }
+
+
     }
 }

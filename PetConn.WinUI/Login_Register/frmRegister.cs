@@ -88,5 +88,26 @@ namespace PetConn.WinUI.Login_Register
             Hide();
                 
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            const string message =
+                 "Are you sure that you would like to close the application?";
+            const string caption = "Exit application";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Exclamation);
+
+            // If the no button was pressed ...  
+            if (result == DialogResult.Yes)
+            {
+                // cancel the closure of the form.  
+                Close();
+
+            }
+
+
+
+        }
     }
 }

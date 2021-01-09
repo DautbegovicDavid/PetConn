@@ -47,6 +47,11 @@ namespace PetConn.WebAPI.Controllers
         {
             return _service.getPartnerID(request);
         }
+        [HttpGet("uloga")]
+        public Partner getUloga([FromQuery] KorisnikSearchRequest request)
+        {
+            return _service.getPartnerID(request);
+        }
 
 
 
