@@ -3,6 +3,7 @@ using PetConn.WebAPI.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace PetConn.WebAPI.Services
@@ -29,5 +30,7 @@ namespace PetConn.WebAPI.Services
             return _mapper.Map<TModel>(entity);
             
         }
+
+       
     }
 }

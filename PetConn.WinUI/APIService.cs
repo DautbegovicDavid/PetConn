@@ -45,5 +45,27 @@ namespace PetConn.WinUI
             return await url.WithBasicAuth(UserName, Password).GetJsonAsync<T>();
             
         }
+        public async Task<T> GetVrstaPartneraID<T>(object request)
+        {
+            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/byName";
+            if (request != null)
+            {
+                url += "?";
+                url += await request.ToQueryString();
+            }
+            return await url.WithBasicAuth(UserName, Password).GetJsonAsync<T>();
+
+        }
+        public async Task<T> GetPartnresIDs<T>(object request)
+        {
+            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/IDsByVrstaPartneraID";
+            if (request != null)
+            {
+                url += "?";
+                url += await request.ToQueryString();
+            }
+            return await url.WithBasicAuth(UserName, Password).GetJsonAsync<T>();
+
+        }
     }
 }

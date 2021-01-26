@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PetConn.Model;
+using PetConn.Model.Requests;
 using PetConn.WebAPI.Database;
 using PetConn.WebAPI.Services;
 using System;
@@ -80,14 +82,21 @@ namespace PetConn.WebAPI
 
             services.AddScoped<IKorisniciService, KorisniciService>();//zbog auth mi treba ovaj a samim tim  i za postavljanje projekta
 
-            services.AddScoped<IService<Model.Uloge, object>, BaseService<Model.Uloge, object, Uloga>>();
-            services.AddScoped<IService<Model.VrstePartnera, object>, BaseService<Model.VrstePartnera, object, VrstaPartnera>>();
+            services.AddScoped<IService<Uloge, object>, BaseService<Uloge, object, Uloga>>();
+            services.AddScoped<IVrstaPartneraService, VrstaPartneraService>();
+            services.AddScoped<IPartneri<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest>, PartneriService<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest,Partneri>>();
 
-            services.AddScoped<ICRUDService<Model.HelpModels.Drzava, Model.Requests.DrzavaUpsert, Model.Requests.DrzavaUpsert, Model.Requests.DrzavaUpsert>,
-                BaseCRUDService<Model.HelpModels.Drzava, Model.Requests.DrzavaUpsert, Model.Requests.DrzavaUpsert, Model.Requests.DrzavaUpsert, Drzava>>();
 
-            services.AddScoped<ICRUDService<Model.HelpModels.Grad, Model.Requests.GradUpsert, Model.Requests.GradUpsert, Model.Requests.GradUpsert>,
-                BaseCRUDService<Model.HelpModels.Grad, Model.Requests.GradUpsert, Model.Requests.GradUpsert, Model.Requests.GradUpsert, Grad>>();
+            services.AddScoped<ICRUDService<Model.HelpModels.Drzava, DrzavaUpsert, DrzavaUpsert, DrzavaUpsert>,
+                BaseCRUDService<Model.HelpModels.Drzava, DrzavaUpsert, DrzavaUpsert, DrzavaUpsert, Drzava>>();
+
+            services.AddScoped<ICRUDService<Model.HelpModels.Grad, GradUpsert,GradUpsert, GradUpsert>,
+                BaseCRUDService<Model.HelpModels.Grad,GradUpsert, GradUpsert, GradUpsert, Grad>>();
+
+            services.AddScoped<ICRUDService<Model.Poslovnica,PoslovnicaSearchRequest, PoslovnicaUpsertRequest, PoslovnicaUpsertRequest>,
+                PoslovnicaService>();
+
+            //Poslovnica, PoslovnicaSearchRequest, PoslovnicaUpsertRequest, PoslovnicaUpsertRequest
 
         }
 

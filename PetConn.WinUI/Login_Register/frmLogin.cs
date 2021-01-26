@@ -1,4 +1,5 @@
 ﻿
+using PetConn.WinUI.Home_Panels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,7 +46,7 @@ namespace PetConn.WinUI.Login_Register
 
                 await _service.Get<dynamic>(null);
 
-                new Form1().Show();
+                new frmHome().Show();
                 Hide();     
                 
             }

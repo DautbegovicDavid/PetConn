@@ -24,11 +24,12 @@ namespace PetConn.WebAPI.Controllers
         {
             return  _service.Get(request);
         }
-        [Authorize(Roles = "Menadzer")]
+        //[Authorize(Roles = "Menadzer")]
         [HttpGet("{id}")]
         public TModel GetByID(int id)
         {
             return _service.GetByID(id);
         }
+         
     }
 }

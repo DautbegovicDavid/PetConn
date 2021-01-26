@@ -25,6 +25,16 @@ namespace PetConn.WebAPI.Mappers
             CreateMap<VrstePartnera, Database.VrstaPartnera>().ReverseMap();
             CreateMap<KorisnikUloge, Database.KorisniciUloge>().ReverseMap();  //OD PRIJE
             CreateMap<Partner, Database.Partneri>().ReverseMap();
+            CreateMap<VrstaPartnera, Database.VrstaPartnera>().ReverseMap();
+            CreateMap<Poslovnica, Database.Poslovnica>().ReverseMap();
+            CreateMap<PoslovnicaUpsertRequest, Database.Poslovnica>().ReverseMap();
+            CreateMap<PartneriSearchRequest, Database.Partneri>().ReverseMap();
+            CreateMap<PartneriSearchRequest, Partner>().ReverseMap();
+
+
+
+
+
 
             //CreateMap<Database.Korisnik, KorisnikUpsertRequest>().ReverseMap();   ISTI   NOVI
 
@@ -33,7 +43,7 @@ namespace PetConn.WebAPI.Mappers
             //    .ForMember(dest => dest.KorisniciUloges, opt => opt.MapFrom(src => src.KorisniciUloges)); NOVI
 
             //CreateMap<Database.KorisniciUloge, KorisnikUloge>().ForMember(dest => dest.Uloga, opt => opt.MapFrom(src => src.Uloga));  NOVI
-             
+
 
 
         }
