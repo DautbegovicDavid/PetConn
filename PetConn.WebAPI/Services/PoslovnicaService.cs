@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PetConn.Model;
 using PetConn.Model.Requests;
 using System;
@@ -15,8 +16,15 @@ namespace PetConn.WebAPI.Services
         }
         public override List<Poslovnica> Get(PoslovnicaSearchRequest request)
         {
-            
-            var list = _context.Poslovnicas.Where(w => w.PartnerId == request.PartnerId).ToList();
+            var query = _context.Poslovnicas.Include(i=>i.Partner).AsQueryable();
+            if (request.LokacijaId != 0 && request.PartnerId != 0)
+                query = query.Where(w => w.LokacijaId == request.LokacijaId && w.PartnerId == request.PartnerId);
+            if (request.LokacijaId != 0)
+                query=query.Where(w =>  w.LokacijaId == request.LokacijaId);
+            if (request.PartnerId != 0)
+                query=query.Where(w=>w.PartnerId == request.PartnerId);
+            var list = query.ToList();   
+                //var list = _context.Poslovnicas.Where(w => w.PartnerId == request.PartnerId && w.LokacijaId==request.LokacijaId).ToList();
             return _mapper.Map<List<Poslovnica>>(list);
         }
     }

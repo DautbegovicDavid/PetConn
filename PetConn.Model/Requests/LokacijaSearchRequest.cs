@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PetConn.Model.HelpModels
+namespace PetConn.Model.Requests
 {
-    public class Lokacija
+    public class LokacijaSearchRequest
     {
-        public int LokacijaId { get; set; }
         public int GradId { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }

@@ -11,7 +11,7 @@ namespace PetConn.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class BaseController<TModel, TSearch> : ControllerBase
     {
         private readonly IService<TModel,TSearch> _service;
@@ -25,6 +25,10 @@ namespace PetConn.WebAPI.Controllers
             return  _service.Get(request);
         }
         //[Authorize(Roles = "Menadzer")]
+
+
+
+        
         [HttpGet("{id}")]
         public TModel GetByID(int id)
         {

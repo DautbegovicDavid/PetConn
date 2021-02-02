@@ -1,5 +1,6 @@
 using AutoMapper;
 using eProdaja.WebAPI.Security;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -95,6 +96,8 @@ namespace PetConn.WebAPI
 
             services.AddScoped<ICRUDService<Model.Poslovnica,PoslovnicaSearchRequest, PoslovnicaUpsertRequest, PoslovnicaUpsertRequest>,
                 PoslovnicaService>();
+
+            services.AddScoped<ICRUDService<Model.HelpModels.Lokacija, LokacijaSearchRequest, LokacijaUpsertRequest, LokacijaUpsertRequest>,LokacijaService>();
 
             //Poslovnica, PoslovnicaSearchRequest, PoslovnicaUpsertRequest, PoslovnicaUpsertRequest
 

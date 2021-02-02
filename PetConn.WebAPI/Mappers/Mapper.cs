@@ -30,6 +30,11 @@ namespace PetConn.WebAPI.Mappers
             CreateMap<PoslovnicaUpsertRequest, Database.Poslovnica>().ReverseMap();
             CreateMap<PartneriSearchRequest, Database.Partneri>().ReverseMap();
             CreateMap<PartneriSearchRequest, Partner>().ReverseMap();
+            CreateMap<Lokacija, Database.Lokacija>().ReverseMap();
+            CreateMap<Database.Lokacija, LokacijaUpsertRequest>().ReverseMap();
+            CreateMap<Database.Partneri, PartneriUpsertRequest>().ReverseMap();
+
+
 
 
 

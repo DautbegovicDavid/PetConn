@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnMaximize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAO5JREFUWEft
         VksKwjAQ7UL3HsBbeBbvInqBrkUQF3oNLV269S4umoRJN+mMDqKBQFJG6icPXhfNe28e7SJTZGT4cM6N
@@ -150,7 +150,7 @@
         IBkrJpnCNhdd9f90LZ/xz1AUv/I/J7UcU282AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="button6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnTakeABreak.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAhdJREFUWEft
         lU9LG0EYxlNtP4HaXgqFVkG8ldJrC4X2IwgKvVTBo72J4rUi9OYH0A9Q9WiPPahYPJeegxVtBUuyM5Pd
@@ -233,6 +233,25 @@
         zTQDYIuZHy9HIt+fcl2nAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="ucPartners_Apartment.petShopImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAzJJREFUWEfl
+        V0tr1FAYjWjrQlyIaxc+cCf4QtyJUkXxiYiiovgAwWIR66MqPhBctODChRsVF7rxR4iFulMstP0BgiuF
+        okwnuUlmtB3PN5wpdzL3mybpTEfxwGHSm++ce/Ll3iT1/ivEU1PrhPzz70GlUumKg2AQLJODMsbTnUXZ
+        mE0INAZWEhwrB8FGli080KFuhKh1LRmuxs50k10bt4LMxTHRUN4+oBOLMdl1MLQmT0vR9IsH7VoLdGAz
+        JsjSNY3j4kXb+SPlWsvK2trs5jT5wK5NWMatZr5uWl37ZZm1izJH+m7iirZA0M6uaZyQuRmjEbiCpSha
+        qK5pdHczLhbXR0HwKVGclT/Bz6Qcu2pSEVk+SibG87xSENxyFWYhPAZoJ34DrhoXEWbGNS6ZaNeygLOG
+        rfazDQ34oVaUltC/jqJoNe28SqGwomTMA5zLtp59/zl+Izl2BRyOC4W1+B2qFqfnTdo0AL6nHPUqI9/f
+        yQzDdQHl6rFzqu9IFD1MCptwFLpFVRMgDMNVdYsbQM37hEYl5t4lGnguse9IHTDJDZfYRRg+osyLjTmE
+        sWkZx9Wf5LB08Y6tmYM9lOnARL0OoZu+f5ky6dS1hvPZuYd2OiJjLjqEGp9SJrelC4H7wBcYH03UpeVe
+        2unIEhDPsB/FYnElpXXA+R7wm10/J43ZR7mOjB0UjlQmJ5dTXgesvw04X0rU6zRmP6U6cgQUfkWY2/jd
+        LTuZVlVg/E2iVqcxBynTkTOgzWlMdIB2HtbkFUeNk3i4H6ZMhwTE2nIaODgUx/EaoTxyrPGrtPMw6X1r
+        vClRe4QyHRk3yVvK7F3cJ8ccls0yktRpLPn+Ucp0ZLzFv/GRuZXSBsgD26FRiYDHKNWRYw1+L4fhNsqr
+        QAeX4Xbdw7lMHwsIeJwWOnJukhnc7nO0kM7l+txCwBO00JEzYEu+B2VJ0EJH3oDgF/AdKceumqbEXTjN
+        GDrmEXDeRMAzjKGjwwHPMoaODgec3WgqEPCCS7wQRMDzjKEDL/vtKHb+K9hmzsjcjNEceK/uwCvrJa7o
+        FV78zyB+ggfv41IU3Q2DoB9jveClVlLm5PT/EjzvD9IxJfyyQrzhAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="ucPartners_PetCarer.petShopImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAA0JJREFUWEft
@@ -253,23 +272,22 @@
         RU5ErkJggg==
 </value>
   </data>
-  <data name="ucPartners_Hotel_Apartment.petShopImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="ucPartners_Hotel.petShopImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
+        ioqKipp4GfMH7P6T9JOGwokAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="ucPartners_VetStation.petShopImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -309,5 +327,31 @@
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <data name="btnRefresh.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAeJJREFUWEft
+        VrtKA0EUDaL2FqL4Liy01A9RtLAQa8EHSkBF8DcsLIWghaigRUB/RMHC2ojmMTP7iCbruZuzMQSTnYU0
+        wh44sHPnnnvvzOzu3EyKFEngOM6Er/WRp9SdZ8yLq/WHp/Un+AY++saciA/dewdjzBiSXSDJNxjE8AtF
+        nruuO0V5JprjMBl8pVYhLjGIJ8Gx+iUpKiiVhoRINi1+mMuJD31LsK1JDI6TFwDRPlgPAxhzhe2d5FRH
+        oJiZ8IgaSWvQbfI5WQG+46yEAYRK7dFsDeiyoBQvMZIVoLUegeCdwizNiYEjOY6SC2mOB1Z8RlGeJmu0
+        JmwnXbojCIJBOD+DNb9SmaPZGq0J20mXeKCIvqoxCxymSJHi/wOf9KJ82hzG46+fSES6WAM34jx0ch88
+        yU+O5u5oTdhOulgDmodQa8wpTfFoTYh7YZvmxID+gHEKSqlhmuPRTB5dp0ptccoa0P1ex2hgaLYDRNHq
+        d8MAjfG9Vy7P0qUjpBVDwmtq6oixwyl7UByeNxrNZTwXafMR8Bb94Ya0YXipBsB+NqvrSHwDnyp9i6IN
+        AyYFAzRfOFkVkl7C1mjPulOa0hyamlHKewdZNRLIi5UHC6Acjw++YmekDzzEbozTPUUKC2QyP9YjtXAQ
+        RtaDAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnFilter.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAALpJREFUWEft
+        lcEKwjAMhntxTyUefLeJvqXXedwK9Vb/QIQZ0mqrHVjywXdZSP9Cm84Zxt8RYxzu3p/hlQzLMuLbjsvt
+        QegFxrW0CS5/j1w8JUIP8KjVcnJMGq1JM8zznjah1XJyTD1YhM7/ZdGfHsE7VpfwBqfg/WnTS2jk6OON
+        kAvUSOMJ1TeCY9JoTaXm3giOaQMC7I3okD5muwQZ9pTGChb//6Uck0ZrImv//1KO+Rw02WwbRkOcewDE
+        5iQxk1QhMQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
   </metadata>
 </root>

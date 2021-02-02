@@ -28,6 +28,12 @@ namespace PetConn.WinUI
             }
             return await url.WithBasicAuth(UserName, Password).GetJsonAsync<T>();
         }
+        public async Task<T> GetbyID<T>(int ID)
+        {
+            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{ID}";
+           
+            return await url.WithBasicAuth(UserName, Password).GetJsonAsync<T>();
+        }
         public async Task<T> Insert<T>(object request)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
