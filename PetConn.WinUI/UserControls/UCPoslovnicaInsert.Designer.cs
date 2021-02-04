@@ -50,6 +50,9 @@ namespace PetConn.WinUI.UserControls
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAddLocation = new System.Windows.Forms.Button();
             this.btnAddPartner = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoslovnica)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +67,7 @@ namespace PetConn.WinUI.UserControls
             // cmbPartner
             // 
             this.cmbPartner.FormattingEnabled = true;
-            this.cmbPartner.Location = new System.Drawing.Point(191, 93);
+            this.cmbPartner.Location = new System.Drawing.Point(191, 92);
             this.cmbPartner.Name = "cmbPartner";
             this.cmbPartner.Size = new System.Drawing.Size(119, 21);
             this.cmbPartner.TabIndex = 1;
@@ -98,9 +101,9 @@ namespace PetConn.WinUI.UserControls
             this.lblHeader.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblHeader.Location = new System.Drawing.Point(115, 21);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(143, 25);
+            this.lblHeader.Size = new System.Drawing.Size(175, 25);
             this.lblHeader.TabIndex = 6;
-            this.lblHeader.Text = "Unesite poslovnicu";
+            this.lblHeader.Text = "Enter place of business";
             // 
             // btnClose
             // 
@@ -121,10 +124,11 @@ namespace PetConn.WinUI.UserControls
             // vrijemeOD
             // 
             this.vrijemeOD.CustomFormat = "";
-            this.vrijemeOD.Location = new System.Drawing.Point(31, 148);
+            this.vrijemeOD.Location = new System.Drawing.Point(69, 154);
             this.vrijemeOD.Name = "vrijemeOD";
-            this.vrijemeOD.Size = new System.Drawing.Size(100, 20);
+            this.vrijemeOD.Size = new System.Drawing.Size(62, 20);
             this.vrijemeOD.TabIndex = 19;
+            this.vrijemeOD.Value = new System.DateTime(2021, 2, 2, 8, 0, 0, 0);
             // 
             // label1
             // 
@@ -140,16 +144,17 @@ namespace PetConn.WinUI.UserControls
             // vrijemeDo
             // 
             this.vrijemeDo.CustomFormat = "";
-            this.vrijemeDo.Location = new System.Drawing.Point(31, 174);
+            this.vrijemeDo.Location = new System.Drawing.Point(69, 180);
             this.vrijemeDo.Name = "vrijemeDo";
-            this.vrijemeDo.Size = new System.Drawing.Size(100, 20);
+            this.vrijemeDo.Size = new System.Drawing.Size(62, 20);
             this.vrijemeDo.TabIndex = 22;
+            this.vrijemeDo.Value = new System.DateTime(2021, 2, 2, 21, 0, 0, 0);
             // 
             // txtNazivPoslovnice
             // 
             this.txtNazivPoslovnice.Location = new System.Drawing.Point(31, 229);
             this.txtNazivPoslovnice.Name = "txtNazivPoslovnice";
-            this.txtNazivPoslovnice.Size = new System.Drawing.Size(123, 20);
+            this.txtNazivPoslovnice.Size = new System.Drawing.Size(134, 20);
             this.txtNazivPoslovnice.TabIndex = 23;
             // 
             // lblNaziv
@@ -178,7 +183,7 @@ namespace PetConn.WinUI.UserControls
             // 
             this.txtEmail.Location = new System.Drawing.Point(31, 283);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(123, 20);
+            this.txtEmail.Size = new System.Drawing.Size(134, 20);
             this.txtEmail.TabIndex = 25;
             // 
             // label2
@@ -196,11 +201,12 @@ namespace PetConn.WinUI.UserControls
             // 
             this.txtTelefon.Location = new System.Drawing.Point(31, 338);
             this.txtTelefon.Name = "txtTelefon";
-            this.txtTelefon.Size = new System.Drawing.Size(123, 20);
+            this.txtTelefon.Size = new System.Drawing.Size(134, 20);
             this.txtTelefon.TabIndex = 27;
             // 
             // pictureBoxPoslovnica
             // 
+            this.pictureBoxPoslovnica.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBoxPoslovnica.Location = new System.Drawing.Point(191, 148);
             this.pictureBoxPoslovnica.Name = "pictureBoxPoslovnica";
             this.pictureBoxPoslovnica.Size = new System.Drawing.Size(166, 101);
@@ -210,13 +216,12 @@ namespace PetConn.WinUI.UserControls
             // btnAddPicture
             // 
             this.btnAddPicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddPicture.FlatAppearance.BorderSize = 2;
             this.btnAddPicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPicture.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAddPicture.Location = new System.Drawing.Point(273, 264);
+            this.btnAddPicture.Location = new System.Drawing.Point(286, 264);
             this.btnAddPicture.Name = "btnAddPicture";
-            this.btnAddPicture.Size = new System.Drawing.Size(84, 25);
+            this.btnAddPicture.Size = new System.Drawing.Size(71, 27);
             this.btnAddPicture.TabIndex = 30;
             this.btnAddPicture.Text = "Add picture";
             this.btnAddPicture.UseVisualStyleBackColor = true;
@@ -247,7 +252,6 @@ namespace PetConn.WinUI.UserControls
             this.btnAddLocation.Size = new System.Drawing.Size(44, 44);
             this.btnAddLocation.TabIndex = 32;
             this.btnAddLocation.UseVisualStyleBackColor = true;
-            
             // 
             // btnAddPartner
             // 
@@ -263,13 +267,38 @@ namespace PetConn.WinUI.UserControls
             this.btnAddPartner.Size = new System.Drawing.Size(44, 44);
             this.btnAddPartner.TabIndex = 33;
             this.btnAddPartner.UseVisualStyleBackColor = true;
-            
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(33, 160);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "from:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(44, 186);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 13);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "to:";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // UCPoslovnicaInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAddPartner);
             this.Controls.Add(this.btnAddLocation);
             this.Controls.Add(this.btnSave);
@@ -290,6 +319,7 @@ namespace PetConn.WinUI.UserControls
             this.Controls.Add(this.lblLokacija);
             this.Controls.Add(this.cmbPartner);
             this.Controls.Add(this.cmbLokacija);
+            this.Location = new System.Drawing.Point(10, 500);
             this.Name = "UCPoslovnicaInsert";
             this.Size = new System.Drawing.Size(385, 399);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoslovnica)).EndInit();
@@ -320,5 +350,8 @@ namespace PetConn.WinUI.UserControls
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Button btnAddLocation;
         public System.Windows.Forms.Button btnAddPartner;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

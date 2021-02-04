@@ -288,7 +288,7 @@ namespace PetConn.WinUI.Home_Panels
             this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Location = new System.Drawing.Point(508, 23);
+            this.btnRefresh.Location = new System.Drawing.Point(421, 391);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(31, 32);
             this.btnRefresh.TabIndex = 10;
@@ -309,6 +309,7 @@ namespace PetConn.WinUI.Home_Panels
             this.button8.TabIndex = 9;
             this.button8.Text = "Delete";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 

@@ -16,7 +16,7 @@ namespace PetConn.WebAPI.Services
         }
         public override List<Poslovnica> Get(PoslovnicaSearchRequest request)
         {
-            var query = _context.Poslovnicas.Include(i=>i.Partner).AsQueryable();
+            var query = _context.Poslovnicas.Include(i=>i.Partner.VrstaPartnera).AsQueryable();
             if (request.LokacijaId != 0 && request.PartnerId != 0)
                 query = query.Where(w => w.LokacijaId == request.LokacijaId && w.PartnerId == request.PartnerId);
             if (request.LokacijaId != 0)

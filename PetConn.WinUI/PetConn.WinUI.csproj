@@ -140,6 +140,12 @@
     <Compile Include="UserControls\UCPoslovnicaInsert.Designer.cs">
       <DependentUpon>UCPoslovnicaInsert.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_PoslovniceDelete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_PoslovniceDelete.Designer.cs">
+      <DependentUpon>UC_PoslovniceDelete.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCPoslovnicaInsert.resx">
       <DependentUpon>UCPoslovnicaInsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_PoslovniceDelete.resx">
+      <DependentUpon>UC_PoslovniceDelete.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

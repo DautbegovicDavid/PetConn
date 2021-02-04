@@ -25,6 +25,10 @@ namespace PetConn.WinUI.UserControls
             add { btnSave.Click += value; }
             remove { btnSave.Click -= value; }
         }
+        //public DateTime vrijemeOD { get { return vrijemeOD} }
+        public DateTime vrijemeEntryOd { get { return vrijemeOD.Value; } set { vrijemeOD.Value = value; } }
+        public DateTime vrijemeEntryDo { get { return vrijemeDo.Value; } set { vrijemeDo.Value = value; } }
+
         public string nazivEntry { get { return txtNazivPoslovnice.Text; } set { txtNazivPoslovnice.Text = value; } }
         public Image petShopImage { get { return pictureBoxPoslovnica.Image; } set { pictureBoxPoslovnica.Image = value; } }
         public string emailEntry { get { return txtEmail.Text; } set { txtEmail.Text = value; } }
@@ -60,24 +64,40 @@ namespace PetConn.WinUI.UserControls
         }
 
         
+        public void CleanForm()
+        {
+            Controls.Clear();
 
+            InitializeComponent();
+
+
+        }
         private void btnClose_Click_1(object sender, EventArgs e)
         {
             Hide();
         }
         public void SetFormat()
         {
-            vrijemeDo.Format = DateTimePickerFormat.Custom;
-            vrijemeDo.CustomFormat = "HH:mm";
 
             vrijemeOD.Format = DateTimePickerFormat.Custom;
             vrijemeOD.CustomFormat = "HH:mm";
+            
 
+            vrijemeDo.Format = DateTimePickerFormat.Custom;
+            vrijemeDo.CustomFormat = "HH:mm";
+
+            
+            //vrijemeDo.Format = DateTimePickerFormat.Time;
+            //vrijemeOD.Format = DateTimePickerFormat.Time;
+
+            
+
+            
             vrijemeDo.ShowUpDown = true;
             vrijemeOD.ShowUpDown = true;
 
         }
 
-       
+      
     }
 }

@@ -6,7 +6,8 @@ namespace PetConn.Model
 {
     public class Poslovnica
     {
-        
+
+        public int PoslovnicaId { get; set; }
         public int LokacijaId { get; set; }
         public int PartnerId { get; set; }
         public virtual Partner Partner { get; set; }

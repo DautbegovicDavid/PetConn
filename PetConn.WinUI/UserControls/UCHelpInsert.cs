@@ -20,7 +20,7 @@ namespace PetConn.WinUI.UserControls
         }
         public event EventHandler SaveBtnClick
         {
-            add { btnSave.Click += value; }
+            add { btnSave.Click += value; } 
             remove { btnSave.Click -= value; }
         }
         public string firstEntry { get { return txtBoxFirst.Text; } set { txtBoxFirst.Text = value; } }
