@@ -14,31 +14,53 @@ using System.Windows.Forms;
 using System.Reflection;
 using PetConn.WinUI.UserControls;
 using System.IO;
+using PetConn.WinUI.Helpers;
 
 namespace PetConn.WinUI.Home_Panels
 {
     public partial class frmHome : Form
     {
 
-        APIService _serviceVP = new APIService("VrstePartnera");
-        APIService _serviceP = new APIService("Partner");
-        APIService _servicePoslovnica = new APIService("Poslovnica");
-        APIService _serviceGrad = new APIService("Grad");
-        APIService _serviceLokacija = new APIService("Lokacija");
+        private readonly APIService _serviceVP = new APIService("VrstePartnera");
+        private readonly APIService _serviceP = new APIService("Partner");
+        private readonly APIService _servicePoslovnica = new APIService("Poslovnica");
+        private readonly APIService _serviceGrad = new APIService("Grad");
+        private readonly APIService _serviceLokacija = new APIService("Lokacija");
+        private readonly APIService _serviceUloge = new APIService("Uloge");
+        private readonly APIService _serviceKorisnici = new APIService("Korisnici");
 
-        int VrstaPartneraID;
-
-
+        int VrstaPartneraID = 0;
         int panelWidth;
         bool Hidden;
+
+        // User Controls
+        UC_PartneriEdit uc_partneri_edit;
+        UC_PartneriDelete uc_partneri_delete;//=new() baca erro na samom pocetku
+        UC_PoslovniceUpdate uc_PoslovnicaUpdate;//tabele tj dgv mozda preimenovati ??
+        UC_PoslovniceDelete uc_PoslovnicaDelete;
+        UCPoslovnicaUpsert UC_PoslovnicaUpsert;
+        //Requests
+        PoslovnicaUpsertRequest request = new PoslovnicaUpsertRequest();
+
+
         public frmHome()
         {
             InitializeComponent();
             panelWidth = panelSlide.Width;
             Hidden = false;
-            
-        }
+            lblKorisnickoIme.Text = APIService.UserName+" "+APIService.Uloga;
 
+        }
+        private void frmHome_Load(object sender, EventArgs e)
+        {
+            panelFilterControls.Visible = false;
+            groupBox1.Visible = true;
+            LoadPartneri(0);
+            LoadGradovi();
+            LoadVrstePartnera();
+            LoadPoslovnice();
+            dgvPodaci.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(dgvPodaci, true, null);
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (Hidden)
@@ -62,20 +84,8 @@ namespace PetConn.WinUI.Home_Panels
                 }
             }
         }
-        private void frmHome_Load(object sender, EventArgs e)
-        {
-            panelFilterControls.Visible = false;
-            groupBox1.Visible = true;
-            LoadPartneri(0);
-            LoadGradovi();
-            LoadVrstePartnera();
-            LoadPoslovnice();
-            label3.Visible = false;
-            label4.Visible = false;
-            label5.Visible = false;
-            dgvPodaci.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(dgvPodaci, true, null);
+        private void dgvPodaci_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
 
-        }
         //frm Actions
         private void btnMinimize_Click(object sender, EventArgs e)
         {
@@ -113,8 +123,6 @@ namespace PetConn.WinUI.Home_Panels
         }
 
 
-
-
         //HOME PANEL CONTROLS
 
         private void button1_Click(object sender, EventArgs e)
@@ -122,28 +130,10 @@ namespace PetConn.WinUI.Home_Panels
             if (txtSlidePanelTitle.Text != "Partners")
             {
                 txtSlidePanelTitle.Text = "Partners";
-                if (Hidden)
-                    timer1.Start();
-            }
-            else
-                timer1.Start();
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (txtSlidePanelTitle.Text != "Add users")
-            {
-                txtSlidePanelTitle.Text = "Add users";
-                if (Hidden)
-                    timer1.Start();
-            }
-            else
-                timer1.Start();
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (txtSlidePanelTitle.Text != "Manage users")
-            {
-                txtSlidePanelTitle.Text = "Manage users";
+                lblManageBtnSHeader.Text = "Manage Business Places";
+                panelAddDelEd.Visible = true;
+                lblManageBtnSHeader.Location = new Point(491, 393);
+
                 if (Hidden)
                     timer1.Start();
             }
@@ -152,9 +142,54 @@ namespace PetConn.WinUI.Home_Panels
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            if (txtSlidePanelTitle.Text != "Add partner")
+            if (txtSlidePanelTitle.Text != "Manage partners")
             {
-                txtSlidePanelTitle.Text = "Add partner";
+                txtSlidePanelTitle.Text = "Manage partners";
+                lblManageBtnSHeader.Text = "Manage Partners";
+                lblManageBtnSHeader.Location = new Point(491, 393);
+                
+                panelAddDelEd.Visible = true;
+
+                if (Hidden)
+                    timer1.Start();
+            }
+            else
+                timer1.Start();
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (txtSlidePanelTitle.Text != "Users")
+            {
+                txtSlidePanelTitle.Text = "Users";
+                lblManageBtnSHeader.Text = "Manage User / Workplace";
+                lblManageBtnSHeader.Location = new Point(60, 385);
+
+                panelAddDelEd.Visible = false;
+                UC_KorisniciEditDelete uc_korisniciEditDelete = new UC_KorisniciEditDelete();
+                testMetodaDGV(uc_korisniciEditDelete, "UC_Edit_Delete_Korisnici", new Point(20, 500));
+                uc_korisniciEditDelete.LoadDGV();
+                uc_korisniciEditDelete.LoadCMBs();
+                UC_KorisniciEdit uc_korisniciEdit = new UC_KorisniciEdit();
+                testMetodaDGV(uc_korisniciEdit, "UC_Edit_Korisnici", new Point(550, 500));
+                
+
+                if (Hidden)
+                    timer1.Start();
+                return;
+                
+            }
+            else
+                timer1.Start();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (txtSlidePanelTitle.Text != "Manage users")
+            {
+                txtSlidePanelTitle.Text = "Manage users";
+                lblManageBtnSHeader.Text = "Manage Users";
+                panelAddDelEd.Visible = true;
+                lblManageBtnSHeader.Location = new Point(491, 393);
+
                 if (Hidden)
                     timer1.Start();
             }
@@ -162,6 +197,8 @@ namespace PetConn.WinUI.Home_Panels
                 timer1.Start();
         }
 
+
+        //___LOAD COMBO BOXES___
         //load ComboBoxS
         private async void LoadPartneri(int VPid)
         {
@@ -171,6 +208,23 @@ namespace PetConn.WinUI.Home_Panels
             cmbPartneri.DisplayMember = "Naziv";
             cmbPartneri.ValueMember = "PartnerId";
         }
+        private async void LoadGradovi()
+        {
+            var listGradovi = await _serviceGrad.Get<List<Grad>>(null);
+            listGradovi.Insert(0, new Grad { Naziv = "Grad" });
+            cmbGradovi.DataSource = listGradovi;
+            cmbGradovi.DisplayMember = "Naziv";
+            cmbGradovi.ValueMember = "GradId";
+        }
+        private async void LoadVrstePartnera()
+        {
+            var listVrstePartnera = await _serviceVP.Get<List<VrstePartnera>>(null);
+            listVrstePartnera.Insert(0, new VrstePartnera { Naziv = "Vrste Partnera" });
+            cmbVrstaPartnera.DataSource = listVrstePartnera;
+            cmbVrstaPartnera.DisplayMember = "Naziv";
+            cmbVrstaPartnera.ValueMember = "VrstaPartneraId";
+        }
+        // Load UCs ComboBoxS
         private async void UC_LoadPartneri(int VPid, ComboBox cmb, bool selectLastItem)
         {
             var listPartneri = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VPid });
@@ -181,13 +235,17 @@ namespace PetConn.WinUI.Home_Panels
             if (selectLastItem)
                 cmb.SelectedIndex = cmb.Items.Count - 1;
         }
-        private async void LoadGradovi()
+        private async void UC_LoadPartneriUpdate(int VPid, ComboBox cmb, Poslovnica p)
         {
-            var listGradovi = await _serviceGrad.Get<List<Grad>>(null);
-            listGradovi.Insert(0, new Grad { Naziv = "Grad" });
-            cmbGradovi.DataSource = listGradovi;
-            cmbGradovi.DisplayMember = "Naziv";
-            cmbGradovi.ValueMember = "GradId";
+            var listPartneri = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VPid });
+            listPartneri.Insert(0, new Partner { Naziv = "Partner" });
+            cmb.DataSource = listPartneri;
+            cmb.DisplayMember = "Naziv";
+            cmb.ValueMember = "PartnerId";
+
+            //cmb.SelectedIndex = cmb.Items.IndexOf(p.Partner);
+            cmb.SelectedValue = p.PartnerId;
+
         }
         private async void UC_LoadLokacija(ComboBox cmb, bool selectLastItem)
         {
@@ -199,20 +257,22 @@ namespace PetConn.WinUI.Home_Panels
             if (selectLastItem)
                 cmb.SelectedIndex = cmb.Items.Count - 1;
         }
-        private async void LoadVrstePartnera()
+        private async void UC_LoadLokacijaUpdate(ComboBox cmb, Poslovnica p)
         {
-            var listVrstePartnera = await _serviceVP.Get<List<VrstePartnera>>(null);
-            listVrstePartnera.Insert(0, new VrstePartnera { Naziv = "Vrste Partnera" });
-            cmbVrstaPartnera.DataSource = listVrstePartnera;
-            cmbVrstaPartnera.DisplayMember = "Naziv";
-            cmbVrstaPartnera.ValueMember = "VrstaPartneraId";
+            var listLokacije = await _serviceLokacija.Get<List<Lokacija>>(null);
+            listLokacije.Insert(0, new Lokacija { Naziv = "Location" });
+            cmb.DataSource = listLokacije;
+            cmb.DisplayMember = "Naziv";
+            cmb.ValueMember = "LokacijaId";
+
+            cmb.SelectedValue = p.LokacijaId;
         }
 
-        //load DGVs
+        //load Main Forms DGV
         private async Task LoadPartnerskePoslovnice(int VPid)
         {
             List<int> partneri = await _serviceP.GetPartnresIDs<List<int>>(new PartneriSearchRequest { VrstaPartneraId = VPid });
-            List<Model.Poslovnica> poslovnicas = new List<Poslovnica>();
+            List<Poslovnica> poslovnicas = new List<Poslovnica>();
             foreach (var x in partneri)
             {
                 poslovnicas.AddRange(await _servicePoslovnica.Get<List<Poslovnica>>(new PoslovnicaSearchRequest { PartnerId = x }));
@@ -241,7 +301,9 @@ namespace PetConn.WinUI.Home_Panels
 
             //DGV Fill
             VrstaPartneraID = await GetVrstaPartneraID("Pet Shop");
-
+            //UC PArtnerDelete Setter
+            if(uc_partneri_delete!=null)
+            uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
             //CMBs Fill
             LoadPartneri(VrstaPartneraID);
             LoadGradovi();
@@ -250,14 +312,20 @@ namespace PetConn.WinUI.Home_Panels
             cmbVrstaPartnera.Visible = true;
             cmbVrstaPartnera.SelectedIndex = cmbVrstaPartnera.FindString("Pet Shop");
 
-            await LoadPartnerskePoslovnice(VrstaPartneraID); 
+            await LoadPartnerskePoslovnice(VrstaPartneraID);
             dgvPodaci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+
         }
         private async void ucPartners_PetCarer_Click(object sender, EventArgs e)
         {
             if (txtSlidePanelTitle.Text == "Partners")
                 groupBox1.Text = "Business places - Pet Carers";
+
             VrstaPartneraID = await GetVrstaPartneraID("Pet Carer");
+            //UC PArtnerDelete Setter
+            if(uc_partneri_delete!=null)
+            uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
 
             //CMBs Fill
             cmbVrstaPartnera.SelectedIndex = cmbVrstaPartnera.FindString("Pet Carer");
@@ -269,10 +337,13 @@ namespace PetConn.WinUI.Home_Panels
         }
         private async void ucPartners_Hotel_Click(object sender, EventArgs e)
         {
+
             if (txtSlidePanelTitle.Text == "Partners")
                 groupBox1.Text = "Business places - Hotels";
             VrstaPartneraID = await GetVrstaPartneraID("Hotel");
-
+            //UC PArtnerDelete Setter
+            if(uc_partneri_delete != null)
+            uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
 
             cmbVrstaPartnera.SelectedIndex = cmbVrstaPartnera.FindString("Hotel");
             LoadPartneri(VrstaPartneraID);
@@ -283,11 +354,14 @@ namespace PetConn.WinUI.Home_Panels
         }
         private async void ucPartners_VetStation_Click(object sender, EventArgs e)
         {
+
             if (txtSlidePanelTitle.Text == "Partners")
                 groupBox1.Text = "Business places - Vet Stations";
 
             VrstaPartneraID = await GetVrstaPartneraID("Vet Station");
-
+            //UC PArtnerDelete Setter\
+            if(uc_partneri_delete!=null)
+            uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });//kad kliknem na controle ,nsm inicijalizovao kontrolu a dodajem joj , NULLLLLL
             //CMBs Fill
             LoadPartneri(VrstaPartneraID);
             LoadGradovi();
@@ -298,9 +372,13 @@ namespace PetConn.WinUI.Home_Panels
         }
         private async void ucPartners_Apartment_Click(object sender, EventArgs e)
         {
+
             if (txtSlidePanelTitle.Text == "Partners")
                 groupBox1.Text = "Business places - Apartments";
             VrstaPartneraID = await GetVrstaPartneraID("Apartment");
+            //UC PArtnerDelete Setter
+            if(uc_partneri_delete != null)
+            uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
 
             cmbVrstaPartnera.SelectedIndex = cmbVrstaPartnera.FindString("Apartment");
             LoadPartneri(VrstaPartneraID);
@@ -329,17 +407,13 @@ namespace PetConn.WinUI.Home_Panels
             dgvPodaci.DataSource = null;
             dgvPodaci.Rows.Clear();
 
-            List<Poslovnica> poslovnice = new List<Poslovnica>(); 
+            List<Poslovnica> poslovnice = new List<Poslovnica>();
             List<dynamic> poslovniceDynamic = new List<dynamic>();
-
-
-
-
             //FILTER U ODNOSU STA PISE TJ KOJI JE SELEKTOVAN
-            if (/*cmbGradovi.SelectedIndex != 0 || */cmbPartneri.SelectedIndex != 0)
+            if (cmbPartneri.SelectedIndex != 0)
             {
 
-                if (int.TryParse(cmbGradovi.SelectedValue.ToString(), out int idGrad)) 
+                if (int.TryParse(cmbGradovi.SelectedValue.ToString(), out int idGrad))
                 {
                     List<Lokacija> listLokacija = await _serviceLokacija.Get<List<Lokacija>>(new LokacijaSearchRequest { GradId = idGrad });
 
@@ -354,12 +428,12 @@ namespace PetConn.WinUI.Home_Panels
                 }
                 poslovniceDynamic.AddRange(poslovnice);
                 dgvPodaci.DataSource = poslovniceDynamic.ToList();
-                
+
 
             }
             else if (cmbVrstaPartnera.SelectedIndex != 0 && cmbGradovi.SelectedIndex != 0)
             {
-                if (int.TryParse(cmbVrstaPartnera.SelectedValue.ToString(), out int idVP)) 
+                if (int.TryParse(cmbVrstaPartnera.SelectedValue.ToString(), out int idVP))
                 {
                     List<int> partneri = await _serviceP.GetPartnresIDs<List<int>>(new PartneriSearchRequest { VrstaPartneraId = idVP });
                     foreach (var x in partneri)
@@ -369,7 +443,7 @@ namespace PetConn.WinUI.Home_Panels
                 }
                 if (cmbGradovi.SelectedIndex != 0)
                 {
-                    
+
                     List<Lokacija> _Lokacija = new List<Lokacija>();
                     if (int.TryParse(cmbGradovi.SelectedValue.ToString(), out int idGrad))
                     {
@@ -438,7 +512,6 @@ namespace PetConn.WinUI.Home_Panels
             {
                 LoadPartneri(idVP);
             }
-
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -448,17 +521,13 @@ namespace PetConn.WinUI.Home_Panels
             LoadVrstePartnera();
             LoadGradovi();
             groupBox1.Text = "Business places ";
+            VrstaPartneraID = 0;
         }
 
 
-
-        private void dgvPodaci_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        //Insert UC Location/Partner
+        private async void Set_HelpInsert_UCs(UC_HelpInsert uc, Partner p)
         {
-
-        }
-        private async void SetUserHelpControl(UCHelpInsert uc)
-        {
-            uc.Show();
             if (uc.Name == "UC_Lokacija")
             {
                 var listGradovi = await _serviceGrad.Get<List<Grad>>(null);
@@ -470,10 +539,6 @@ namespace PetConn.WinUI.Home_Panels
                 uc.lblFirstEntryField.Text = "Name of location";
                 uc.lblSecondEntryField.Text = "Address";
                 uc.lblHeader.Text = "Enter location";
-                uc.Location = new Point(370, 500);
-                panel3.Controls.Add(uc);
-
-
             }
             if (uc.Name == "UC_Partner")
             {
@@ -487,13 +552,43 @@ namespace PetConn.WinUI.Home_Panels
                 uc.lblSecondEntryField.Visible = false;
                 uc.txtBoxSecond.Visible = false;
                 uc.lblHeader.Text = "Enter Partner";
-                uc.Location = new Point(400, 500);
-                panel3.Controls.Add(uc);
+                if (p != null)
+                {
+                    uc.firstEntry = p.Naziv;
+                    uc.cmbBox.SelectedValue = p.VrstaPartneraId; //
+                    uc.Location = new Point(360, 500);
+                    return;
+                }
             }
-        }
-        private async void UC_SaveBtn_Click(object sender, EventArgs e, UCHelpInsert uc)
-        {
 
+            panel3.Controls.Add(uc);
+            uc.Show();
+
+            if (UC_PoslovnicaUpsert != null)
+            {
+                if (UC_PoslovnicaUpsert.Location == new Point(740, 500))
+                {
+                    uc.Location = new Point(1150, 500);
+                    return;
+                }
+            }
+            if(uc.Location.IsEmpty)
+            uc.Location = new Point(420, 500);
+        }
+        private void UC_ShowHelpInsertAdders(object sender, EventArgs e, UC_HelpInsert uc)
+        {
+            Set_HelpInsert_UCs(uc, null);
+        }
+
+        private async void UC_HelpInsertSaveBtn_Click(object sender, EventArgs e, UC_HelpInsert uc, Partner p)
+        {
+            if (uc.cmbBox.SelectedIndex == 0||uc.firstEntry.Length==0)
+            {
+                MessageBox.Show("Choose type of partner !\n Empty fields are not allowed !", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
             if (uc.Name == "UC_Lokacija")
             {
                 LokacijaUpsertRequest request = new LokacijaUpsertRequest();
@@ -504,7 +599,7 @@ namespace PetConn.WinUI.Home_Panels
                 await _serviceLokacija.Insert<dynamic>(request);
                 MessageBox.Show("Location successfully added", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UC_LoadLokacija(Poslovnica.cmbLokacija, true);
+                UC_LoadLokacija(UC_PoslovnicaUpsert.cmbLokacija, true);
                 uc.Visible = false;
             }
             if (uc.Name == "UC_Partner")
@@ -513,75 +608,152 @@ namespace PetConn.WinUI.Home_Panels
                 request.Naziv = uc.txtBoxFirst.Text;
                 if (int.TryParse(uc.cmbBox.SelectedValue.ToString(), out int idVP))
                     request.VrstaPartneraId = idVP;
-                await _serviceP.Insert<dynamic>(request);
+
+                if(p==null)
+                    await _serviceP.Insert<dynamic>(request);
+                else
+                {
+                    await _serviceP.Update<dynamic>(p.PartnerId, request);
+                    uc_partneri_edit.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
+                    MessageBox.Show("Partner successfully updated", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    uc.Visible = false;
+                    return;
+
+                }
+
                 LoadPartneri(0);
                 MessageBox.Show("Partner successfully added", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UC_LoadPartneri(0, Poslovnica.cmbPartner, true);
-                uc.Visible = false;
+                if (UC_PoslovnicaUpsert != null)
+                {
+                    UC_LoadPartneri(0, UC_PoslovnicaUpsert.cmbPartner, true);
+                    uc.Visible = false;
+                }
             }
         }
 
-        public UCPoslovnicaInsert Poslovnica = new UCPoslovnicaInsert();
+        //------ TEST METODE ------
+        private void testMetoda(UserControl uc,string nazivKontrole,Point p)
+        {
+            
+            uc.Name = nazivKontrole;
+            uc.Location = p;
+            uc.Show();
+            panel3.Controls.Add(uc);
+            
+        }
+        private void testMetodaDGV(UserControl uc, string nazivKontrole, Point p)
+        {
+          
+            uc.Name = nazivKontrole;
+            uc.Location = p;
+            uc.Show();
+            panel3.Controls.Add(uc);
+            uc.Visible = true;
 
+        }
+       
+
+        private bool ProvjeriKontrolu(string nazivKontrole)
+        {
+            if (panel3.Controls.Find(nazivKontrole, true).Length == 1)
+            {
+                Control p = panel3.Controls.Find(nazivKontrole, true).FirstOrDefault();
+                if (p.Visible == true)
+                    return true;
+            }
+            return false;  
+        }
+        private void UkloniKontrolu()
+        {
+            if (panel3.Controls.Find("Poslovnica", true).Length == 1)//neki drugi naziv
+                panel3.Controls.Remove(UC_PoslovnicaUpsert);   
+        }
+        private bool ProvjeriHeader(string lblHeader)
+        {  
+            if (lblManageBtnSHeader.Text == lblHeader)          
+               return true;            
+            return false;
+        }
+        //--------------------------------------------------------------------
+
+
+        //___ADDING___
         private void btnAdd_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
 
-            if (panel3.Controls.Find("Poslovnica", true).Length == 1)
+            if(ProvjeriHeader("Manage Partners"))
             {
-                Control p = panel3.Controls.Find("Poslovnica", true).FirstOrDefault();
-                if (p.Visible == true)
+                if (ProvjeriKontrolu("UC_Partner"))
                     return;
+
+                UC_HelpInsert uc_partner = new UC_HelpInsert { Name="UC_Partner"};
+                uc_partner.Location = new Point(20, 500);
+                Set_HelpInsert_UCs(uc_partner, null);
+                
+                uc_partner.btnSave.Click += delegate (object sen, EventArgs er)
+                {
+                    UC_HelpInsertSaveBtn_Click(sender, e, uc_partner,null);
+                };
+
+                return;
             }
+            
+            if (ProvjeriKontrolu("Poslovnica"))
+                return;
 
+   
+            UCPoslovnicaUpsert nova = new UCPoslovnicaUpsert();
+            UC_PoslovnicaUpsert=nova;
+            UC_PoslovnicaUpsert.Name = "Poslovnica";
+            UC_PoslovnicaUpsert.lblHeader.Text = "Add place of business";
+            UC_PoslovnicaUpsert.Visible = true;
+            panel3.Controls.Add(UC_PoslovnicaUpsert);
+            UC_PoslovnicaUpsert.Location = new Point(20, 500);
 
-            Poslovnica.Name = "Poslovnica";
-            Poslovnica.Visible = true;
-            panel3.Controls.Add(Poslovnica);
-            Poslovnica.Location = new Point(10, 500);
+            UC_LoadLokacija(UC_PoslovnicaUpsert.cmbLokacija, false);
+            UC_LoadPartneri(0, UC_PoslovnicaUpsert.cmbPartner, false);
 
-            UC_LoadLokacija(Poslovnica.cmbLokacija, false);
-            UC_LoadPartneri(0, Poslovnica.cmbPartner, false);
-
-            UCHelpInsert Lokacija = new UCHelpInsert();
+            UC_HelpInsert Lokacija = new UC_HelpInsert();
             Lokacija.Name = "UC_Lokacija";
 
-            UCHelpInsert Partner = new UCHelpInsert();
+            UC_HelpInsert Partner = new UC_HelpInsert();
             Partner.Name = "UC_Partner";
 
-            Poslovnica.btnAddLocation.Click += delegate (object sen, EventArgs er)
+            //UC Helpers Show/Add
+            UC_PoslovnicaUpsert.btnAddLocation.Click += delegate (object sen, EventArgs er)
               {
                   UC_ShowHelpInsertAdders(sender, e, Lokacija);
               };
-            Poslovnica.btnAddPartner.Click += delegate (object sen, EventArgs er)
+            UC_PoslovnicaUpsert.btnAddPartner.Click += delegate (object sen, EventArgs er)
             {
                 UC_ShowHelpInsertAdders(sender, e, Partner);
             };
-            Poslovnica.btnSave.Click += delegate (object sen, EventArgs er)
-            {
-                UC_SaveBtn_PoslovnicaInsert(sender, e, Poslovnica);
-            };
-            Poslovnica.btnAddPicture.Click += delegate (object sen, EventArgs er)
-              {
-                  UC_btnDodajSliku_Click(sender, e, Poslovnica);
-              };
             Lokacija.btnSave.Click += delegate (object sen, EventArgs er)
             {
-                UC_SaveBtn_Click(sender, e, Lokacija);
+                UC_HelpInsertSaveBtn_Click(sender, e, Lokacija,null);
             };
             Partner.btnSave.Click += delegate (object sen, EventArgs er)
             {
-                UC_SaveBtn_Click(sender, e, Partner);
+                UC_HelpInsertSaveBtn_Click(sender, e, Partner,null);
             };
-
-        }
-        PoslovnicaUpsertRequest request = new PoslovnicaUpsertRequest();
-        private async void UC_SaveBtn_PoslovnicaInsert(object sender, EventArgs e, UCPoslovnicaInsert uc)
+            //Poslovnica Add
+            UC_PoslovnicaUpsert.btnAddPicture.Click += delegate (object sen, EventArgs er)
+            {
+                UC_btnDodajSliku_Click(sender, e, UC_PoslovnicaUpsert);
+            };
+            UC_PoslovnicaUpsert.btnSave.Click += delegate (object sen, EventArgs er)
+            {
+                UC_PoslovnicaUpsert_SaveBtn_Click(sender, e, UC_PoslovnicaUpsert,null);
+            };
+ 
+        }    
+        private async void UC_PoslovnicaUpsert_SaveBtn_Click(object sender, EventArgs e, UCPoslovnicaUpsert uc,Poslovnica poslovnica)//vidi mozda objekat zadrzi id ???
         {
-
-            request.RadnoVrijemeDo = Poslovnica.vrijemeEntryDo.TimeOfDay;
-            request.RadnoVrijemeOd = Poslovnica.vrijemeEntryOd.TimeOfDay;
+            request.RadnoVrijemeDo = uc.vrijemeEntryDo.TimeOfDay;
+            request.RadnoVrijemeOd = uc.vrijemeEntryOd.TimeOfDay;
             if (int.TryParse(uc.cmbLokacija.SelectedValue.ToString(), out int idLokacija))
                 request.LokacijaId = idLokacija;
             if (int.TryParse(uc.cmbPartner.SelectedValue.ToString(), out int idPartner))
@@ -589,25 +761,286 @@ namespace PetConn.WinUI.Home_Panels
             request.Naziv = uc.nazivEntry;
             request.Email = uc.emailEntry;
             request.Telefon = uc.phoneEntry;
-            await _servicePoslovnica.Insert<Poslovnica>(request);
-            MessageBox.Show("Place of business successfully added", "Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (uc.pictureBoxPoslovnica.Image != null)
+                request.Slika = ImageHelper.FromImageToByte(uc.pictureBoxPoslovnica.Image);
+            if (uc.pictureBoxPoslovnica.Image != null)
+                request.SlikaThumb = ImageHelper.FromImageToByteTHUMB(uc.pictureBoxPoslovnica.Image);
+
+            if (poslovnica == null)
+            {
+                await _servicePoslovnica.Insert<Poslovnica>(request);
+
+                MessageBox.Show("Place of business successfully added", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                await _servicePoslovnica.Update<Poslovnica>(poslovnica.PoslovnicaId, request);
+
+                MessageBox.Show("Place of business successfully updated", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                PoslovnicaUpsertRequest novi = new PoslovnicaUpsertRequest();//provjeriti ovo
+                request = novi;
+
+                SetPoslovnicaUpdateDGV();
+            }
+
             uc.Visible = false;
             uc.CleanForm();
 
         }
-        private void UC_ShowHelpInsertAdders(object sender, EventArgs e, UCHelpInsert uc)
+        //___DELETING___
+        private async void btnDelete_Click(object sender, EventArgs e)
         {
-            SetUserHelpControl(uc);
+            WindowState = FormWindowState.Maximized;
+
+            if (ProvjeriHeader("Manage Partners"))
+            {
+                if (ProvjeriKontrolu("UC_Delete_Partner"))
+                    return;
+
+                uc_partneri_delete=new UC_PartneriDelete();
+                testMetodaDGV(uc_partneri_delete, "UC_Delete_Partner", new Point(20, 500));
+          
+                uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
+
+                
+
+                uc_partneri_delete.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
+                {
+                    UC_Delete_Partner(sender, er, uc_partneri_delete);
+                };
+                return;
+            }
+            if (ProvjeriHeader("Manage Users"))
+            {
+
+                UC_KorisniciEditDelete uc_korisniciEditDelete = new UC_KorisniciEditDelete();
+                testMetodaDGV(uc_korisniciEditDelete, "UC_Delete_Partner", new Point(20, 500));
+                uc_korisniciEditDelete.dataGridView1.DataSource = await _serviceKorisnici.Get<List<Korisnik>>(null);
+
+
+
+                uc_korisniciEditDelete.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
+                {
+
+                    //UC_Delete_Partner(sender, er, uc_partneri_delete);
+                };
+                return;
+            }
+
+            if (ProvjeriKontrolu("UC_Delete"))
+                return;
+
+            uc_PoslovnicaDelete = new UC_PoslovniceDelete();
+            testMetodaDGV(uc_PoslovnicaDelete, "UC_Delete", new Point(20, 500));
+
+            uc_PoslovnicaDelete.DataSource = await _servicePoslovnica.Get<List<Poslovnica>>(null);
+            uc_PoslovnicaDelete.dataGridView1.ClearSelection();
+
+            
+
+            uc_PoslovnicaDelete.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
+            {
+                UC_Delete_Poslovnica(sender, er, uc_PoslovnicaDelete);
+            };
+
+        }
+        
+        private async void UC_Delete_Partner(object sender, DataGridViewCellEventArgs e, UC_PartneriDelete uc)
+        {
+            if (e.ColumnIndex == 1 && e.RowIndex != -1)//U pocetku je radilo sa zadnjim sada je na NULI(DELETE BTN) KAKO NEZZ -- zbog autogenerate
+            {
+                uc_partneri_delete.dataGridView1.Rows[e.RowIndex].Selected = true;
+                var _partner = uc.dataGridView1.CurrentRow.DataBoundItem as Partner; //currentRow ispravio prob, kako nemam blage veze (ISTRAZITI)
+                if (_partner != null)
+                {
+                    var result = MessageBox.Show("Do you want to delete this record :\n" + _partner.Naziv.ToString() + " ?", "Delete action", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        Partner delete = await _serviceP.Delete<Partner>(_partner.PartnerId);
+
+                        MessageBox.Show(delete.Naziv.ToString() + " deleted.", "Delete action successfull", // baca error ne stavi partnera kod brisanja
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID }); ;
+                        return;
+                    }
+                }
+            }
+        }
+        private async void UC_Delete_Poslovnica(object sender, DataGridViewCellEventArgs e, UC_PoslovniceDelete uc)
+        {
+            if (e.ColumnIndex == 5 && e.RowIndex != -1)//U pocetku je radilo sa zadnjim sada je na NULI(DELETE BTN) KAKO NEZZ -- zbog autogenerate
+            {
+                uc_PoslovnicaDelete.dataGridView1.Rows[e.RowIndex].Selected = true;
+                var _posl = uc.dataGridView1.CurrentRow.DataBoundItem as Poslovnica; //currentRow ispravio prob, kako nemam blage veze (ISTRAZITI)
+                if (_posl != null)
+                {
+                    var result = MessageBox.Show("Do you want to delete this record :\n" + _posl.Partner.ToString() + " " + _posl.Naziv.ToString() + "?", "Delete action", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        Poslovnica delete = await _servicePoslovnica.Delete<Poslovnica>(_posl.PoslovnicaId);
+
+                        MessageBox.Show(delete.Naziv.ToString() + " deleted.", "Delete action successfull", // baca error ne stavi partnera kod brisanja
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        uc_PoslovnicaDelete.DataSource = await _servicePoslovnica.Get<List<Poslovnica>>(null);
+                        return;
+                    }
+                }
+            }
         }
 
-        private void UC_btnDodajSliku_Click(object sender, EventArgs e, UCPoslovnicaInsert uc)
+        private async void SetPoslovnicaUpdateDGV()
         {
-            var result = Poslovnica.openFileDialog1.ShowDialog();
+            uc_PoslovnicaUpdate.dataGridView1.AutoGenerateColumns = false;
+
+            uc_PoslovnicaUpdate.DataSource = null;
+            uc_PoslovnicaUpdate.DataSource = await _servicePoslovnica.Get<List<Poslovnica>>(null);
+            uc_PoslovnicaUpdate.dataGridView1.ClearSelection();
+        }
+        //___EDITING ___
+        private async void btnEdit_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+            if (ProvjeriHeader("Manage Partners"))
+            {
+                if (ProvjeriKontrolu("UC_Edit_Partner"))
+                    return;
+            
+                
+                uc_partneri_edit = new UC_PartneriEdit();
+
+                testMetodaDGV(uc_partneri_edit, "UC_Edit_Partner", new Point(20, 500));
+                
+                uc_partneri_edit.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
+
+                uc_partneri_edit.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
+                {                   
+                    UC_Edit_Partner(sender, er, uc_partneri_edit);
+                };
+                return;
+            }
+
+            if (ProvjeriKontrolu("UC_Update"))
+                return;           
+          
+            uc_PoslovnicaUpdate = new UC_PoslovniceUpdate();
+
+            testMetodaDGV(uc_PoslovnicaUpdate, "UC_Update", new Point(20, 500));           
+
+            SetPoslovnicaUpdateDGV();
+
+
+            uc_PoslovnicaUpdate.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
+            {
+                UkloniKontrolu();
+                UC_Update_Poslovnica(sender, er, uc_PoslovnicaUpdate);
+            };
+
+        }
+        private void UC_Edit_Partner(object sender, DataGridViewCellEventArgs e, UC_PartneriEdit uc)//'izbrisao async ??
+        {
+            if (e.ColumnIndex == 1 && e.RowIndex != -1)
+            {
+                uc.dataGridView1.Rows[e.RowIndex].Selected = true;
+                var _partner = uc.dataGridView1.CurrentRow.DataBoundItem as Partner; 
+                if (_partner != null)
+                {
+
+                    UC_HelpInsert edit = new UC_HelpInsert();
+                    testMetoda(edit, "UC_Partner", new Point(20, 500)); 
+                    
+                    Set_HelpInsert_UCs(edit, _partner);
+ 
+                    edit.btnSave.Click += delegate (object sen, EventArgs er)
+                    {
+                        UC_HelpInsertSaveBtn_Click(sender, e, edit,_partner);
+                    };          
+                }
+            }
+
+        }
+        private void UC_Update_Poslovnica(object sender, DataGridViewCellEventArgs e, UC_PoslovniceUpdate uc)
+        {
+            if (e.ColumnIndex == 5 && e.RowIndex != -1)
+            {
+                uc_PoslovnicaUpdate.dataGridView1.Rows[e.RowIndex].Selected = true;
+                var _posl = uc.dataGridView1.CurrentRow.DataBoundItem as Poslovnica;
+
+
+                if (panel3.Controls.Find("Poslovnica", true).Length == 1)
+                {
+                    Control p = panel3.Controls.Find("Poslovnica", true).FirstOrDefault();
+                    if (p.Visible == true)
+                        return;
+                }
+
+                
+                UC_PoslovnicaUpsert = new UCPoslovnicaUpsert();
+                testMetodaDGV(UC_PoslovnicaUpsert, "Poslovnica", new Point(740, 500));
+                
+                UC_LoadLokacijaUpdate(UC_PoslovnicaUpsert.cmbLokacija, _posl);
+                UC_LoadPartneriUpdate(0, UC_PoslovnicaUpsert.cmbPartner, _posl);
+          
+                SetPoslovnicaEdit(_posl);
+
+                UC_HelpInsert Lokacija = new UC_HelpInsert { Name = "UC_Lokacija" };
+                UC_HelpInsert Partner = new UC_HelpInsert { Name = "UC_Partner" };
+                
+
+                UC_PoslovnicaUpsert.btnAddLocation.Click += delegate (object sen, EventArgs er)
+                {
+                    UC_ShowHelpInsertAdders(sender, e, Lokacija);
+                };
+                UC_PoslovnicaUpsert.btnAddPartner.Click += delegate (object sen, EventArgs er)
+                {
+                    UC_ShowHelpInsertAdders(sender, e, Partner);
+                };
+                UC_PoslovnicaUpsert.btnSave.Click += delegate (object sen, EventArgs er)
+                {
+                    UC_PoslovnicaUpsert_SaveBtn_Click(sender, e, UC_PoslovnicaUpsert, _posl);
+                };
+                UC_PoslovnicaUpsert.btnAddPicture.Click += delegate (object sen, EventArgs er)
+                {
+                    UC_btnDodajSliku_Click(sender, e, UC_PoslovnicaUpsert);
+                };
+
+                Lokacija.btnSave.Click += delegate (object sen, EventArgs er)
+                {
+                    UC_HelpInsertSaveBtn_Click(sender, e, Lokacija, null);
+                };
+                Partner.btnSave.Click += delegate (object sen, EventArgs er)
+                {
+                    UC_HelpInsertSaveBtn_Click(sender, e, Partner, null);
+                };
+            }
+        }
+
+        private void SetPoslovnicaEdit(Poslovnica p)
+        {           
+            UC_PoslovnicaUpsert.nazivEntry = p.Naziv;
+            UC_PoslovnicaUpsert.phoneEntry = p.Telefon;
+            UC_PoslovnicaUpsert.emailEntry = p.Email;
+            UC_PoslovnicaUpsert.vrijemeEntryDo = new DateTime(2012,05,28).Add(p.RadnoVrijemeDo.Value);
+            UC_PoslovnicaUpsert.vrijemeEntryOd = new DateTime(2012, 05, 28).Add(p.RadnoVrijemeOd.Value);
+            if(p.Slika.Length!=0)
+            UC_PoslovnicaUpsert.pictureBoxPoslovnica.Image =ImageHelper.FromByteToImage(p.Slika);
+            UC_PoslovnicaUpsert.lblHeader.Text = "Edit place of business";
+        }
+       
+       
+        private void UC_btnDodajSliku_Click(object sender, EventArgs e, UCPoslovnicaUpsert uc)
+        {
+            var result = UC_PoslovnicaUpsert.openFileDialog1.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                var fileName = Poslovnica.openFileDialog1.FileName;
+                var fileName = UC_PoslovnicaUpsert.openFileDialog1.FileName;
 
                 var file = File.ReadAllBytes(fileName);
 
@@ -615,58 +1048,14 @@ namespace PetConn.WinUI.Home_Panels
 
 
                 Image image = Image.FromFile(fileName);//ucitali sliku sa putanje
-                Poslovnica.pictureBoxPoslovnica.Image = image;//prikazali u boxu
+                UC_PoslovnicaUpsert.pictureBoxPoslovnica.Image = image;//prikazali u boxu
 
                 Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
                 thumb.Save(Path.ChangeExtension(fileName, "thumb"));
-                request.SlikaThumb = imageToByteArray(thumb);//radi ali nesto ne valja
+                request.SlikaThumb = ImageHelper.FromImageToByteTHUMB(thumb);//radi ali nesto ne valja
+
             }
 
         }
-        public byte[] imageToByteArray(Image imageIn)
-        {
-            MemoryStream ms = new MemoryStream();
-            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-            return ms.ToArray();
-        }
-
-        private async void button8_Click(object sender, EventArgs e)// BUTTON NA MAIN FORMI Klikom otvara user contorlu,DGV
-        {
-            
-            UC_PoslovniceDelete uc_delete = new UC_PoslovniceDelete();
-            uc_delete.Name = "UC_Delete";
-            panel3.Controls.Add(uc_delete);
-            uc_delete.Location = new Point(20, 500);
-
-            uc_delete.dataGridView1.AutoGenerateColumns = false;
-
-            uc_delete.DataSource = null;
-            uc_delete.DataSource = await _servicePoslovnica.Get<List<Poslovnica>>(null);
-                    
-
-            uc_delete.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
-            {
-                UC_Delete_Poslovnica(sender, er, uc_delete);
-            };
-
-        }
-        private void UC_Delete_Poslovnica(object sender, DataGridViewCellEventArgs e, UC_PoslovniceDelete uc)
-        {
-
-           
-
-            if (e.ColumnIndex==6)// U pocetku je radilo sa zadnjim sada je na NULI(DELETE BTN) KAKO NEZZ -- zbog autogenerate
-            {
-                  var _posl =uc.dataGridView1.CurrentRow.DataBoundItem as Poslovnica; //currentRow ispravio prob, kako nemam blage veze (ISTRAZITI)
-                    if (_posl != null)
-                    {
-                        MessageBox.Show("partner ok", _posl.PoslovnicaId.ToString(),
-                       MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-            }
-            
-        }
-
     }
 }
-

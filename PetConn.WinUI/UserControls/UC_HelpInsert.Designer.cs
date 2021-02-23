@@ -1,7 +1,7 @@
 ﻿
 namespace PetConn.WinUI.UserControls
 {
-    partial class UCHelpInsert
+    partial class UC_HelpInsert
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace PetConn.WinUI.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCHelpInsert));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_HelpInsert));
             this.cmbBox = new System.Windows.Forms.ComboBox();
             this.txtBoxFirst = new System.Windows.Forms.TextBox();
             this.lblComboBox = new System.Windows.Forms.Label();

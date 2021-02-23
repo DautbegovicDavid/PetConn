@@ -23,12 +23,12 @@ namespace PetConn.WebAPI.Controllers
             return _service.Insert(request);
         }
         [HttpPut("{id}")]
-        public TModel Update(int id,[FromBody]TUpdate request)//zasto from body
+        public TModel Update(int id,[FromBody]TUpdate request)
         {
             return _service.Update(id,request);
         }
-        [HttpDelete]
-        public TModel Delete(int id)//zasto from body
+        [HttpDelete("{id}")]
+        public TModel Delete(int id)
         {
             return _service.Delete(id);
         }

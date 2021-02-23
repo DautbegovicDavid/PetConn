@@ -11,7 +11,7 @@ namespace PetConn.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class BaseController<TModel, TSearch> : ControllerBase
     {
         private readonly IService<TModel,TSearch> _service;

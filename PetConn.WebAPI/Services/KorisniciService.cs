@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+
 using PetConn.Model.Requests;
 using PetConn.WebAPI.Database;
 using System;
@@ -39,20 +40,23 @@ namespace PetConn.WebAPI.Services
         }
         public  List<Model.Korisnik> Get(KorisnikSearchRequest request)
         {
-            var query = _context.Korisniks/*.Include("KorisniciUloges.Uloga")*/.AsQueryable();
+            var query = _context.Korisniks.Include("KorisniciUloges.Uloga").AsQueryable();
 
             if(!string.IsNullOrWhiteSpace(request?.Ime))
             {
                 query = query.Where(x => x.Ime.StartsWith(request.Ime));
             }
-
+            if (!string.IsNullOrWhiteSpace(request?.KorisnickoIme))
+            {
+                query = query.Where(x => x.KorisnickoIme.Equals(request.KorisnickoIme));
+            }
             if (!string.IsNullOrWhiteSpace(request?.Prezime))
             {
                 query = query.Where(x => x.Prezime.StartsWith(request.Prezime));
             }
 
-            //var query2 = _context.Korisniks.AsQueryable();
-            if (request?.UlogaId!=null && request?.UlogaId!=0)
+            var query2 = _context.Korisniks.AsQueryable();
+            if (request?.UlogaId != null && request?.UlogaId != 0)
             {
                 var korisnicIDs = _context.KorisniciUloges.Where(x => x.UlogaId == request.UlogaId).Select(s=>s.KorisnikId).ToArray();
                 foreach (var item in korisnicIDs)
@@ -65,13 +69,22 @@ namespace PetConn.WebAPI.Services
 
             if (request?.VrstaPartneraId != null&& request?.VrstaPartneraId != 0)
             {
-                var partnerIDs = _context.Partneris.Where(x => x.VrstaPartneraId == request.VrstaPartneraId).Select(s => s.PartnerId).ToArray();
+                var partnerIDs = _context.Partneris.Where(x => x.VrstaPartneraId == request.VrstaPartneraId).Select(s => s.PartnerId).ToList();
+                List<int> korisniksID=null;
                 foreach (var item in partnerIDs)
                 {
-                    query = query.Where(x => x.Uposlenik.PartnerId == item);
+                    korisniksID = _context.Uposleniks.Where(w => w.PartnerId == item).Select(s => s.KorisnikId).ToList();
+                    
+                }
+                if (korisniksID != null)
+                {
+                    foreach (var item in korisniksID)
+                    {
+                        query = query.Where(x => x.KorisnikId == item);
+                    }
                 }
                 if (partnerIDs.Count() == 0)
-                    query = Enumerable.Empty<Korisnik>().AsQueryable();
+                    query = Enumerable.Empty<Korisnik>().AsQueryable();//prazna lista
             }
 
             var list = query.ToList();
@@ -99,11 +112,12 @@ namespace PetConn.WebAPI.Services
             _context.SaveChanges();
             return _mapper.Map<Model.Korisnik>(entity);
         }
-
+        
+        
         public static string GenerateSalt()//implementacija rendom broja
         {
             var buf = new byte[16];
-            (new RNGCryptoServiceProvider()).GetBytes(buf);
+            new RNGCryptoServiceProvider().GetBytes(buf);
             return Convert.ToBase64String(buf);//zasto vracamo u string,zbog baze nekad se zajebe=pretvara bajte u string koji je citljiv iz pajtona browsera...
 
         }
@@ -139,9 +153,11 @@ namespace PetConn.WebAPI.Services
 
         public Model.Partner getPartnerID(KorisnikSearchRequest request)
         {
+            //pazi da ne budu null parametri ERROR
             var user = _context.Korisniks.Where(x => x.KorisnickoIme == request.KorisnickoIme).FirstOrDefault();
             var userID = user.KorisnikId;
             var partner = _context.Uposleniks.Find(userID);
+            //if(partner!=null)
             var partnerID = partner.PartnerId;
             var partners = _context.Partneris.Find(partnerID);
             return _mapper.Map<Model.Partner>(partners);
@@ -158,6 +174,17 @@ namespace PetConn.WebAPI.Services
 
         }
 
+        public List<int> getUlogeIDs(int korisnikID)
+        {
+            return _context.KorisniciUloges.Where(w => w.KorisnikId == korisnikID).Select(s => s.UlogaId).ToList();
 
+        }
+
+        public int GetID(KorisnikSearchRequest k)
+        {
+            return _context.Korisniks.Where(w => w.KorisnickoIme == k.KorisnickoIme).Select(s => s.KorisnikId).FirstOrDefault();
+        }
+
+        
     }
 }

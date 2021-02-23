@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿    using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PetConn.Model;
 using PetConn.Model.Requests;
@@ -26,16 +26,12 @@ namespace PetConn.WebAPI.Services
         }
         public override List<Partner> Get(PartneriSearchRequest request)
         {
-
             var query = _context.Partneris.Include(i=>i.VrstaPartnera).AsQueryable();
+
             if (request.VrstaPartneraId != 0)
-            query = query.Where(w => w.VrstaPartneraId == request.VrstaPartneraId); 
-
-            
-                return _mapper.Map<List<Partner>>(query.ToList());
-            
-
-            
+                query = query.Where(w => w.VrstaPartneraId == request.VrstaPartneraId); 
+        
+            return _mapper.Map<List<Partner>>(query.ToList());     
         }
 
     }

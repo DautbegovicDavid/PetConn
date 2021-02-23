@@ -23,7 +23,7 @@ namespace PetConn.WebAPI.Mappers
             CreateMap<GradUpsert, Database.Grad>().ReverseMap();
             CreateMap<Uloge, Database.Uloga>().ReverseMap();
             CreateMap<VrstePartnera, Database.VrstaPartnera>().ReverseMap();
-            CreateMap<KorisnikUloge, Database.KorisniciUloge>().ReverseMap();  //OD PRIJE
+            CreateMap<KorisnikUloge, Database.KorisniciUloge>().ReverseMap();  
             CreateMap<Partner, Database.Partneri>().ReverseMap();
             CreateMap<VrstaPartnera, Database.VrstaPartnera>().ReverseMap();
             CreateMap<Poslovnica, Database.Poslovnica>().ReverseMap();
@@ -33,9 +33,12 @@ namespace PetConn.WebAPI.Mappers
             CreateMap<Lokacija, Database.Lokacija>().ReverseMap();
             CreateMap<Database.Lokacija, LokacijaUpsertRequest>().ReverseMap();
             CreateMap<Database.Partneri, PartneriUpsertRequest>().ReverseMap();
-
-
-
+            CreateMap<Database.Uposlenik, UposlenikUpsertRequest>().ReverseMap();
+            CreateMap<Database.Uposlenik, Uposlenik>().ReverseMap();
+            CreateMap<Database.KorisniciUloge, KorisniciUloge>().ReverseMap();
+            CreateMap<Database.KorisniciUloge, KorisniciUlogeUpsertRequest>().ReverseMap();
+            CreateMap<Database.Ljubimac, LjubimacUpsertRequest>().ReverseMap();
+            CreateMap<Database.Ljubimac, Ljubimac>().ReverseMap();
 
 
 

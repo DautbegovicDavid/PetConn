@@ -6,6 +6,7 @@ using PetConn.WebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PetConn.WebAPI.Controllers
@@ -18,6 +19,7 @@ namespace PetConn.WebAPI.Controllers
         public KorisniciController(IKorisniciService service)
         {
             _service = service;
+            
         }
 
         [HttpPost]
@@ -52,6 +54,42 @@ namespace PetConn.WebAPI.Controllers
         {
             return _service.getPartnerID(request);
         }
+        [HttpGet("getCredentials")]
+        public string getCR()
+        {
+            string authHeader = HttpContext.Request.Headers["Authorization"];
+
+            if(authHeader!=null && authHeader.StartsWith("Basic"))
+            {
+                Encoding encoding = Encoding.GetEncoding("iso-8859-1");
+
+                var encodedUsernamePassword = authHeader.Substring("Basic ".Length).Trim();
+                string usernamePassword = encoding.GetString(Convert.FromBase64String(encodedUsernamePassword));
+                int separatorIndex = usernamePassword.IndexOf(":");
+                string userName = usernamePassword.Substring(0, separatorIndex);
+                string password = usernamePassword.Substring(separatorIndex + 1);
+
+
+                return new string("Succes");
+            }
+            else
+            {
+                throw new Exception("The authorization header is either empty or isn't Basic.");
+            }
+
+
+        }
+        [HttpGet("getUlogaIDs/{id}")]
+        public List<int> getUlogeIDs(int id)
+        {
+            return _service.getUlogeIDs(id);
+        }
+        [HttpGet("getID")]
+        public int getID([FromQuery]KorisnikSearchRequest req)
+        {
+            return _service.GetID(req);
+        }
+       
 
 
 

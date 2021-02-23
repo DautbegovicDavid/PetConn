@@ -1,4 +1,6 @@
 ﻿
+using PetConn.Model;
+using PetConn.Model.Requests;
 using PetConn.WinUI.Home_Panels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,13 @@ namespace PetConn.WinUI.Login_Register
 
     public partial class frmLogin : Form
     {
-        APIService _service = new APIService("Drzava");
+        APIService _service = new APIService("Korisnici");
+        APIService _serviceku = new APIService("KorisniciUloge");
+
+        APIService _serviceGetIDKorisnik = new APIService("Korisnici/getID");
+        APIService _serviceGetUlogasID = new APIService("Korisnici/getUlogaIDs");
+        APIService _serviceUloge = new APIService("Uloge");
+
         public frmLogin()
         {
             InitializeComponent();
@@ -39,14 +47,43 @@ namespace PetConn.WinUI.Login_Register
             try
             {
                 
-
+                
                 APIService.UserName = txtUsername.Text;
                 APIService.Password = txtPassword.Text;
+                
+                List<Korisnik> kor= await _service.Get<List<Korisnik>>(new KorisnikSearchRequest { KorisnickoIme=txtUsername.Text});
 
-                await _service.Get<dynamic>(null);
+
+                //imam korisnika
+                
+                if(kor.Count==0)
+                {
+                    MessageBox.Show("Wrogn Username or Password", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+
+                }
+                Korisnik k = kor.First();
+                //imam ID
+                int korisnikID = await _serviceGetIDKorisnik.Get<int>(new KorisnikSearchRequest { KorisnickoIme = txtUsername.Text });
+              
+
+                //Imam listu ulog koje su dodijeljne
+                List<int> listaUloga= await _serviceGetUlogasID.GetbyID<List<int>>(korisnikID);
+                if(listaUloga.Count==0)
+                {
+                    MessageBox.Show("You have Not been AUTHORIZED to use system yet !\n \n*Please Contact your supervisor.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                Uloge u = await _serviceUloge.GetbyID<Uloge>(listaUloga.First());
+                //List<KorisniciUloge> ku = await _serviceku.Get<List<KorisniciUloge>>(new KorisniciUlogeSearchRequest { KorisnikId = korisnikID });
+                APIService.Uloga = u.Naziv;
+                
+
 
                 new frmHome().Show();
                 Hide();     
+
                 
             }
             catch(Exception ex){
@@ -62,20 +99,7 @@ namespace PetConn.WinUI.Login_Register
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            const string message =
-                 "Are you sure that you would like to close the application?";
-            const string caption = "Exit application";
-            var result = MessageBox.Show(message, caption,
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Exclamation);
-
-            // If the no button was pressed ...  
-            if (result == DialogResult.Yes)
-            {
-                // cancel the closure of the form.  
-                Close();
-
-            }
+           
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -91,6 +115,24 @@ namespace PetConn.WinUI.Login_Register
             txtPassword.Text = "";
             txtUsername.Text = "";
             txtUsername.Focus();
+        }
+
+        private void btnClose_Click_1(object sender, EventArgs e)
+        {
+            const string message =
+                "Are you sure that you would like to close the application?";
+            const string caption = "Exit application";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Exclamation);
+
+            // If the no button was pressed ...  
+            if (result == DialogResult.Yes)
+            {
+                // cancel the closure of the form.  
+                Close();
+
+            }
         }
     }
 }

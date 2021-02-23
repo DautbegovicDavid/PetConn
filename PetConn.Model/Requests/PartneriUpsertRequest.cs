@@ -6,7 +6,7 @@ namespace PetConn.Model.Requests
 {
     public class PartneriUpsertRequest
     {
-        public int PartnerId { get; set; }
+        
         public int VrstaPartneraId { get; set; }
         public string Naziv { get; set; }
     }

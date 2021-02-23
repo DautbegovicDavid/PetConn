@@ -1,7 +1,7 @@
 ﻿
 namespace PetConn.WinUI.UserControls
 {
-    partial class UCPoslovnicaInsert
+    partial class UCPoslovnicaUpsert
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace PetConn.WinUI.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPoslovnicaInsert));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCPoslovnicaUpsert));
             this.cmbLokacija = new System.Windows.Forms.ComboBox();
             this.cmbPartner = new System.Windows.Forms.ComboBox();
             this.lblLokacija = new System.Windows.Forms.Label();
@@ -61,15 +61,15 @@ namespace PetConn.WinUI.UserControls
             this.cmbLokacija.FormattingEnabled = true;
             this.cmbLokacija.Location = new System.Drawing.Point(31, 93);
             this.cmbLokacija.Name = "cmbLokacija";
-            this.cmbLokacija.Size = new System.Drawing.Size(100, 21);
+            this.cmbLokacija.Size = new System.Drawing.Size(134, 21);
             this.cmbLokacija.TabIndex = 0;
             // 
             // cmbPartner
             // 
             this.cmbPartner.FormattingEnabled = true;
-            this.cmbPartner.Location = new System.Drawing.Point(191, 92);
+            this.cmbPartner.Location = new System.Drawing.Point(227, 92);
             this.cmbPartner.Name = "cmbPartner";
-            this.cmbPartner.Size = new System.Drawing.Size(119, 21);
+            this.cmbPartner.Size = new System.Drawing.Size(111, 21);
             this.cmbPartner.TabIndex = 1;
             // 
             // lblLokacija
@@ -88,7 +88,7 @@ namespace PetConn.WinUI.UserControls
             this.lblPartner.AutoSize = true;
             this.lblPartner.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPartner.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblPartner.Location = new System.Drawing.Point(188, 73);
+            this.lblPartner.Location = new System.Drawing.Point(224, 73);
             this.lblPartner.Name = "lblPartner";
             this.lblPartner.Size = new System.Drawing.Size(51, 16);
             this.lblPartner.TabIndex = 4;
@@ -246,7 +246,7 @@ namespace PetConn.WinUI.UserControls
             this.btnAddLocation.FlatAppearance.BorderSize = 0;
             this.btnAddLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddLocation.Image = ((System.Drawing.Image)(resources.GetObject("btnAddLocation.Image")));
-            this.btnAddLocation.Location = new System.Drawing.Point(134, 80);
+            this.btnAddLocation.Location = new System.Drawing.Point(168, 79);
             this.btnAddLocation.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddLocation.Name = "btnAddLocation";
             this.btnAddLocation.Size = new System.Drawing.Size(44, 44);
@@ -261,7 +261,7 @@ namespace PetConn.WinUI.UserControls
             this.btnAddPartner.FlatAppearance.BorderSize = 0;
             this.btnAddPartner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPartner.Image = ((System.Drawing.Image)(resources.GetObject("btnAddPartner.Image")));
-            this.btnAddPartner.Location = new System.Drawing.Point(313, 80);
+            this.btnAddPartner.Location = new System.Drawing.Point(341, 80);
             this.btnAddPartner.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddPartner.Name = "btnAddPartner";
             this.btnAddPartner.Size = new System.Drawing.Size(44, 44);
@@ -292,7 +292,7 @@ namespace PetConn.WinUI.UserControls
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // UCPoslovnicaInsert
+            // UCPoslovnicaUpsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -319,8 +319,8 @@ namespace PetConn.WinUI.UserControls
             this.Controls.Add(this.lblLokacija);
             this.Controls.Add(this.cmbPartner);
             this.Controls.Add(this.cmbLokacija);
-            this.Location = new System.Drawing.Point(10, 500);
-            this.Name = "UCPoslovnicaInsert";
+            this.Location = new System.Drawing.Point(20, 500);
+            this.Name = "UCPoslovnicaUpsert";
             this.Size = new System.Drawing.Size(385, 399);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoslovnica)).EndInit();
             this.ResumeLayout(false);
@@ -334,7 +334,6 @@ namespace PetConn.WinUI.UserControls
         public System.Windows.Forms.ComboBox cmbPartner;
         public System.Windows.Forms.Label lblLokacija;
         public System.Windows.Forms.Label lblPartner;
-        private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.DateTimePicker vrijemeOD;
         public System.Windows.Forms.Label label1;
@@ -353,5 +352,6 @@ namespace PetConn.WinUI.UserControls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.OpenFileDialog openFileDialog1;
+        public System.Windows.Forms.Label lblHeader;
     }
 }

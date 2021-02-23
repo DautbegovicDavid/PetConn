@@ -15,6 +15,9 @@ namespace PetConn.WebAPI.Services
         Model.Korisnik Authenticiraj(string user, string pass);
         Model.Korisnik Delete(int id);
         Model.Partner getPartnerID(KorisnikSearchRequest request);
+        List<int> getUlogeIDs(int korisnikID);
+        int GetID(KorisnikSearchRequest k);
+        
 
     }
 }

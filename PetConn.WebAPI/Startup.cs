@@ -4,22 +4,16 @@ using eProdaja.WebAPI.Security;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PetConn.Model;
 using PetConn.Model.Requests;
 using PetConn.WebAPI.Database;
 using PetConn.WebAPI.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetConn.WebAPI
 {
@@ -73,20 +67,21 @@ namespace PetConn.WebAPI
            
             services.AddAutoMapper(typeof(Startup));
 
+            //services.AddDbContext<firstTryContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("PetCCon"))); lokalna konekcija
+
             services.AddDbContext<firstTryContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("PetCCon")));
+           options.UseSqlServer(Configuration.GetConnectionString("Azure")));
 
             services.AddAuthentication("BasicAuth").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuth", null);
 
-            //services.AddScoped<ICRUDService<Model.Korisnik, Model.Requests.KorisnikSearchRequest, Model.Requests.KorisnikUpsertRequest, Model.Requests.KorisnikUpsertRequest>,
-            //    KorisniciService>();//zbog osnovnih crud mi treba ovaj
-
-            services.AddScoped<IKorisniciService, KorisniciService>();//zbog auth mi treba ovaj a samim tim  i za postavljanje projekta
+            services.AddScoped<IKorisniciService, KorisniciService>();
+            
+            services.AddScoped<IVrstaPartneraService, VrstaPartneraService>();
 
             services.AddScoped<IService<Uloge, object>, BaseService<Uloge, object, Uloga>>();
-            services.AddScoped<IVrstaPartneraService, VrstaPartneraService>();
-            services.AddScoped<IPartneri<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest>, PartneriService<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest,Partneri>>();
 
+            services.AddScoped<IPartneri<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest>, PartneriService<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest,Partneri>>();
 
             services.AddScoped<ICRUDService<Model.HelpModels.Drzava, DrzavaUpsert, DrzavaUpsert, DrzavaUpsert>,
                 BaseCRUDService<Model.HelpModels.Drzava, DrzavaUpsert, DrzavaUpsert, DrzavaUpsert, Drzava>>();
@@ -97,9 +92,17 @@ namespace PetConn.WebAPI
             services.AddScoped<ICRUDService<Model.Poslovnica,PoslovnicaSearchRequest, PoslovnicaUpsertRequest, PoslovnicaUpsertRequest>,
                 PoslovnicaService>();
 
-            services.AddScoped<ICRUDService<Model.HelpModels.Lokacija, LokacijaSearchRequest, LokacijaUpsertRequest, LokacijaUpsertRequest>,LokacijaService>();
+            services.AddScoped<ICRUDService<Model.HelpModels.Lokacija, LokacijaSearchRequest, LokacijaUpsertRequest, LokacijaUpsertRequest>,
+                LokacijaService>();
+   
+            services.AddScoped<ICRUDService<Model.Uposlenik, UposlenikSearchRequest,UposlenikUpsertRequest, UposlenikUpsertRequest>,
+                UposlenikService>();
 
-            //Poslovnica, PoslovnicaSearchRequest, PoslovnicaUpsertRequest, PoslovnicaUpsertRequest
+            services.AddScoped<ICRUDService<Model.KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest>,
+                KorisniciUlogeService>();
+
+            services.AddScoped<ICRUDService<Model.Ljubimac, object, LjubimacUpsertRequest, LjubimacUpsertRequest>,
+                BaseCRUDService<Model.Ljubimac, object, LjubimacUpsertRequest, LjubimacUpsertRequest, Database.Ljubimac>>();
 
         }
 
@@ -117,7 +120,7 @@ namespace PetConn.WebAPI
 
             app.UseRouting();
 
-            app.UseAuthentication();//kazemo apiju da koristimo authentifikaciju
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -102,6 +102,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Home_Panels\frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,11 +123,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\UCHelpInsert.cs">
+    <Compile Include="UserControls\UC_KorisniciEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\UCHelpInsert.Designer.cs">
-      <DependentUpon>UCHelpInsert.cs</DependentUpon>
+    <Compile Include="UserControls\UC_KorisniciEdit.Designer.cs">
+      <DependentUpon>UC_KorisniciEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_HelpInsert.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_HelpInsert.Designer.cs">
+      <DependentUpon>UC_HelpInsert.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCPartners.cs">
       <SubType>UserControl</SubType>
@@ -134,11 +141,35 @@
     <Compile Include="UserControls\UCPartners.Designer.cs">
       <DependentUpon>UCPartners.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UCPoslovnicaInsert.cs">
+    <Compile Include="UserControls\UCPoslovnicaUpsert.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\UCPoslovnicaInsert.Designer.cs">
-      <DependentUpon>UCPoslovnicaInsert.cs</DependentUpon>
+    <Compile Include="UserControls\UCPoslovnicaUpsert.Designer.cs">
+      <DependentUpon>UCPoslovnicaUpsert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_KorisniciEditDelete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_KorisniciEditDelete.Designer.cs">
+      <DependentUpon>UC_KorisniciEditDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_PartneriDelete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_PartneriDelete.Designer.cs">
+      <DependentUpon>UC_PartneriDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_PartneriEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_PartneriEdit.Designer.cs">
+      <DependentUpon>UC_PartneriEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_PoslovniceUpdate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_PoslovniceUpdate.Designer.cs">
+      <DependentUpon>UC_PoslovniceUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UC_PoslovniceDelete.cs">
       <SubType>UserControl</SubType>
@@ -167,14 +198,29 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UserControls\UCHelpInsert.resx">
-      <DependentUpon>UCHelpInsert.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UC_KorisniciEdit.resx">
+      <DependentUpon>UC_KorisniciEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_HelpInsert.resx">
+      <DependentUpon>UC_HelpInsert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCPartners.resx">
       <DependentUpon>UCPartners.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCPoslovnicaInsert.resx">
-      <DependentUpon>UCPoslovnicaInsert.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UCPoslovnicaUpsert.resx">
+      <DependentUpon>UCPoslovnicaUpsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_KorisniciEditDelete.resx">
+      <DependentUpon>UC_KorisniciEditDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_PartneriDelete.resx">
+      <DependentUpon>UC_PartneriDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_PartneriEdit.resx">
+      <DependentUpon>UC_PartneriEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_PoslovniceUpdate.resx">
+      <DependentUpon>UC_PoslovniceUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_PoslovniceDelete.resx">
       <DependentUpon>UC_PoslovniceDelete.cs</DependentUpon>

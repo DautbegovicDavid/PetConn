@@ -9,7 +9,11 @@ namespace PetConn.WebAPI.Database
     {
         public Korisnik()
         {
+            Doktors = new HashSet<Doktor>();
             KorisniciUloges = new HashSet<KorisniciUloge>();
+            Kupacs = new HashSet<Kupac>();
+            Uposleniks = new HashSet<Uposlenik>();
+            VlasnikZivotinjes = new HashSet<VlasnikZivotinje>();
         }
 
         public int KorisnikId { get; set; }
@@ -21,7 +25,10 @@ namespace PetConn.WebAPI.Database
         public string LozinkaHash { get; set; }
         public string LozinkaSalt { get; set; }
 
-        public virtual Uposlenik Uposlenik { get; set; }
+        public virtual ICollection<Doktor> Doktors { get; set; }
         public virtual ICollection<KorisniciUloge> KorisniciUloges { get; set; }
+        public virtual ICollection<Kupac> Kupacs { get; set; }
+        public virtual ICollection<Uposlenik> Uposleniks { get; set; }
+        public virtual ICollection<VlasnikZivotinje> VlasnikZivotinjes { get; set; }
     }
 }

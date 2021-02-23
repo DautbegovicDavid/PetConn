@@ -21,35 +21,22 @@ namespace PetConn.WinUI
         private readonly APIService _service=new APIService("Korisnici");
         private readonly APIService _serviceUloge = new APIService("Uloge");
         private readonly APIService _serviceVrstePartnera = new APIService("VrstePartnera");
-        //promijeni korisnici intefrejs i kontroller da bi dobio patrnera
+        
 
         public Form1()
         {
-            InitializeComponent();
-            
-
-            // Access claims
-           
-
-            // Access IClaimsIdentity which contains claims
-            
+            InitializeComponent();              
         }
         KorisnikSearchRequest request = new KorisnikSearchRequest();
 
         private async void btnPrikazi_Click(object sender, EventArgs e)
         {
             // var uloge = clbRole.CheckedItems.Cast<Model.Uloge>().Select(x => x.UlogaId).ToList();    //ovaj radi OVO JE ZA ONE KAD IH JE VISE
-
             
-                request.Ime = txtPretragaIme.Text;
+            request.Ime = txtPretragaIme.Text;
             
-                request.Prezime = txtPretragaPrezime.Text;
-
-
-
-
+            request.Prezime = txtPretragaPrezime.Text;
             var list =await _service.Get<List<Model.Korisnik>>(request);//ne moze ne valja mi mapiranje 
-           
 
             dgvKorisnici.DataSource = list;
              

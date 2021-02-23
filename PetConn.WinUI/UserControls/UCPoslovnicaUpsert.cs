@@ -11,9 +11,9 @@ using static System.Windows.Forms.ComboBox;
 
 namespace PetConn.WinUI.UserControls
 {
-    public partial class UCPoslovnicaInsert : UserControl
+    public partial class UCPoslovnicaUpsert : UserControl
     {
-        public UCPoslovnicaInsert()
+        public UCPoslovnicaUpsert()
         {
             InitializeComponent();
             SetFormat();
@@ -63,11 +63,12 @@ namespace PetConn.WinUI.UserControls
             }
         }
 
+       
         
         public void CleanForm()
         {
             Controls.Clear();
-
+            pictureBoxPoslovnica.Image = null;
             InitializeComponent();
 
 
@@ -75,6 +76,7 @@ namespace PetConn.WinUI.UserControls
         private void btnClose_Click_1(object sender, EventArgs e)
         {
             Hide();
+            Dispose();
         }
         public void SetFormat()
         {
@@ -98,6 +100,6 @@ namespace PetConn.WinUI.UserControls
 
         }
 
-      
+       
     }
 }

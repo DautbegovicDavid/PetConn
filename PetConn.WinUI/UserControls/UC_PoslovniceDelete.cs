@@ -17,7 +17,11 @@ namespace PetConn.WinUI.UserControls
         {
             
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ClearSelection();
             
+
+
         }
         public object DataSource
         {
@@ -29,7 +33,12 @@ namespace PetConn.WinUI.UserControls
         {
 
         }
-        
-        
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Dispose();
+            Hide();
+            
+        }
     }
 }

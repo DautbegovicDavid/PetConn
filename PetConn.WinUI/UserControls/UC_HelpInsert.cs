@@ -11,9 +11,9 @@ using static System.Windows.Forms.ComboBox;
 
 namespace PetConn.WinUI.UserControls
 {
-    public partial class UCHelpInsert : UserControl
+    public partial class UC_HelpInsert : UserControl
     {
-        public UCHelpInsert()
+        public UC_HelpInsert()
         {
             InitializeComponent();
             

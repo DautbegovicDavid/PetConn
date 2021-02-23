@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PetConn.Model;
@@ -70,14 +69,6 @@ namespace eProdaja.WebAPI.Security
             {
                 claims.Add(new Claim(ClaimTypes.Role, role.Uloga.Naziv));
             }
-
-            //var claims = new List<Claim>();
-            //claims.Add(new Claim(ClaimTypes.Name, result.UserFirstName));
-            //claims.Add(new Claim(ClaimTypes.Sid, result.UserID.ToString()));
-            //var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-            //var claimsPrincipal = new ClaimsPrincipal(identity);
-            //// Set current principal
-            //Thread.CurrentPrincipal = claimsPrincipal
 
             var identity = new ClaimsIdentity(claims, Scheme.Name);
             var principal = new ClaimsPrincipal(identity);

@@ -12,6 +12,10 @@ namespace PetConn.Model
         public string KorisnickoIme { get; set; }
         public string Telefon { get; set; }
         public virtual ICollection<KorisnikUloge> KorisniciUloges { get; set; }
+        public override string ToString()
+        {
+            return Ime + " " + Prezime + " " + KorisnickoIme;
+        }
 
 
 
