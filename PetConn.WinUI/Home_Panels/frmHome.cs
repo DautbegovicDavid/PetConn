@@ -1057,5 +1057,18 @@ namespace PetConn.WinUI.Home_Panels
             }
 
         }
+
+        private void btnUrediProfil_Click(object sender, EventArgs e)
+        {
+            KorisniciEditProfil uc_editProfil = new KorisniciEditProfil();
+            testMetoda(uc_editProfil, "UrediKorisnickiProfil", new Point(20,  500));
+            //groupBox1.Visible = false;
+            panel3.Controls.Add(uc_editProfil);
+
+            
+            
+        }
+
+               
     }
 }

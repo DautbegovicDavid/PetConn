@@ -38,6 +38,23 @@ namespace PetConn.WebAPI.Services
 
             return _mapper.Map<Model.Korisnik>(entity);
         }
+        public bool ChangePass(KorisnikChangePass request)
+        {
+            var u = _context.Korisniks.FirstOrDefault(x => x.KorisnickoIme == request.KorisnickoIme);
+            var newHash = GenerateHash(u.LozinkaSalt, request.pass);
+            if (newHash == u.LozinkaHash)
+            {
+                u.LozinkaSalt = GenerateSalt();
+                u.LozinkaHash = GenerateHash(u.LozinkaSalt, request.NoviPass);
+                var entity = _context.Korisniks.Find(u.KorisnikId);
+                _context.Korisniks.Attach(u);
+                _context.Korisniks.Update(u);
+                
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
         public  List<Model.Korisnik> Get(KorisnikSearchRequest request)
         {
             var query = _context.Korisniks.Include("KorisniciUloges.Uloga").AsQueryable();

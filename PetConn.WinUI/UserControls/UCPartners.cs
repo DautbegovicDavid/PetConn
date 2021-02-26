@@ -19,8 +19,11 @@ namespace PetConn.WinUI.UserControls
         public Image petShopImage { get { return pictureBox1.Image; } set { pictureBox1.Image = value; } }
         public string nazivPartnera { get { return txtNazivPartnera.Text; } set { txtNazivPartnera.Text = value; } }
 
-        
-
-        
+        private async void UCPartners_Click(object sender, EventArgs e)
+        {
+            BackColor = Color.YellowGreen;            
+            await Task.Delay(800);
+            BackColor = Color.DarkCyan;
+        }
     }
 }

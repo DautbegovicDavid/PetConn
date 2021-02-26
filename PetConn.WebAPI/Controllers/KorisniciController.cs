@@ -44,6 +44,12 @@ namespace PetConn.WebAPI.Controllers
         {
             return _service.Get(request);
         }
+        [HttpPut("changePass")]
+
+        public bool ChangePass([FromBody] KorisnikChangePass request)
+        {
+            return _service.ChangePass(request);
+        }
         [HttpGet("korisniciBezRole")]
 
         public List<Korisnik> getKorisniciBezRole()

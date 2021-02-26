@@ -90,5 +90,13 @@ namespace PetConn.WinUI
                 return await url.WithBasicAuth(UserName, Password).PutJsonAsync(request).ReceiveJson<T>();
           
         }
+        public async Task<T> ChangePass<T>(object request)
+        {
+
+            var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
+
+            return await url.WithBasicAuth(UserName, Password).PutJsonAsync(request).ReceiveJson<T>();
+
+        }
     }
 }

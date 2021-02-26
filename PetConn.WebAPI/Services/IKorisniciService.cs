@@ -18,8 +18,10 @@ namespace PetConn.WebAPI.Services
         List<int> getUlogeIDs(int korisnikID);
         int GetID(KorisnikSearchRequest k);
         List<Model.Korisnik> GetKorisniciBezRole();
+        bool ChangePass(KorisnikChangePass request);
+        
 
 
 
-    }
+        }
 }

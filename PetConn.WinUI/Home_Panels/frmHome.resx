@@ -165,7 +165,7 @@
         SUVORK5CYII=
 </value>
   </data>
-  <data name="button5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnUrediProfil.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAqhJREFUWEft
         l8uLE0EQxiOCCCoivvXgWdSL3nzgzaOCoILvo4Kg4uuoiIJn/Qc8CYt4k70o6ElQUUQEEUEv7u5Md5xH
@@ -352,6 +352,6 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>61</value>
   </metadata>
 </root>

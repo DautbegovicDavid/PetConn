@@ -42,7 +42,7 @@ namespace PetConn.WinUI.Home_Panels
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnTakeABreak = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnUrediProfil = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -56,11 +56,12 @@ namespace PetConn.WinUI.Home_Panels
             this.ucPartners_PetShop = new PetConn.WinUI.UserControls.UCPartners();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panelAddDelEd = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.lblManageBtnSHeader = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.panelFilterControls = new System.Windows.Forms.Panel();
             this.cmbGradovi = new System.Windows.Forms.ComboBox();
             this.cmbVrstaPartnera = new System.Windows.Forms.ComboBox();
@@ -69,15 +70,14 @@ namespace PetConn.WinUI.Home_Panels
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPodaci = new System.Windows.Forms.DataGridView();
-            this.panelAddDelEd = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelSlide.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panelAddDelEd.SuspendLayout();
             this.panelFilterControls.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPodaci)).BeginInit();
-            this.panelAddDelEd.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -164,7 +164,7 @@ namespace PetConn.WinUI.Home_Panels
             // 
             this.panel2.BackColor = System.Drawing.Color.Teal;
             this.panel2.Controls.Add(this.btnTakeABreak);
-            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.btnUrediProfil);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
@@ -190,16 +190,17 @@ namespace PetConn.WinUI.Home_Panels
             this.btnTakeABreak.UseVisualStyleBackColor = false;
             this.btnTakeABreak.Click += new System.EventHandler(this.btnTakeABreak_Click);
             // 
-            // button5
+            // btnUrediProfil
             // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(5, 235);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(53, 52);
-            this.button5.TabIndex = 4;
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnUrediProfil.FlatAppearance.BorderSize = 0;
+            this.btnUrediProfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUrediProfil.Image = ((System.Drawing.Image)(resources.GetObject("btnUrediProfil.Image")));
+            this.btnUrediProfil.Location = new System.Drawing.Point(5, 235);
+            this.btnUrediProfil.Name = "btnUrediProfil";
+            this.btnUrediProfil.Size = new System.Drawing.Size(53, 52);
+            this.btnUrediProfil.TabIndex = 4;
+            this.btnUrediProfil.UseVisualStyleBackColor = true;
+            this.btnUrediProfil.Click += new System.EventHandler(this.btnUrediProfil_Click);
             // 
             // button4
             // 
@@ -371,6 +372,64 @@ namespace PetConn.WinUI.Home_Panels
             this.panel3.Size = new System.Drawing.Size(549, 433);
             this.panel3.TabIndex = 3;
             // 
+            // panelAddDelEd
+            // 
+            this.panelAddDelEd.Controls.Add(this.btnDelete);
+            this.panelAddDelEd.Controls.Add(this.btnAdd);
+            this.panelAddDelEd.Controls.Add(this.btnEdit);
+            this.panelAddDelEd.Location = new System.Drawing.Point(42, 391);
+            this.panelAddDelEd.Name = "panelAddDelEd";
+            this.panelAddDelEd.Size = new System.Drawing.Size(386, 36);
+            this.panelAddDelEd.TabIndex = 1;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDelete.FlatAppearance.BorderSize = 3;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDelete.Location = new System.Drawing.Point(277, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(109, 28);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnAdd.FlatAppearance.BorderSize = 3;
+            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAdd.Location = new System.Drawing.Point(0, 3);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(109, 28);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEdit.FlatAppearance.BorderSize = 3;
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnEdit.Location = new System.Drawing.Point(137, 3);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(109, 28);
+            this.btnEdit.TabIndex = 8;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
             // lblManageBtnSHeader
             // 
             this.lblManageBtnSHeader.AutoSize = true;
@@ -393,54 +452,6 @@ namespace PetConn.WinUI.Home_Panels
             this.btnRefresh.TabIndex = 10;
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnDelete.FlatAppearance.BorderSize = 3;
-            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDelete.Location = new System.Drawing.Point(277, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(109, 28);
-            this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnEdit.FlatAppearance.BorderSize = 3;
-            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEdit.Location = new System.Drawing.Point(137, 3);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(109, 28);
-            this.btnEdit.TabIndex = 8;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnAdd.FlatAppearance.BorderSize = 3;
-            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAdd.Location = new System.Drawing.Point(0, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(109, 28);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panelFilterControls
             // 
@@ -569,16 +580,6 @@ namespace PetConn.WinUI.Home_Panels
             this.dgvPodaci.TabIndex = 0;
             this.dgvPodaci.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvPodaci_DataError);
             // 
-            // panelAddDelEd
-            // 
-            this.panelAddDelEd.Controls.Add(this.btnDelete);
-            this.panelAddDelEd.Controls.Add(this.btnAdd);
-            this.panelAddDelEd.Controls.Add(this.btnEdit);
-            this.panelAddDelEd.Location = new System.Drawing.Point(42, 391);
-            this.panelAddDelEd.Name = "panelAddDelEd";
-            this.panelAddDelEd.Size = new System.Drawing.Size(386, 36);
-            this.panelAddDelEd.TabIndex = 1;
-            // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,10 +602,10 @@ namespace PetConn.WinUI.Home_Panels
             this.panelSlide.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panelAddDelEd.ResumeLayout(false);
             this.panelFilterControls.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPodaci)).EndInit();
-            this.panelAddDelEd.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -616,7 +617,7 @@ namespace PetConn.WinUI.Home_Panels
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelSlide;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnUrediProfil;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;

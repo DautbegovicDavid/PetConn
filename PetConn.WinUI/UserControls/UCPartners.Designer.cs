@@ -67,6 +67,7 @@ namespace PetConn.WinUI.UserControls
             this.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UCPartners";
             this.Size = new System.Drawing.Size(240, 66);
+            this.Click += new System.EventHandler(this.UCPartners_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
