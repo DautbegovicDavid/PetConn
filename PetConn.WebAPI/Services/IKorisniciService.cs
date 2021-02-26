@@ -17,7 +17,9 @@ namespace PetConn.WebAPI.Services
         Model.Partner getPartnerID(KorisnikSearchRequest request);
         List<int> getUlogeIDs(int korisnikID);
         int GetID(KorisnikSearchRequest k);
-        
+        List<Model.Korisnik> GetKorisniciBezRole();
+
+
 
     }
 }

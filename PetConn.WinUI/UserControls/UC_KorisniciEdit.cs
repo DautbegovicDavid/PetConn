@@ -15,9 +15,10 @@ namespace PetConn.WinUI.UserControls
     public partial class UC_KorisniciEdit : UserControl
     {
         APIService _service = new APIService("Uposlenik");
+        APIService _serviceUposlenikByRole = new APIService("Uposlenik/getByRoles");
         APIService _serviceUloge = new APIService("Uloge");
         APIService _serviceKorisniciUloge = new APIService("KorisniciUloge");
-
+        APIService _serviceKorisniciUlogeDelete = new APIService("KorisniciUloge/byKorisnikID");
 
         public UC_KorisniciEdit()
         {
@@ -37,7 +38,7 @@ namespace PetConn.WinUI.UserControls
             LoadComboBox();
         }
         private async void LoadDGV()
-        {          
+        {
             dataGridView1.DataSource = await _service.Get<List<Uposlenik>>(null);
         }
         private async void LoadComboBox()
@@ -57,35 +58,28 @@ namespace PetConn.WinUI.UserControls
         private async void cmbRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
-            List<Uposlenik> Uposlenici=new List<Uposlenik>();
+            List<Uposlenik> Uposlenici = new List<Uposlenik>();
             if (int.TryParse(cmbRoles.SelectedValue.ToString(), out int rolaID))
             {
-                List<KorisniciUloge> lista = await _serviceKorisniciUloge.Get<List<KorisniciUloge>>(new KorisniciUlogeSearchRequest { UlogaId = rolaID });
-                foreach (KorisniciUloge item in lista)
-                {
-                    List<Uposlenik> uposlenici =  await _service.Get<List<Uposlenik>>(new UposlenikSearchRequest { KorisnikId=item.KorisnikId});
-                    Uposlenici.AddRange(uposlenici);
-                }
-
-
+                Uposlenici = await _serviceUposlenikByRole.GetbyID<List<Uposlenik>>(rolaID);   
             }
             dataGridView1.DataSource = Uposlenici;
-
         }
 
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex==3&&e.RowIndex!=0)
+            if (e.ColumnIndex == 3 && e.RowIndex != 0)
             {
                 var u = dataGridView1.CurrentRow.DataBoundItem as Uposlenik;
 
-                var result = MessageBox.Show("Do you want to delete this record :\n" + u.Korisnik.ToString()+ " " + u.Partner.ToString() +" ?", "Delete action", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                var result = MessageBox.Show("Do you want to delete this record :\n" + u.Korisnik.ToString() + " " + u.Partner.ToString() + " ?", "Delete action", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes)
                 {
-                    
-                    Uposlenik delete = await _service.Delete<Uposlenik>(u.UposlenikId);
-                    MessageBox.Show(u.Korisnik.ToString() + " " + u.Partner.ToString() + " deleted.", "Delete action successfull", // baca error ne stavi partnera kod brisanja
+                    await _service.Delete<Uposlenik>(u.UposlenikId);
+                    await _serviceKorisniciUlogeDelete.Delete<KorisniciUloge>(u.KorisnikId);
+
+                    MessageBox.Show(u.Korisnik.ToString() + " " + u.Partner.ToString() + " deleted.", "Delete action successfull", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     LoadDGV();
@@ -94,3 +88,4 @@ namespace PetConn.WinUI.UserControls
         }
     }
 }
+

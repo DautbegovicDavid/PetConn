@@ -14,8 +14,17 @@ namespace PetConn.WebAPI.Controllers.PomocniKontroleri
     [ApiController]
     public class KorisniciUlogeController : BaseCRUDController<KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest>
     {
-        public KorisniciUlogeController(ICRUDService<KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest> service) : base(service)
+        IKorisniciUloge<KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest> _service;
+        public KorisniciUlogeController(IKorisniciUloge<KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest> service) : base(service)
         {
+            _service = service;
         }
+        
+        [HttpDelete("byKorisnikID/{id}")]
+        public KorisniciUloge deleteByKorID(int id)
+        {
+            return _service.DeleteByKorisnikID(id);
+        }
+        
     }
 }

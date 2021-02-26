@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace PetConn.WebAPI.Services
 {
-    public interface IUposlenik:ICRUDService<Uposlenik, object, UposlenikUpsertRequest, UposlenikUpsertRequest>
+    public interface IUposlenik<TModel, TSearch, TUpdate, TInsert> : ICRUDService<TModel, TSearch, TUpdate, TInsert>
     {
+        List<TModel> GetByRole(int id);
 
     }
 }

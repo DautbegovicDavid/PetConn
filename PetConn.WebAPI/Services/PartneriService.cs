@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PetConn.WebAPI.Services
 {
-    public class PartneriService<TModel, TSearch, TUpdate, TInsert,TDatabase> : BaseCRUDService<Partner,PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest,Partneri>, IPartneri<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest>
+    public class PartneriService/*<TModel, TSearch, TUpdate, TInsert,TDatabase> */: BaseCRUDService<Partner,PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest,Partneri>, IPartneri<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest>
     {
         public PartneriService(IMapper mapper, firstTryContext context) : base(mapper, context)
         {

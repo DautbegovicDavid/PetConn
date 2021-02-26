@@ -13,8 +13,19 @@ namespace PetConn.WebAPI.Controllers.PomocniKontroleri
 
     public class UposlenikController : BaseCRUDController<Uposlenik, UposlenikSearchRequest, UposlenikUpsertRequest, UposlenikUpsertRequest>
     {
-        public UposlenikController(ICRUDService<Uposlenik, UposlenikSearchRequest, UposlenikUpsertRequest, UposlenikUpsertRequest> service) : base(service)
+        IUposlenik<Uposlenik, UposlenikSearchRequest, UposlenikUpsertRequest, UposlenikUpsertRequest> _service;
+        public UposlenikController(IUposlenik<Uposlenik, UposlenikSearchRequest, UposlenikUpsertRequest, UposlenikUpsertRequest> service) : base(service)
         {
+            _service = service;
         }
+        [HttpGet("getByRoles/{id}")]
+        
+        public List<Uposlenik> GetByRole(int id)
+        {
+            return _service.GetByRole(id);
+
+        }
+
+
     }
 }

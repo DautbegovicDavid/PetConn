@@ -81,7 +81,7 @@ namespace PetConn.WebAPI
 
             services.AddScoped<IService<Uloge, object>, BaseService<Uloge, object, Uloga>>();
 
-            services.AddScoped<IPartneri<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest>, PartneriService<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest,Partneri>>();
+            services.AddScoped<IPartneri<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest>, PartneriService/*<Partner, PartneriSearchRequest, PartneriUpsertRequest, PartneriUpsertRequest,Partneri>*/>();
 
             services.AddScoped<ICRUDService<Model.HelpModels.Drzava, DrzavaUpsert, DrzavaUpsert, DrzavaUpsert>,
                 BaseCRUDService<Model.HelpModels.Drzava, DrzavaUpsert, DrzavaUpsert, DrzavaUpsert, Drzava>>();
@@ -95,11 +95,11 @@ namespace PetConn.WebAPI
             services.AddScoped<ICRUDService<Model.HelpModels.Lokacija, LokacijaSearchRequest, LokacijaUpsertRequest, LokacijaUpsertRequest>,
                 LokacijaService>();
    
-            services.AddScoped<ICRUDService<Model.Uposlenik, UposlenikSearchRequest,UposlenikUpsertRequest, UposlenikUpsertRequest>,
+            services.AddScoped<IUposlenik<Model.Uposlenik, UposlenikSearchRequest,UposlenikUpsertRequest, UposlenikUpsertRequest>,
                 UposlenikService>();
 
-            services.AddScoped<ICRUDService<Model.KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest>,
-                KorisniciUlogeService>();
+            services.AddScoped<IKorisniciUloge<Model.KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest>,
+                KorisniciUlogeService<Model.KorisniciUloge, KorisniciUlogeSearchRequest, KorisniciUlogeUpsertRequest, KorisniciUlogeUpsertRequest,Database.KorisniciUloge>>();
 
             services.AddScoped<ICRUDService<Model.Ljubimac, object, LjubimacUpsertRequest, LjubimacUpsertRequest>,
                 BaseCRUDService<Model.Ljubimac, object, LjubimacUpsertRequest, LjubimacUpsertRequest, Database.Ljubimac>>();

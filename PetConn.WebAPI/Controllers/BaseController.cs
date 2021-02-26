@@ -5,6 +5,7 @@ using PetConn.WebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace PetConn.WebAPI.Controllers
@@ -12,6 +13,12 @@ namespace PetConn.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+#if ProducesConsumes
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
+#endif
+
+
     public class BaseController<TModel, TSearch> : ControllerBase
     {
         private readonly IService<TModel,TSearch> _service;
@@ -24,15 +31,18 @@ namespace PetConn.WebAPI.Controllers
         {
             return  _service.Get(request);
         }
-        //[Authorize(Roles = "Menadzer")]
-
-
-
-        
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
-        public TModel GetByID(int id)
+        public Task<ActionResult<TModel>> GetByID(int id)
         {
-            return _service.GetByID(id);
+            var product = _service.GetByID(id);
+            ActionResult<TModel> result= NotFound();
+
+            if(product!=null)
+            {
+                result = Ok(product);
+            }
+            return Task.FromResult(result); //_service.GetByID(id);
         }
          
     }

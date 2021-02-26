@@ -44,6 +44,12 @@ namespace PetConn.WebAPI.Controllers
         {
             return _service.Get(request);
         }
+        [HttpGet("korisniciBezRole")]
+
+        public List<Korisnik> getKorisniciBezRole()
+        {
+            return _service.GetKorisniciBezRole();
+        }
         [HttpGet("partner")]
         public Partner getpartnerID([FromQuery]KorisnikSearchRequest request)
         {

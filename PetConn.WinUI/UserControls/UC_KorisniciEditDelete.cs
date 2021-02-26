@@ -14,41 +14,26 @@ namespace PetConn.WinUI.UserControls
 {
     public partial class UC_KorisniciEditDelete : UserControl
     {
-        APIService _service = new APIService("Korisnici");
-        APIService _serviceKorisniciUloge = new APIService("KorisniciUloge");
-        APIService _serviceGetIDKorisnik = new APIService("Korisnici/getID");
-        APIService _serviceUloge = new APIService("Uloge");
-        APIService _serviceVrstePartnera = new APIService("VrstePartnera");
-        APIService _servicePartneri = new APIService("Partner");
-        APIService _serviceUposlenik = new APIService("Uposlenik");
+        private readonly APIService _service = new APIService("Korisnici");
+        private readonly APIService _serviceKorisniciBezRole = new APIService("Korisnici/korisniciBezRole");
+        private readonly APIService _serviceGetIDKorisnik = new APIService("Korisnici/getID");
+
+        private readonly APIService _serviceKorisniciUloge = new APIService("KorisniciUloge");
+        private readonly APIService _serviceUloge = new APIService("Uloge");
+        private readonly APIService _serviceVrstePartnera = new APIService("VrstePartnera");
+        private readonly APIService _servicePartneri = new APIService("Partner");
+        private readonly APIService _serviceUposlenik = new APIService("Uposlenik"); 
 
 
         public UC_KorisniciEditDelete()
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
-            
+           
         }
-        public async void LoadDGV()
-        {
-            List<KorisniciUloge> korisniciUloge = await _serviceKorisniciUloge.Get<List<KorisniciUloge>>(null);
-            List<Korisnik> korisnici = await _service.Get<List<Korisnik>>(null);
-            List<Korisnik> korisnici1 = await _service.Get<List<Korisnik>>(null);
-
-            foreach (KorisniciUloge ku in korisniciUloge)
-            {
-                foreach (Korisnik ko in korisnici)
-                {
-                    int korisnikID = await _serviceGetIDKorisnik.Get<int>(new KorisnikSearchRequest { KorisnickoIme = ko.KorisnickoIme });
-                    if (ku.KorisnikId == korisnikID)
-                        korisnici1.RemoveAll(x => x.KorisnickoIme ==ko.KorisnickoIme );                   
-                }
-                    
-            }
-            
-            dataGridView1.DataSource = korisnici1;
-
-            //dataGridView1.DataSource = await _service.Get<List<Korisnik>>(null);
+        public async Task LoadDGV()
+        {          
+            dataGridView1.DataSource = await _serviceKorisniciBezRole.Get<List<Korisnik>>(null);     
         }
         public async void LoadCMBs()
         {
@@ -69,13 +54,14 @@ namespace PetConn.WinUI.UserControls
             cmbRole.DataSource = role;
             cmbRole.DisplayMember = "Naziv";
             cmbRole.ValueMember = "UlogaId";
-
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Hide();
             Dispose();
         }
+
         Korisnik k;
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {         
@@ -101,7 +87,7 @@ namespace PetConn.WinUI.UserControls
                     MessageBox.Show(delete.Ime.ToString()+" "+k.KorisnickoIme.ToString() + " deleted.", "Delete action successfull", // baca error ne stavi partnera kod brisanja
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    LoadDGV();
+                    await LoadDGV();
                 }
             }
         }
@@ -123,7 +109,7 @@ namespace PetConn.WinUI.UserControls
                      
             if (cmbPartneri.SelectedIndex == 0|| cmbRole.SelectedIndex == 0||cmbVrstePartnera.SelectedIndex == 0)
             {
-                MessageBox.Show("You need to select Type of Partner, Partner & Role in order to add employee", "Warning", // baca error ne stavi partnera kod brisanja
+                MessageBox.Show("You need to select Type of Partner, Partner & Role in order to add employee", "Warning",
                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -135,11 +121,10 @@ namespace PetConn.WinUI.UserControls
             {
                 request.PartnerId = idP;
                 request.KorisnikId = korisnikID;
-                request.DatumIzmjene = DateTime.Now;
-            
+                request.DatumIzmjene = DateTime.Now;        
             }
-            Uposlenik p = await _serviceUposlenik.Insert<Uposlenik>(request);
 
+            Uposlenik p = await _serviceUposlenik.Insert<Uposlenik>(request);
             if (int.TryParse(cmbRole.SelectedValue.ToString(), out int idRola))
             {
                 await _serviceKorisniciUloge.Insert<KorisniciUloge>(new KorisniciUlogeUpsertRequest { DatumIzmjene = DateTime.Now, KorisnikId = korisnikID, UlogaId = idRola });
@@ -153,13 +138,18 @@ namespace PetConn.WinUI.UserControls
             cmbVrstePartnera.SelectedIndex = 0;
             txtEmail.Text = string.Empty;
             txtUsername.Text = string.Empty;
-            LoadDGV();
+            await LoadDGV();
 
         }
 
         private void btnHide_Click(object sender, EventArgs e)
         {
             Height = 300;
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            await LoadDGV();
         }
     }
 }

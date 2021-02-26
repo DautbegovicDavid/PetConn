@@ -184,6 +184,12 @@ namespace PetConn.WebAPI.Services
         {
             return _context.Korisniks.Where(w => w.KorisnickoIme == k.KorisnickoIme).Select(s => s.KorisnikId).FirstOrDefault();
         }
+        public List<Model.Korisnik> GetKorisniciBezRole()
+        {
+            var list= _context.Korisniks.Include(i => i.KorisniciUloges).Where(w => w.KorisniciUloges.Count==0).ToList();
+
+            return _mapper.Map<List<Model.Korisnik>>(list);
+        }
 
         
     }

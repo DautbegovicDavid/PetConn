@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetConn.WebAPI.Services;
 using System;
@@ -17,16 +18,19 @@ namespace PetConn.WebAPI.Controllers
         {
             _service = service;
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public TModel Insert(TInsert request)
         {
             return _service.Insert(request);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public TModel Update(int id,[FromBody]TUpdate request)
         {
             return _service.Update(id,request);
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public TModel Delete(int id)
         {
