@@ -1,4 +1,4 @@
-﻿    using AutoMapper;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +21,17 @@ namespace PetConn.WebAPI.Mappers
             CreateMap<DrzavaUpsert, Database.Drzava>().ReverseMap();
             CreateMap<Grad, Database.Grad>().ReverseMap();
             CreateMap<GradUpsert, Database.Grad>().ReverseMap();
+
+
+            CreateMap<Proizvodjac, Database.Proizvodjac>().ReverseMap();
+            CreateMap<ProizvodjacUpsertRequest, Database.Proizvodjac>().ReverseMap();
+
+            CreateMap<JedinicaMjere, Database.JedinicaMjere>().ReverseMap();
+            CreateMap<JedinicaMjereUpsertRequest, Database.JedinicaMjere>().ReverseMap();
+
+            CreateMap<VrstaProizvoda, Database.VrstaProizvodum>().ReverseMap();
+            CreateMap<VrstaProizvodaUpsertRequest, Database.VrstaProizvodum>().ReverseMap();
+
             CreateMap<Uloge, Database.Uloga>().ReverseMap();
             CreateMap<VrstePartnera, Database.VrstaPartnera>().ReverseMap();
             CreateMap<KorisnikUloge, Database.KorisniciUloge>().ReverseMap();  

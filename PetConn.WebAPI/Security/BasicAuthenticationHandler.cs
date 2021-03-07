@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using System.Security.Claims;
+//using System.Security.Claims;
 
 namespace eProdaja.WebAPI.Security
 {

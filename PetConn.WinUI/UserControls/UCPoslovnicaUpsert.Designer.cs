@@ -225,6 +225,7 @@ namespace PetConn.WinUI.UserControls
             this.btnAddPicture.TabIndex = 30;
             this.btnAddPicture.Text = "Add picture";
             this.btnAddPicture.UseVisualStyleBackColor = true;
+            this.btnAddPicture.Click += new System.EventHandler(this.btnAddPicture_Click);
             // 
             // btnSave
             // 
@@ -237,6 +238,7 @@ namespace PetConn.WinUI.UserControls
             this.btnSave.TabIndex = 31;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAddLocation
             // 
@@ -252,6 +254,7 @@ namespace PetConn.WinUI.UserControls
             this.btnAddLocation.Size = new System.Drawing.Size(44, 44);
             this.btnAddLocation.TabIndex = 32;
             this.btnAddLocation.UseVisualStyleBackColor = true;
+            this.btnAddLocation.Click += new System.EventHandler(this.btnAddLocation_Click);
             // 
             // btnAddPartner
             // 
@@ -267,6 +270,7 @@ namespace PetConn.WinUI.UserControls
             this.btnAddPartner.Size = new System.Drawing.Size(44, 44);
             this.btnAddPartner.TabIndex = 33;
             this.btnAddPartner.UseVisualStyleBackColor = true;
+            this.btnAddPartner.Click += new System.EventHandler(this.btnAddPartner_Click);
             // 
             // label3
             // 
@@ -322,6 +326,7 @@ namespace PetConn.WinUI.UserControls
             this.Location = new System.Drawing.Point(20, 500);
             this.Name = "UCPoslovnicaUpsert";
             this.Size = new System.Drawing.Size(385, 399);
+            //this.Load += new System.EventHandler(this.UCPoslovnicaUpsert_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoslovnica)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

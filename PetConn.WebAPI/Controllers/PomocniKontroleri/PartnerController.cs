@@ -24,10 +24,10 @@ namespace PetConn.WebAPI.Controllers.PomocniKontroleri
         [Route("IDsByVrstaPartneraID")]        
         [HttpGet]
         public List<int> getIDsByVrstaPartneraID([FromQuery] PartneriSearchRequest request)
-        {
-            
+        {            
                 return _service.getIDsByVrstaPartneraID(request);
         }
+        
         
 
 

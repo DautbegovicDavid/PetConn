@@ -42,7 +42,9 @@ namespace PetConn.WinUI.UserControls
             this.RadnoVrijemeOD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RadnoVrijemeDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Slika = new System.Windows.Forms.DataGridViewImageColumn();
             this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +57,7 @@ namespace PetConn.WinUI.UserControls
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(656, 0);
+            this.btnClose.Location = new System.Drawing.Point(741, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(44, 44);
@@ -80,7 +82,7 @@ namespace PetConn.WinUI.UserControls
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox1.Location = new System.Drawing.Point(3, 63);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(694, 254);
+            this.groupBox1.Size = new System.Drawing.Size(779, 254);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Places";
@@ -107,6 +109,7 @@ namespace PetConn.WinUI.UserControls
             this.RadnoVrijemeOD,
             this.RadnoVrijemeDo,
             this.Email,
+            this.Slika,
             this.Update});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Teal;
@@ -121,8 +124,10 @@ namespace PetConn.WinUI.UserControls
             this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(688, 235);
+            this.dataGridView1.Size = new System.Drawing.Size(773, 235);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // PartnerNaziv
             // 
@@ -164,6 +169,13 @@ namespace PetConn.WinUI.UserControls
             this.Email.ReadOnly = true;
             this.Email.Width = 145;
             // 
+            // Slika
+            // 
+            this.Slika.DataPropertyName = "Slika";
+            this.Slika.HeaderText = "Slika";
+            this.Slika.Name = "Slika";
+            this.Slika.ReadOnly = true;
+            // 
             // Update
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -181,16 +193,30 @@ namespace PetConn.WinUI.UserControls
             this.Update.UseColumnTextForButtonValue = true;
             this.Update.Width = 70;
             // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(748, 320);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(31, 34);
+            this.button1.TabIndex = 24;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // UC_PoslovniceUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Teal;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.groupBox1);
             this.Name = "UC_PoslovniceUpdate";
-            this.Size = new System.Drawing.Size(700, 320);
+            this.Size = new System.Drawing.Size(785, 357);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -209,6 +235,8 @@ namespace PetConn.WinUI.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn RadnoVrijemeOD;
         private System.Windows.Forms.DataGridViewTextBoxColumn RadnoVrijemeDo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewImageColumn Slika;
         private System.Windows.Forms.DataGridViewButtonColumn Update;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -16,15 +16,22 @@ using System.Windows.Forms;
 namespace PetConn.WinUI.Login_Register
 {
 
-
+    // reducirati nepotrebne pozve
     public partial class frmLogin : Form
     {
         APIService _service = new APIService("Korisnici");
         APIService _serviceku = new APIService("KorisniciUloge");
-
+        private readonly APIService _serviceVP = new APIService("VrstePartnera");
         APIService _serviceGetIDKorisnik = new APIService("Korisnici/getID");
         APIService _serviceGetUlogasID = new APIService("Korisnici/getUlogaIDs");
         APIService _serviceUloge = new APIService("Uloge");
+
+        APIService _serviceUposlenik = new APIService("Uposlenik");
+        APIService _servicePartner = new APIService("Partner/IDsByVrstaPartneraID");
+        APIService _servicePartnerGet = new APIService("Partner");
+
+        APIService _serviceUPOSLENICI = new APIService("Uposlenik");
+
 
         public frmLogin()
         {
@@ -46,23 +53,33 @@ namespace PetConn.WinUI.Login_Register
                 MessageBox.Show("Empty fields are not allowwed !", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             try
             {
-                
+
                 
                 APIService.UserName = txtUsername.Text;
                 APIService.Password = txtPassword.Text;
-                
+                APIService.PartnerID = 0;
                 List<Korisnik> kor= await _service.Get<List<Korisnik>>(new KorisnikSearchRequest { KorisnickoIme=txtUsername.Text});
 
-
-                //imam korisnika
                 
-                if(kor.Count==0)
+                //imam korisnika
+
+                if (kor.Count==0)
                 {
                     MessageBox.Show("Wrogn Username or Password", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
 
                 }
                 Korisnik k = kor.First();
+                if (k.Email.Equals("test@email.com") &&
+                    k.Ime.Equals("Unesi ime") &&
+                    k.Prezime.Equals("Unesi prezime") &&
+                    k.Telefon.Equals("000/000-000"))
+                    APIService.EditovanProfil = false;
+                else APIService.EditovanProfil = true;
+
+                
+                
+                
                 //imam ID
                 int korisnikID = await _serviceGetIDKorisnik.Get<int>(new KorisnikSearchRequest { KorisnickoIme = txtUsername.Text });
               
@@ -76,12 +93,49 @@ namespace PetConn.WinUI.Login_Register
                 }
                 
                 Uloge u = await _serviceUloge.GetbyID<Uloge>(listaUloga.First());
-                //List<KorisniciUloge> ku = await _serviceku.Get<List<KorisniciUloge>>(new KorisniciUlogeSearchRequest { KorisnikId = korisnikID });
                 APIService.Uloga = u.Naziv;
+
+
+                int VrstaPartneraID=await _serviceVP.GetVrstaPartneraID<int>(new VrstaPartnera { Naziv = "Pet Shop" });
+                int PetShopVpID = await _serviceVP.GetVrstaPartneraID<int>(new VrstaPartnera { Naziv = "Pet Shop" });
+                int VetShopVpID = await _serviceVP.GetVrstaPartneraID<int>(new VrstaPartnera { Naziv = "Vet Station" });
+
+
+                //// Get Partnere s obzirom na vrstu Partnera
+                List<int> IDsPartneri = await _servicePartner.Get<List<int>>(new PartneriSearchRequest { VrstaPartneraId=VrstaPartneraID});
+
+
+                List<Uposlenik> uposlenici = await _serviceUPOSLENICI.Get<List<Uposlenik>>(new UposlenikSearchRequest { KorisnikId=korisnikID});
                 
+                //provjera da nije glavni admin sistema
+                if (uposlenici.Count != 0)
+                {
+                    int uposlenikPartnerID = uposlenici.FirstOrDefault().PartnerId;
+                    APIService.PartnerID = uposlenikPartnerID;
+
+                    List<Partner> partnerUposlenika = await _servicePartnerGet.Get<List<Partner>>(new PartneriSearchRequest { PartnerId = uposlenikPartnerID });// VRACA CITAV NIZ NE VALJA FILTER
+                    int uposlenikVrstaPartneraID = partnerUposlenika.FirstOrDefault().VrstaPartneraId; // dodijeli prvi iz niza!!!!
+
+                    APIService.NazivPartnera = partnerUposlenika.FirstOrDefault().Naziv;
+                    // pocetni skrin
+                    if (uposlenikVrstaPartneraID == PetShopVpID)
+                    {
+                        new frmHomePetShop().Show();
+                        Hide();
+                        return;
+                    }
+                }
+
+
+
+
+
+
+               
 
 
                 new frmHome().Show();
+                //new frmHomePetShop().Show();
                 Hide();     
 
                 

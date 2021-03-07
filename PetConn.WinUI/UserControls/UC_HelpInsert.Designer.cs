@@ -96,6 +96,7 @@ namespace PetConn.WinUI.UserControls
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -130,7 +131,7 @@ namespace PetConn.WinUI.UserControls
             this.txtBoxSecond.Size = new System.Drawing.Size(125, 20);
             this.txtBoxSecond.TabIndex = 18;
             // 
-            // UCHelpInsert
+            // UC_HelpInsert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,7 +146,7 @@ namespace PetConn.WinUI.UserControls
             this.Controls.Add(this.txtBoxFirst);
             this.Controls.Add(this.cmbBox);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Name = "UCHelpInsert";
+            this.Name = "UC_HelpInsert";
             this.Size = new System.Drawing.Size(345, 235);
             this.ResumeLayout(false);
             this.PerformLayout();

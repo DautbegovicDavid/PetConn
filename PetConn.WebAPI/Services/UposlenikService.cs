@@ -19,6 +19,8 @@ namespace PetConn.WebAPI.Services
             var query =_context.Uposleniks.Include(i => i.Partner).Include(i => i.Korisnik).AsQueryable();
             if (request.KorisnikId != 0)
                 query=query.Where(w => w.KorisnikId == request.KorisnikId);
+            if (request.PartnerId != 0)
+                query = query.Where(w => w.PartnerId == request.PartnerId);
             query.ToList();
             return _mapper.Map<List<Uposlenik>>(query);
         }

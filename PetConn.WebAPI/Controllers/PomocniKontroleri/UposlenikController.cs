@@ -18,13 +18,17 @@ namespace PetConn.WebAPI.Controllers.PomocniKontroleri
         {
             _service = service;
         }
-        [HttpGet("getByRoles/{id}")]
-        
+        [HttpGet("getByRoles/{id}")]      
         public List<Uposlenik> GetByRole(int id)
         {
             return _service.GetByRole(id);
 
         }
+        //public Uposlenik GetByKorisnikID(int id)
+        //{
+        //    return _service.GetByRole(id);
+
+        //}
 
 
     }

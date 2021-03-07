@@ -10,6 +10,7 @@ namespace PetConn.WebAPI.Services
     public interface IUposlenik<TModel, TSearch, TUpdate, TInsert> : ICRUDService<TModel, TSearch, TUpdate, TInsert>
     {
         List<TModel> GetByRole(int id);
+        //Uposlenik GetByKorisnikID(int id);
 
     }
 }

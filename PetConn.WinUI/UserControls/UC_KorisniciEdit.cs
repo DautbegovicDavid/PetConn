@@ -34,11 +34,19 @@ namespace PetConn.WinUI.UserControls
 
         private void KorisniciEdit_Load(object sender, EventArgs e)
         {
-            LoadDGV();
             LoadComboBox();
+            LoadDGV();
+        }
+        public async void LoadDGVPartneri(int partnerID)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = await _service.Get<List<Uposlenik>>(new UposlenikSearchRequest { PartnerId=partnerID });
         }
         private async void LoadDGV()
         {
+            if(APIService.PartnerID!=0)
+            dataGridView1.DataSource = await _service.Get<List<Uposlenik>>(new UposlenikSearchRequest { PartnerId = APIService.PartnerID });
+            else
             dataGridView1.DataSource = await _service.Get<List<Uposlenik>>(null);
         }
         private async void LoadComboBox()
@@ -54,14 +62,21 @@ namespace PetConn.WinUI.UserControls
             LoadDGV();
             cmbRoles.SelectedIndex = 0;
         }
-
+        
         private async void cmbRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
             List<Uposlenik> Uposlenici = new List<Uposlenik>();
+            
             if (int.TryParse(cmbRoles.SelectedValue.ToString(), out int rolaID))
+            {       
+                if(rolaID!=0)
+                Uposlenici = await _serviceUposlenikByRole.GetbyID<List<Uposlenik>>(rolaID);
+                //Uposlenici= await _service.Get<List<Uposlenik>>(null);
+            }
+            if (APIService.PartnerID != 0 /*&& cmbRoles.SelectedIndex!=0*/)
             {
-                Uposlenici = await _serviceUposlenikByRole.GetbyID<List<Uposlenik>>(rolaID);   
+                Uposlenici.RemoveAll(r => r.PartnerId != APIService.PartnerID);
             }
             dataGridView1.DataSource = Uposlenici;
         }

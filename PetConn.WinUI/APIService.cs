@@ -14,6 +14,9 @@ namespace PetConn.WinUI
         public static string Password { get; set; }
         public static string UserName { get; set; }
         public static string Uloga { get; set; }
+        public static string NazivPartnera { get; set; }
+        public static int PartnerID { get; set; }
+        public static bool EditovanProfil { get; set; }
 
         public APIService(string route)
         {

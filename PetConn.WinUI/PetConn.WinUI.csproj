@@ -102,7 +102,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Home_Panels\frmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +189,12 @@
     <Compile Include="UserControls\UC_PoslovniceDelete.Designer.cs">
       <DependentUpon>UC_PoslovniceDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_Proizvodi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Proizvodi.Designer.cs">
+      <DependentUpon>UC_Proizvodi.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_PoslovniceDelete.resx">
       <DependentUpon>UC_PoslovniceDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Proizvodi.resx">
+      <DependentUpon>UC_Proizvodi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

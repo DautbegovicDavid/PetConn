@@ -22,19 +22,29 @@ namespace PetConn.WinUI.UserControls
         private readonly APIService _serviceUloge = new APIService("Uloge");
         private readonly APIService _serviceVrstePartnera = new APIService("VrstePartnera");
         private readonly APIService _servicePartneri = new APIService("Partner");
-        private readonly APIService _serviceUposlenik = new APIService("Uposlenik"); 
+        private readonly APIService _serviceUposlenik = new APIService("Uposlenik");
 
-
+        public int BrojKorisnika { get; set; }
         public UC_KorisniciEditDelete()
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
-           
+            
+
         }
         public async Task LoadDGV()
-        {          
-            dataGridView1.DataSource = await _serviceKorisniciBezRole.Get<List<Korisnik>>(null);     
+        {
+            List<Korisnik> lista = await _serviceKorisniciBezRole.Get<List<Korisnik>>(null);
+            dataGridView1.DataSource = lista;
+            BrojKorisnika = lista.Count();
+
         }
+        public async Task<int> GetBrojKorisnika()
+        {
+            List<Korisnik> lista=await _serviceKorisniciBezRole.Get<List<Korisnik>>(null);
+            return lista.Count();
+        }
+        
         public async void LoadCMBs()
         {
             var partneri = await _servicePartneri.Get<List<Partner>>(null);
@@ -86,7 +96,7 @@ namespace PetConn.WinUI.UserControls
                     Korisnik delete = await _service.Delete<Korisnik>(korisnikID);
                     MessageBox.Show(delete.Ime.ToString()+" "+k.KorisnickoIme.ToString() + " deleted.", "Delete action successfull", // baca error ne stavi partnera kod brisanja
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    BrojKorisnika--;
                     await LoadDGV();
                 }
             }
@@ -95,7 +105,7 @@ namespace PetConn.WinUI.UserControls
         private async void cmbVrstePartnera_SelectedIndexChanged(object sender, EventArgs e)
         {
             int x = 0;
-            if (int.TryParse(cmbVrstePartnera.SelectedValue.ToString(), out int idVP))
+            if (int.TryParse(cmbVrstePartnera.SelectedValue.ToString(), out int idVP))//erorr istraziti
                 x = idVP;
             var partneri = await _servicePartneri.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId=x});
             partneri.Insert(0, new Partner());
@@ -139,6 +149,7 @@ namespace PetConn.WinUI.UserControls
             txtEmail.Text = string.Empty;
             txtUsername.Text = string.Empty;
             await LoadDGV();
+            BrojKorisnika--;
 
         }
 

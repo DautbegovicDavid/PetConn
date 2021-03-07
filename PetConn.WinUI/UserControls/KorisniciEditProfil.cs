@@ -111,6 +111,13 @@ namespace PetConn.WinUI.UserControls
             txtPhoneNumb.Text = k.Telefon;
             APIService.UserName = k.KorisnickoIme;
 
+            if (k.Email.Equals("test@email.com") &&
+                    k.Ime.Equals("Unesi ime") &&
+                    k.Prezime.Equals("Unesi prezime") &&
+                    k.Telefon.Equals("000/000-000"))
+                APIService.EditovanProfil = false;
+            else APIService.EditovanProfil = true;
+
         }
     }
 }

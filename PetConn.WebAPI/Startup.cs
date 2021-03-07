@@ -88,6 +88,14 @@ namespace PetConn.WebAPI
 
             services.AddScoped<ICRUDService<Model.HelpModels.Grad, GradUpsert,GradUpsert, GradUpsert>,
                 BaseCRUDService<Model.HelpModels.Grad,GradUpsert, GradUpsert, GradUpsert, Grad>>();
+            services.AddScoped<ICRUDService<Model.Proizvodjac, object, ProizvodjacUpsertRequest, ProizvodjacUpsertRequest>,
+                BaseCRUDService<Model.Proizvodjac, object, ProizvodjacUpsertRequest, ProizvodjacUpsertRequest,Database.Proizvodjac>>();
+
+            services.AddScoped<ICRUDService<Model.HelpModels.JedinicaMjere, object, JedinicaMjereUpsertRequest, JedinicaMjereUpsertRequest>,
+                BaseCRUDService<Model.HelpModels.JedinicaMjere, object, JedinicaMjereUpsertRequest, JedinicaMjereUpsertRequest, Database.JedinicaMjere>>();
+
+            services.AddScoped<ICRUDService<VrstaProizvoda, object, VrstaProizvodaUpsertRequest, VrstaProizvodaUpsertRequest>,
+                BaseCRUDService<VrstaProizvoda, object, VrstaProizvodaUpsertRequest, VrstaProizvodaUpsertRequest, Database.VrstaProizvodum>>();
 
             services.AddScoped<ICRUDService<Model.Poslovnica,PoslovnicaSearchRequest, PoslovnicaUpsertRequest, PoslovnicaUpsertRequest>,
                 PoslovnicaService>();

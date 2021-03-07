@@ -13,15 +13,12 @@ namespace PetConn.WinUI.UserControls
 {
     public partial class UC_PoslovniceDelete : UserControl
     {
+        private readonly APIService _service = new APIService("Poslovnica");
         public UC_PoslovniceDelete()
-        {
-            
+        {           
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ClearSelection();
-            
-
-
         }
         public object DataSource
         {
@@ -29,16 +26,13 @@ namespace PetConn.WinUI.UserControls
             set { dataGridView1.DataSource = value; }
         }
 
-        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-
-        }
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e) { }
+        
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Dispose();
-            Hide();
-            
+            Hide();            
         }
     }
 }
