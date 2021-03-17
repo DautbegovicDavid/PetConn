@@ -14,6 +14,7 @@ using static System.Windows.Forms.ComboBox;
 using System.IO;
 using PetConn.WinUI.Helpers;
 using PetConn.Model.Requests;
+using System.Threading;
 
 namespace PetConn.WinUI.UserControls
 {
@@ -25,13 +26,14 @@ namespace PetConn.WinUI.UserControls
         private readonly APIService _servicePoslovnica = new APIService("Poslovnica");
 
 
-        PoslovnicaUpsertRequest request = new PoslovnicaUpsertRequest();
-        Poslovnica requestUpdate = null;
+        private PoslovnicaUpsertRequest request = new PoslovnicaUpsertRequest();
+        private Poslovnica requestUpdate = null;
+        
 
         public UCPoslovnicaUpsert(Poslovnica p=null)
         {
             InitializeComponent();
-            //LoadCMBs();
+            
             SetFormat(p);
         }
         public void SetFormat(Poslovnica p)
@@ -46,8 +48,10 @@ namespace PetConn.WinUI.UserControls
             vrijemeOD.ShowUpDown = true;
             if (p != null)
             {
+                
                 LoadPartner(p.PartnerId);
                 LoadLokacije(p.LokacijaId);
+
                 nazivEntry = p.Naziv;
                 phoneEntry = p.Telefon;
                 emailEntry = p.Email;
@@ -61,6 +65,7 @@ namespace PetConn.WinUI.UserControls
                 requestUpdate = p;
                 return;
             }
+            
             LoadCMBs();
         }
 
@@ -133,8 +138,20 @@ namespace PetConn.WinUI.UserControls
             cmbLokacija.DisplayMember = "Naziv";
             cmbLokacija.ValueMember = "LokacijaId";
 
-            var listPartneri = await _servicePartner.Get<List<Partner>>(null);
-            listPartneri.Insert(0, new Partner { Naziv = "Partner" });
+            List<Partner> listPartneri = new List<Partner>();
+            if (APIService.PartnerID == 0)
+            {
+                listPartneri = await _servicePartner.Get<List<Partner>>(null);
+                listPartneri.Insert(0, new Partner { Naziv = "Partner" });
+
+                
+            }
+            else
+            {
+                listPartneri = await _servicePartner.Get<List<Partner>>(new PartneriSearchRequest { PartnerId = APIService.PartnerID });
+                cmbPartner.Enabled = false;
+            }
+
             cmbPartner.DataSource = listPartneri;
             cmbPartner.DisplayMember = "Naziv";
             cmbPartner.ValueMember = "PartnerId";
@@ -153,8 +170,10 @@ namespace PetConn.WinUI.UserControls
             var listLok = await _serviceLokacija.Get<List<Lokacija>>(null);
             cmbLokacija.DataSource = listLok;
             cmbLokacija.DisplayMember = "Naziv";
-            cmbLokacija.ValueMember = "LokacijaId";
-            cmbLokacija.SelectedValue = LokID;            
+            cmbLokacija.ValueMember = "LokacijaId";            
+            cmbLokacija.SelectedValue = LokID;
+            if(LokID==0)
+                cmbLokacija.SelectedIndex = cmbLokacija.Items.Count - 1;
         }
 
        
@@ -163,6 +182,11 @@ namespace PetConn.WinUI.UserControls
         {
             UC_HelpInsert Lokacija = new UC_HelpInsert();
             Helper.UcDodajKontrolu(Parent,Lokacija, "UC_Lokacija", new Point(400, 500));
+            Lokacija.btnSave.Click += delegate (object sen, EventArgs ea)
+                  {                      
+                      Thread.Sleep(2000);// Thread mora i ne mora al haj fino ga vidjeti
+                      LoadLokacije(0);
+                  };
             Lokacija.Load_Lokacija();          
         }
         private void btnAddPartner_Click(object sender, EventArgs e)
@@ -170,12 +194,9 @@ namespace PetConn.WinUI.UserControls
             UC_HelpInsert Partner = new UC_HelpInsert();
             Helper.UcDodajKontrolu(Parent, Partner, "UC_Partner", new Point(400, 500));
             Partner.Load_Partner();
-        }
-
-        
+        }       
         private void btnAddPicture_Click(object sender, EventArgs e)
-        {
-            //Update Metoda NE radi
+        {            
             var result = openFileDialog1.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -185,15 +206,12 @@ namespace PetConn.WinUI.UserControls
                 var file = File.ReadAllBytes(fileName);
 
                 request.Slika = file;
-
-
                 Image image = Image.FromFile(fileName);//ucitali sliku sa putanje
                 pictureBoxPoslovnica.Image = image;//prikazali u boxu
 
                 Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
                 thumb.Save(Path.ChangeExtension(fileName, "thumb"));
                 request.SlikaThumb = Helper.FromImageToByteTHUMB(thumb);//radi ali nesto ne valja
-
 
             }
         }
@@ -229,23 +247,12 @@ namespace PetConn.WinUI.UserControls
                 await _servicePoslovnica.Update<Poslovnica>(requestUpdate.PoslovnicaId, request);
 
                 MessageBox.Show("Place of business successfully updated", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //PoslovnicaUpsertRequest novi = new PoslovnicaUpsertRequest();//provjeriti ovo
-                //request = novi;
-
-               
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);   
             }
             
-            //uc.Visible = false;
-            //CleanForm();
             Dispose();
         }
-        public void SetajZadnjiSelektovanILIPoPartneru()
-        {
-
-        }
-        
+               
         public PoslovnicaUpsertRequest GetPoslovnica()
         {
             return request;

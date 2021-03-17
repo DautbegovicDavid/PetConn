@@ -2,12 +2,6 @@
 using PetConn.Model.Requests;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PetConn.WinUI.UserControls
@@ -83,7 +77,7 @@ namespace PetConn.WinUI.UserControls
 
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3 && e.RowIndex != 0)
+            if (e.ColumnIndex == 3 && e.RowIndex != -1)
             {
                 var u = dataGridView1.CurrentRow.DataBoundItem as Uposlenik;
 

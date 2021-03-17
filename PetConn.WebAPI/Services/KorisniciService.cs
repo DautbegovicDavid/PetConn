@@ -38,6 +38,7 @@ namespace PetConn.WebAPI.Services
 
             return _mapper.Map<Model.Korisnik>(entity);
         }
+        
         public bool ChangePass(KorisnikChangePass request)
         {
             var u = _context.Korisniks.FirstOrDefault(x => x.KorisnickoIme == request.KorisnickoIme);
@@ -108,11 +109,7 @@ namespace PetConn.WebAPI.Services
             return _mapper.Map<List<Model.Korisnik>>(list);
            
         }
-        public Model.Korisnik GetByID(int id)
-        {
-            var entity = _context.Korisniks.Find(id);
-            return _mapper.Map<Model.Korisnik>(entity);
-        }
+       
         public Model.Korisnik Update(int id, KorisnikUpsertRequest request)
         {
             var entity = _context.Korisniks.Find(id);
@@ -208,6 +205,11 @@ namespace PetConn.WebAPI.Services
             return _mapper.Map<List<Model.Korisnik>>(list);
         }
 
+        public Model.Korisnik GetByID(int id)
+        {
+            var entity = _context.Korisniks.Find(id);
+            return _mapper.Map<Model.Korisnik>(entity);
+        }
         
     }
 }

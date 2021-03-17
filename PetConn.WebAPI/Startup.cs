@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using PetConn.Model;
 using PetConn.Model.Requests;
 using PetConn.WebAPI.Database;
+using PetConn.WebAPI.Hubs;
 using PetConn.WebAPI.Services;
 using System.Collections.Generic;
 
@@ -66,12 +67,12 @@ namespace PetConn.WebAPI
             });
            
             services.AddAutoMapper(typeof(Startup));
+            services.AddSignalR();
+            services.AddDbContext<firstTryContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("PetCCon"))); //lokalna konekcija
 
             //services.AddDbContext<firstTryContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("PetCCon"))); lokalna konekcija
-
-            services.AddDbContext<firstTryContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("Azure")));
+            //options.UseSqlServer(Configuration.GetConnectionString("Azure")));//azure
 
             services.AddAuthentication("BasicAuth").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuth", null);
 
@@ -135,6 +136,8 @@ namespace PetConn.WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chatHub");
+
             });
         }
     }

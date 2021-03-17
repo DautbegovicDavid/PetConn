@@ -130,39 +130,18 @@
         IBkrJpnCNhdd9f90LZ/xz1AUv/I/J7UcU282AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="button1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAeJJREFUWEft
-        VrtKA0EUDaL2FqL4Liy01A9RtLAQa8EHSkBF8DcsLIWghaigRUB/RMHC2ojmMTP7iCbruZuzMQSTnYU0
-        wh44sHPnnnvvzOzu3EyKFEngOM6Er/WRp9SdZ8yLq/WHp/Un+AY++saciA/dewdjzBiSXSDJNxjE8AtF
-        nruuO0V5JprjMBl8pVYhLjGIJ8Gx+iUpKiiVhoRINi1+mMuJD31LsK1JDI6TFwDRPlgPAxhzhe2d5FRH
-        oJiZ8IgaSWvQbfI5WQG+46yEAYRK7dFsDeiyoBQvMZIVoLUegeCdwizNiYEjOY6SC2mOB1Z8RlGeJmu0
-        JmwnXbojCIJBOD+DNb9SmaPZGq0J20mXeKCIvqoxCxymSJHi/wOf9KJ82hzG46+fSES6WAM34jx0ch88
-        yU+O5u5oTdhOulgDmodQa8wpTfFoTYh7YZvmxID+gHEKSqlhmuPRTB5dp0ptccoa0P1ex2hgaLYDRNHq
-        d8MAjfG9Vy7P0qUjpBVDwmtq6oixwyl7UByeNxrNZTwXafMR8Bb94Ya0YXipBsB+NqvrSHwDnyp9i6IN
-        AyYFAzRfOFkVkl7C1mjPulOa0hyamlHKewdZNRLIi5UHC6Acjw++YmekDzzEbozTPUUKC2QyP9YjtXAQ
-        RtaDAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAABGdBTUEAALGPC/xhBQAAAf1JREFUSEvd
+        lT9LHFEUxdf/im1qC79BCsHkKyiECAlBAoGgTSSF+AXS2tj5JxER04QkhUgIiSIi2NrYpdusG8FmZ0Yb
+        3Rk3L7/7ODjuZsZZWw9c3txz7z3vvvtmZ0v3E865vqsgGI+jaKkeBNtxGB6y/sRfrIfhU1etDij1bkBk
+        ErHfmMOOkzDcioPgvV/xxVfqUfRcJcWg216KVlW8k9Rqj+A6FL4GsYf+FOSxzovOh4mQvIHFdDkj+lZw
+        kjk/Iue6WN+58/MHCjWDWU5bJwi/EdUWTJi6j1jDNhKdwi6HLk6Y4Q9RbQHhbuq+IpxQ+0x0M9hxwnd9
+        djYiqhCtwjbWiyAYUjgFCXaJZbmFkPCXmx3zvMBol33CTRDYJ3lTroc7PR2En0WoU5SH+fBrWAN7JbrE
+        Jt/xD+SmgDyyArkedjlwf7ngD3Zk4/KEDfjr2JHcFJB7dL4l9xq8wy+IJRz3E8J9bPTZ/KzLo5lvxHbl
+        poDMnTnCU8QaCP/ya0vHBjsZfIWcFVEpit4WYq+xJEvYENdqo1aPzhNRKfSe/+G4ue/5ZRQN6/E/ILyD
+        VVy53C+qGcz3pe1+118oNW9919yPqGyQZLNv+9si4SRz1q3gYgq/iubDPya+6/MQhutRuBgcMfd7jlXF
+        lwtHkQe6yfon2jYffsziSr1XKJX+AebQUJSZUtBrAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="PartnerNaziv.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Naziv.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="RadnoVrijemeOD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="RadnoVrijemeDo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Email.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Slika.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Update.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

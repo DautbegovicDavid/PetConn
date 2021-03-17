@@ -57,7 +57,7 @@ namespace PetConn.WinUI.UserControls
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(741, 0);
+            this.btnClose.Location = new System.Drawing.Point(759, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(44, 44);
@@ -70,7 +70,7 @@ namespace PetConn.WinUI.UserControls
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblHeader.Location = new System.Drawing.Point(3, 18);
+            this.lblHeader.Location = new System.Drawing.Point(309, 19);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(185, 25);
             this.lblHeader.TabIndex = 20;
@@ -78,9 +78,10 @@ namespace PetConn.WinUI.UserControls
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(3, 63);
+            this.groupBox1.Location = new System.Drawing.Point(12, 57);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(779, 254);
             this.groupBox1.TabIndex = 19;
@@ -198,9 +199,9 @@ namespace PetConn.WinUI.UserControls
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(748, 320);
+            this.button1.Location = new System.Drawing.Point(3, 217);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 34);
+            this.button1.Size = new System.Drawing.Size(34, 34);
             this.button1.TabIndex = 24;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -211,12 +212,11 @@ namespace PetConn.WinUI.UserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Teal;
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.groupBox1);
             this.Name = "UC_PoslovniceUpdate";
-            this.Size = new System.Drawing.Size(785, 357);
+            this.Size = new System.Drawing.Size(803, 327);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

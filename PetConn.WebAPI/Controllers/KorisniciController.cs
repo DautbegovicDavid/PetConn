@@ -27,7 +27,18 @@ namespace PetConn.WebAPI.Controllers
         {
             return _service.Insert(request);
         }
+        [HttpGet("{id}")]
+        public Task<ActionResult<Korisnik>> GetByID(int id)
+        {
+            var korisnik = _service.GetByID(id);
+            ActionResult<Korisnik> result = NotFound();
 
+            if (korisnik != null)
+            {
+                result = Ok(korisnik);
+            }
+            return Task.FromResult(result); //_service.GetByID(id);
+        }
         [HttpPut("{id}")]
         public Korisnik Update(int id, [FromBody] KorisnikUpsertRequest request)//zasto from body
         {
@@ -45,7 +56,6 @@ namespace PetConn.WebAPI.Controllers
             return _service.Get(request);
         }
         [HttpPut("changePass")]
-
         public bool ChangePass([FromBody] KorisnikChangePass request)
         {
             return _service.ChangePass(request);

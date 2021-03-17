@@ -38,6 +38,7 @@ namespace PetConn.WinUI.Home_Panels
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelButtons = new System.Windows.Forms.Panel();
+            this.pictureBoxEditovanProfil = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUrediProfil = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -50,12 +51,12 @@ namespace PetConn.WinUI.Home_Panels
             this.ucShops = new PetConn.WinUI.UserControls.UCPartners();
             this.panelMain = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBoxEditovanProfil = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblAkcija = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelButtons.SuspendLayout();
-            this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEditovanProfil)).BeginInit();
+            this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -156,6 +157,18 @@ namespace PetConn.WinUI.Home_Panels
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(261, 509);
             this.panelButtons.TabIndex = 2;
+            // 
+            // pictureBoxEditovanProfil
+            // 
+            this.pictureBoxEditovanProfil.BackColor = System.Drawing.Color.White;
+            this.pictureBoxEditovanProfil.Enabled = false;
+            this.pictureBoxEditovanProfil.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxEditovanProfil.Image")));
+            this.pictureBoxEditovanProfil.Location = new System.Drawing.Point(241, 33);
+            this.pictureBoxEditovanProfil.Name = "pictureBoxEditovanProfil";
+            this.pictureBoxEditovanProfil.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxEditovanProfil.TabIndex = 14;
+            this.pictureBoxEditovanProfil.TabStop = false;
+            this.pictureBoxEditovanProfil.Visible = false;
             // 
             // btnDelete
             // 
@@ -287,6 +300,7 @@ namespace PetConn.WinUI.Home_Panels
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.DarkCyan;
+            this.panelMain.Controls.Add(this.lblAkcija);
             this.panelMain.Controls.Add(this.flowLayoutPanel1);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(261, 50);
@@ -305,21 +319,20 @@ namespace PetConn.WinUI.Home_Panels
             this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 491);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // pictureBoxEditovanProfil
-            // 
-            this.pictureBoxEditovanProfil.BackColor = System.Drawing.Color.White;
-            this.pictureBoxEditovanProfil.Enabled = false;
-            this.pictureBoxEditovanProfil.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxEditovanProfil.Image")));
-            this.pictureBoxEditovanProfil.Location = new System.Drawing.Point(241, 33);
-            this.pictureBoxEditovanProfil.Name = "pictureBoxEditovanProfil";
-            this.pictureBoxEditovanProfil.Size = new System.Drawing.Size(20, 20);
-            this.pictureBoxEditovanProfil.TabIndex = 14;
-            this.pictureBoxEditovanProfil.TabStop = false;
-            this.pictureBoxEditovanProfil.Visible = false;
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblAkcija
+            // 
+            this.lblAkcija.AutoSize = true;
+            this.lblAkcija.Font = new System.Drawing.Font("Bahnschrift SemiLight", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAkcija.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblAkcija.Location = new System.Drawing.Point(100, 20);
+            this.lblAkcija.Name = "lblAkcija";
+            this.lblAkcija.Size = new System.Drawing.Size(68, 25);
+            this.lblAkcija.TabIndex = 1;
+            this.lblAkcija.Text = "label2";
             // 
             // frmHomePetShop
             // 
@@ -339,8 +352,9 @@ namespace PetConn.WinUI.Home_Panels
             this.panel1.PerformLayout();
             this.panelButtons.ResumeLayout(false);
             this.panelButtons.PerformLayout();
-            this.panelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEditovanProfil)).EndInit();
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -367,5 +381,6 @@ namespace PetConn.WinUI.Home_Panels
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBoxEditovanProfil;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblAkcija;
     }
 }

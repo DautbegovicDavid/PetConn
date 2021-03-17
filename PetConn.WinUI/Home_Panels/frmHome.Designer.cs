@@ -31,9 +31,9 @@ namespace PetConn.WinUI.Home_Panels
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
             this.btnMaximize = new System.Windows.Forms.Button();
@@ -42,7 +42,6 @@ namespace PetConn.WinUI.Home_Panels
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBoxProfileInfo = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtNotifikacija = new System.Windows.Forms.TextBox();
             this.btnTakeABreak = new System.Windows.Forms.Button();
             this.btnUrediProfil = new System.Windows.Forms.Button();
@@ -51,7 +50,12 @@ namespace PetConn.WinUI.Home_Panels
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panelSlide = new System.Windows.Forms.Panel();
+            this.ucPartners_Apartment = new PetConn.WinUI.UserControls.UCPartners();
+            this.ucPartners_PetCarer = new PetConn.WinUI.UserControls.UCPartners();
+            this.ucPartners_Hotel = new PetConn.WinUI.UserControls.UCPartners();
             this.txtSlidePanelTitle = new System.Windows.Forms.Label();
+            this.ucPartners_VetStation = new PetConn.WinUI.UserControls.UCPartners();
+            this.ucPartners_PetShop = new PetConn.WinUI.UserControls.UCPartners();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelAddDelEd = new System.Windows.Forms.Panel();
@@ -69,15 +73,9 @@ namespace PetConn.WinUI.Home_Panels
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPodaci = new System.Windows.Forms.DataGridView();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.ucPartners_Apartment = new PetConn.WinUI.UserControls.UCPartners();
-            this.ucPartners_PetCarer = new PetConn.WinUI.UserControls.UCPartners();
-            this.ucPartners_Hotel = new PetConn.WinUI.UserControls.UCPartners();
-            this.ucPartners_VetStation = new PetConn.WinUI.UserControls.UCPartners();
-            this.ucPartners_PetShop = new PetConn.WinUI.UserControls.UCPartners();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfileInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelSlide.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelAddDelEd.SuspendLayout();
@@ -170,7 +168,6 @@ namespace PetConn.WinUI.Home_Panels
             // 
             this.panel2.BackColor = System.Drawing.Color.Teal;
             this.panel2.Controls.Add(this.pictureBoxProfileInfo);
-            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.txtNotifikacija);
             this.panel2.Controls.Add(this.btnTakeABreak);
             this.panel2.Controls.Add(this.btnUrediProfil);
@@ -186,34 +183,27 @@ namespace PetConn.WinUI.Home_Panels
             // 
             // pictureBoxProfileInfo
             // 
-            this.pictureBoxProfileInfo.BackColor = System.Drawing.Color.White;
+            this.pictureBoxProfileInfo.BackColor = System.Drawing.Color.LightSeaGreen;
             this.pictureBoxProfileInfo.Enabled = false;
             this.pictureBoxProfileInfo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxProfileInfo.Image")));
-            this.pictureBoxProfileInfo.Location = new System.Drawing.Point(41, 235);
+            this.pictureBoxProfileInfo.Location = new System.Drawing.Point(38, 235);
             this.pictureBoxProfileInfo.Name = "pictureBoxProfileInfo";
             this.pictureBoxProfileInfo.Size = new System.Drawing.Size(20, 20);
             this.pictureBoxProfileInfo.TabIndex = 1;
             this.pictureBoxProfileInfo.TabStop = false;
             this.pictureBoxProfileInfo.Visible = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // txtNotifikacija
             // 
             this.txtNotifikacija.BackColor = System.Drawing.Color.Red;
             this.txtNotifikacija.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNotifikacija.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtNotifikacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNotifikacija.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtNotifikacija.Location = new System.Drawing.Point(41, 119);
+            this.txtNotifikacija.Location = new System.Drawing.Point(40, 119);
             this.txtNotifikacija.Name = "txtNotifikacija";
             this.txtNotifikacija.ReadOnly = true;
-            this.txtNotifikacija.Size = new System.Drawing.Size(20, 20);
+            this.txtNotifikacija.Size = new System.Drawing.Size(18, 20);
             this.txtNotifikacija.TabIndex = 6;
             this.txtNotifikacija.Text = "3";
             this.txtNotifikacija.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -309,6 +299,52 @@ namespace PetConn.WinUI.Home_Panels
             this.panelSlide.Size = new System.Drawing.Size(240, 433);
             this.panelSlide.TabIndex = 2;
             // 
+            // ucPartners_Apartment
+            // 
+            this.ucPartners_Apartment.BackColor = System.Drawing.Color.DarkCyan;
+            this.ucPartners_Apartment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucPartners_Apartment.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ucPartners_Apartment.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucPartners_Apartment.Location = new System.Drawing.Point(0, 278);
+            this.ucPartners_Apartment.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_Apartment.Name = "ucPartners_Apartment";
+            this.ucPartners_Apartment.nazivPartnera = "Apartments";
+            this.ucPartners_Apartment.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_Apartment.petShopImage")));
+            this.ucPartners_Apartment.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_Apartment.TabIndex = 5;
+            this.ucPartners_Apartment.Click += new System.EventHandler(this.ucPartners_Apartment_Click);
+            // 
+            // ucPartners_PetCarer
+            // 
+            this.ucPartners_PetCarer.BackColor = System.Drawing.Color.DarkCyan;
+            this.ucPartners_PetCarer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucPartners_PetCarer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ucPartners_PetCarer.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucPartners_PetCarer.Location = new System.Drawing.Point(0, 354);
+            this.ucPartners_PetCarer.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_PetCarer.Name = "ucPartners_PetCarer";
+            this.ucPartners_PetCarer.nazivPartnera = "Pet Carers";
+            this.ucPartners_PetCarer.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_PetCarer.petShopImage")));
+            this.ucPartners_PetCarer.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_PetCarer.TabIndex = 4;
+            this.ucPartners_PetCarer.Click += new System.EventHandler(this.ucPartners_PetCarer_Click);
+            // 
+            // ucPartners_Hotel
+            // 
+            this.ucPartners_Hotel.BackColor = System.Drawing.Color.DarkCyan;
+            this.ucPartners_Hotel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucPartners_Hotel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ucPartners_Hotel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucPartners_Hotel.Location = new System.Drawing.Point(0, 202);
+            this.ucPartners_Hotel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_Hotel.Name = "ucPartners_Hotel";
+            this.ucPartners_Hotel.nazivPartnera = "Hotels";
+            this.ucPartners_Hotel.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.ucPartners_Hotel.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_Hotel.petShopImage")));
+            this.ucPartners_Hotel.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_Hotel.TabIndex = 3;
+            this.ucPartners_Hotel.Click += new System.EventHandler(this.ucPartners_Hotel_Click);
+            // 
             // txtSlidePanelTitle
             // 
             this.txtSlidePanelTitle.AutoSize = true;
@@ -319,6 +355,36 @@ namespace PetConn.WinUI.Home_Panels
             this.txtSlidePanelTitle.Size = new System.Drawing.Size(65, 23);
             this.txtSlidePanelTitle.TabIndex = 2;
             this.txtSlidePanelTitle.Text = "Partners";
+            // 
+            // ucPartners_VetStation
+            // 
+            this.ucPartners_VetStation.BackColor = System.Drawing.Color.DarkCyan;
+            this.ucPartners_VetStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucPartners_VetStation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ucPartners_VetStation.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucPartners_VetStation.Location = new System.Drawing.Point(0, 126);
+            this.ucPartners_VetStation.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_VetStation.Name = "ucPartners_VetStation";
+            this.ucPartners_VetStation.nazivPartnera = "Vet Stations";
+            this.ucPartners_VetStation.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_VetStation.petShopImage")));
+            this.ucPartners_VetStation.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_VetStation.TabIndex = 0;
+            this.ucPartners_VetStation.Click += new System.EventHandler(this.ucPartners_VetStation_Click);
+            // 
+            // ucPartners_PetShop
+            // 
+            this.ucPartners_PetShop.BackColor = System.Drawing.Color.DarkCyan;
+            this.ucPartners_PetShop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucPartners_PetShop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ucPartners_PetShop.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucPartners_PetShop.Location = new System.Drawing.Point(0, 50);
+            this.ucPartners_PetShop.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_PetShop.Name = "ucPartners_PetShop";
+            this.ucPartners_PetShop.nazivPartnera = "Pet Shops";
+            this.ucPartners_PetShop.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_PetShop.petShopImage")));
+            this.ucPartners_PetShop.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_PetShop.TabIndex = 1;
+            this.ucPartners_PetShop.Click += new System.EventHandler(this.ucPartners1_PetShop_Click);
             // 
             // timer1
             // 
@@ -514,29 +580,29 @@ namespace PetConn.WinUI.Home_Panels
             // 
             this.dgvPodaci.AllowUserToAddRows = false;
             this.dgvPodaci.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkCyan;
-            this.dgvPodaci.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.DarkCyan;
+            this.dgvPodaci.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvPodaci.BackgroundColor = System.Drawing.Color.Teal;
             this.dgvPodaci.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPodaci.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DarkCyan;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPodaci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPodaci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvPodaci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DarkCyan;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPodaci.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPodaci.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvPodaci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPodaci.EnableHeadersVisualStyles = false;
             this.dgvPodaci.GridColor = System.Drawing.Color.White;
@@ -551,82 +617,6 @@ namespace PetConn.WinUI.Home_Panels
             // timer3
             // 
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // ucPartners_Apartment
-            // 
-            this.ucPartners_Apartment.BackColor = System.Drawing.Color.DarkCyan;
-            this.ucPartners_Apartment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucPartners_Apartment.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ucPartners_Apartment.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_Apartment.Location = new System.Drawing.Point(0, 278);
-            this.ucPartners_Apartment.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.ucPartners_Apartment.Name = "ucPartners_Apartment";
-            this.ucPartners_Apartment.nazivPartnera = "Apartments";
-            this.ucPartners_Apartment.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_Apartment.petShopImage")));
-            this.ucPartners_Apartment.Size = new System.Drawing.Size(240, 66);
-            this.ucPartners_Apartment.TabIndex = 5;
-            this.ucPartners_Apartment.Click += new System.EventHandler(this.ucPartners_Apartment_Click);
-            // 
-            // ucPartners_PetCarer
-            // 
-            this.ucPartners_PetCarer.BackColor = System.Drawing.Color.DarkCyan;
-            this.ucPartners_PetCarer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucPartners_PetCarer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ucPartners_PetCarer.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_PetCarer.Location = new System.Drawing.Point(0, 354);
-            this.ucPartners_PetCarer.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.ucPartners_PetCarer.Name = "ucPartners_PetCarer";
-            this.ucPartners_PetCarer.nazivPartnera = "Pet Carers";
-            this.ucPartners_PetCarer.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_PetCarer.petShopImage")));
-            this.ucPartners_PetCarer.Size = new System.Drawing.Size(240, 66);
-            this.ucPartners_PetCarer.TabIndex = 4;
-            this.ucPartners_PetCarer.Click += new System.EventHandler(this.ucPartners_PetCarer_Click);
-            // 
-            // ucPartners_Hotel
-            // 
-            this.ucPartners_Hotel.BackColor = System.Drawing.Color.DarkCyan;
-            this.ucPartners_Hotel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucPartners_Hotel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ucPartners_Hotel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_Hotel.Location = new System.Drawing.Point(0, 202);
-            this.ucPartners_Hotel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.ucPartners_Hotel.Name = "ucPartners_Hotel";
-            this.ucPartners_Hotel.nazivPartnera = "Hotels";
-            this.ucPartners_Hotel.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.ucPartners_Hotel.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_Hotel.petShopImage")));
-            this.ucPartners_Hotel.Size = new System.Drawing.Size(240, 66);
-            this.ucPartners_Hotel.TabIndex = 3;
-            this.ucPartners_Hotel.Click += new System.EventHandler(this.ucPartners_Hotel_Click);
-            // 
-            // ucPartners_VetStation
-            // 
-            this.ucPartners_VetStation.BackColor = System.Drawing.Color.DarkCyan;
-            this.ucPartners_VetStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucPartners_VetStation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ucPartners_VetStation.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_VetStation.Location = new System.Drawing.Point(0, 126);
-            this.ucPartners_VetStation.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.ucPartners_VetStation.Name = "ucPartners_VetStation";
-            this.ucPartners_VetStation.nazivPartnera = "Vet Stations";
-            this.ucPartners_VetStation.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_VetStation.petShopImage")));
-            this.ucPartners_VetStation.Size = new System.Drawing.Size(240, 66);
-            this.ucPartners_VetStation.TabIndex = 0;
-            this.ucPartners_VetStation.Click += new System.EventHandler(this.ucPartners_VetStation_Click);
-            // 
-            // ucPartners_PetShop
-            // 
-            this.ucPartners_PetShop.BackColor = System.Drawing.Color.DarkCyan;
-            this.ucPartners_PetShop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucPartners_PetShop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ucPartners_PetShop.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_PetShop.Location = new System.Drawing.Point(0, 50);
-            this.ucPartners_PetShop.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.ucPartners_PetShop.Name = "ucPartners_PetShop";
-            this.ucPartners_PetShop.nazivPartnera = "Pet Shops";
-            this.ucPartners_PetShop.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_PetShop.petShopImage")));
-            this.ucPartners_PetShop.Size = new System.Drawing.Size(240, 66);
-            this.ucPartners_PetShop.TabIndex = 1;
-            this.ucPartners_PetShop.Click += new System.EventHandler(this.ucPartners1_PetShop_Click);
             // 
             // frmHome
             // 
@@ -648,7 +638,6 @@ namespace PetConn.WinUI.Home_Panels
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfileInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelSlide.ResumeLayout(false);
             this.panelSlide.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -702,6 +691,5 @@ namespace PetConn.WinUI.Home_Panels
         public System.Windows.Forms.TextBox txtNotifikacija;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.PictureBox pictureBoxProfileInfo;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

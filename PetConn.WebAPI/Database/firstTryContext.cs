@@ -31,8 +31,10 @@ namespace PetConn.WebAPI.Database
         public virtual DbSet<Narudzba> Narudzbas { get; set; }
         public virtual DbSet<NarudzbaStavke> NarudzbaStavkes { get; set; }
         public virtual DbSet<Partneri> Partneris { get; set; }
+        public virtual DbSet<Poruka> Porukas { get; set; }
         public virtual DbSet<Poslovnica> Poslovnicas { get; set; }
         public virtual DbSet<Pregled> Pregleds { get; set; }
+        public virtual DbSet<Prijatelji> Prijateljis { get; set; }
         public virtual DbSet<Proizvod> Proizvods { get; set; }
         public virtual DbSet<Proizvodjac> Proizvodjacs { get; set; }
         public virtual DbSet<RasaZivotinje> RasaZivotinjes { get; set; }
@@ -51,7 +53,7 @@ namespace PetConn.WebAPI.Database
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=firstTry;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.;Database=firstTry;Trusted_Connection=true");
             }
         }
 
@@ -419,6 +421,39 @@ namespace PetConn.WebAPI.Database
                     .HasConstraintName("fk_vrsta_partnera");
             });
 
+            modelBuilder.Entity<Poruka>(entity =>
+            {
+                entity.ToTable("Poruka");
+
+                entity.Property(e => e.PorukaId).HasColumnName("PorukaID");
+
+                entity.Property(e => e.Datum)
+                    .HasColumnType("datetime")
+                    .HasColumnName("datum");
+
+                entity.Property(e => e.PosiljalacId).HasColumnName("PosiljalacID");
+
+                entity.Property(e => e.PrimalacId).HasColumnName("PrimalacID");
+
+                entity.Property(e => e.Sadrzaj)
+                    .IsRequired()
+                    .HasMaxLength(300)
+                    .IsUnicode(false)
+                    .HasColumnName("sadrzaj");
+
+                entity.HasOne(d => d.Posiljalac)
+                    .WithMany(p => p.PorukaPosiljalacs)
+                    .HasForeignKey(d => d.PosiljalacId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Poruka_PosiljalacID");
+
+                entity.HasOne(d => d.Primalac)
+                    .WithMany(p => p.PorukaPrimalacs)
+                    .HasForeignKey(d => d.PrimalacId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Poruka_PrimalacID");
+            });
+
             modelBuilder.Entity<Poslovnica>(entity =>
             {
                 entity.ToTable("Poslovnica");
@@ -502,6 +537,33 @@ namespace PetConn.WebAPI.Database
                     .HasForeignKey(d => d.TerminId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_pregled_termin");
+            });
+
+            modelBuilder.Entity<Prijatelji>(entity =>
+            {
+                entity.HasKey(e => new { e.KorisnikJedanId, e.KorisnikDvaId });
+
+                entity.ToTable("Prijatelji");
+
+                entity.Property(e => e.KorisnikJedanId).HasColumnName("KorisnikJedanID");
+
+                entity.Property(e => e.KorisnikDvaId).HasColumnName("KorisnikDvaID");
+
+                entity.Property(e => e.Datum)
+                    .HasColumnType("datetime")
+                    .HasColumnName("datum");
+
+                entity.HasOne(d => d.KorisnikDva)
+                    .WithMany(p => p.PrijateljiKorisnikDvas)
+                    .HasForeignKey(d => d.KorisnikDvaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Prijatelji_KorisnikDva");
+
+                entity.HasOne(d => d.KorisnikJedan)
+                    .WithMany(p => p.PrijateljiKorisnikJedans)
+                    .HasForeignKey(d => d.KorisnikJedanId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Prijatelji_KorisnikJedan");
             });
 
             modelBuilder.Entity<Proizvod>(entity =>
