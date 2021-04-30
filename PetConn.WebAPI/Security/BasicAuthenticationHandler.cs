@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace eProdaja.WebAPI.Security
 {
-    public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>//da bi .net mogao raditi auth i autor zahtjeva da naslijedimo ovyu klasu
+    public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>//da bi .net mogao raditi auth i autor zahtjeva da naslijedimo ovu klasu
     {
         private readonly IKorisniciService _userService;
 

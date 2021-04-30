@@ -101,11 +101,11 @@ namespace PetConn.WinUI.UserControls
                 }
             }
         }
-
+        //ERRORR Null reference
         private async void cmbVrstePartnera_SelectedIndexChanged(object sender, EventArgs e)
         {
             int x = 0;
-            if (int.TryParse(cmbVrstePartnera.SelectedValue.ToString(), out int idVP))//erorr istraziti
+            if (int.TryParse(cmbVrstePartnera.SelectedValue.ToString(), out int idVP))//erorr istraziti 30.04.2021 glavni button pa na sve usere
                 x = idVP;
             var partneri = await _servicePartneri.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId=x});
             partneri.Insert(0, new Partner());

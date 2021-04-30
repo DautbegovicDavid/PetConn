@@ -41,17 +41,13 @@ namespace PetConn.WinUI.Home_Panels
             timer1.Start();
             if (APIService.EditovanProfil == false)
                 pictureBoxProfileInfo.Visible = true;
-        }
-
-       
+        }   
         private void timer3_Tick(object sender, EventArgs e)
         {
             GetBrojNeregistrovanihKorisnika();
             if(APIService.EditovanProfil == true)
                 pictureBoxProfileInfo.Visible = false;
         }
-
-
 
         int VrstaPartneraID = 0;
         int panelWidth;
@@ -75,9 +71,7 @@ namespace PetConn.WinUI.Home_Panels
             
             //lblKorisnickoIme.Text = APIService.PartnerID.ToString();
         }
-        
-
-        
+     
         private async void GetBrojNeregistrovanihKorisnika()
         {
             UC_KorisniciEditDelete uc_korisniciEditDelete = new UC_KorisniciEditDelete();
@@ -92,6 +86,7 @@ namespace PetConn.WinUI.Home_Panels
                 txtNotifikacija.Visible = false;
             }
         }
+
         private void frmHome_Load(object sender, EventArgs e)
         {
             panelFilterControls.Visible = false;
@@ -168,13 +163,27 @@ namespace PetConn.WinUI.Home_Panels
 
 
         //HOME PANEL CONTROLS
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtSlidePanelTitle.Text != "Partners")
             {
                 txtSlidePanelTitle.Text = "Partners";
                 lblManageBtnSHeader.Text = "Manage Business Places";
+                panelAddDelEd.Visible = true;
+                lblManageBtnSHeader.Location = new Point(491, 393);
+
+                if (Hidden)
+                    timer1.Start();
+            }
+            else
+                timer1.Start();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (txtSlidePanelTitle.Text != "Manage users")
+            {
+                txtSlidePanelTitle.Text = "Manage users";
+                lblManageBtnSHeader.Text = "Manage Users";
                 panelAddDelEd.Visible = true;
                 lblManageBtnSHeader.Location = new Point(491, 393);
 
@@ -210,14 +219,16 @@ namespace PetConn.WinUI.Home_Panels
 
                 panelAddDelEd.Visible = false;
                 UC_KorisniciEditDelete uc_korisniciEditDelete = new UC_KorisniciEditDelete();               
-                Helper.DodajKontrolu(uc_korisniciEditDelete, "UC_Edit_Delete_Korisnici", new Point(20, 500), panel3);
+                Helper.DodajKontrolu(uc_korisniciEditDelete, "UC_Edit_Delete_Korisnici", new Point(20, 450), panel3);
+
+                //Resizisng additional controls (20,500)->(20,450)
                
 
                 await uc_korisniciEditDelete.LoadDGV();
                 
                 uc_korisniciEditDelete.LoadCMBs();
                 UC_KorisniciEdit uc_korisniciEdit = new UC_KorisniciEdit();               
-                Helper.DodajKontrolu(uc_korisniciEdit, "UC_Edit_Korisnici", new Point(550, 500), panel3);
+                Helper.DodajKontrolu(uc_korisniciEdit, "UC_Edit_Korisnici", new Point(550, 450), panel3);
                 
 
                 if (Hidden)
@@ -228,21 +239,7 @@ namespace PetConn.WinUI.Home_Panels
             else
                 timer1.Start();
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (txtSlidePanelTitle.Text != "Manage users")
-            {
-                txtSlidePanelTitle.Text = "Manage users";
-                lblManageBtnSHeader.Text = "Manage Users";
-                panelAddDelEd.Visible = true;
-                lblManageBtnSHeader.Location = new Point(491, 393);
-
-                if (Hidden)
-                    timer1.Start();
-            }
-            else
-                timer1.Start();
-        }
+       
 
 
         //___LOAD COMBO BOXES___
@@ -560,7 +557,6 @@ namespace PetConn.WinUI.Home_Panels
                 LoadPartneri(idVP);
             }
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadPoslovnice();
@@ -570,7 +566,6 @@ namespace PetConn.WinUI.Home_Panels
             groupBox1.Text = "Business places ";
             VrstaPartneraID = 0;
         }
-
 
         //Insert UC Location/Partner
         private async void Set_HelpInsert_UCs(UC_HelpInsert uc, Partner p)
@@ -681,28 +676,6 @@ namespace PetConn.WinUI.Home_Panels
             }
         }
 
-        //------ TEST METODE ------
-        //private void testMetoda(UserControl uc,string nazivKontrole,Point p)
-        //{
-            
-        //    uc.Name = nazivKontrole;
-        //    uc.Location = p;
-        //    uc.Show();
-        //    panel3.Controls.Add(uc);
-            
-        //}
-        //private void testMetodaDGV(UserControl uc, string nazivKontrole, Point p)
-        //{
-          
-        //    uc.Name = nazivKontrole;
-        //    uc.Location = p;
-        //    uc.Show();
-        //    panel3.Controls.Add(uc);
-        //    uc.Visible = true;
-
-        //}
-       
-
         private bool ProvjeriKontrolu(string nazivKontrole)
         {
             if (panel3.Controls.Find(nazivKontrole, true).Length == 1)
@@ -731,6 +704,8 @@ namespace PetConn.WinUI.Home_Panels
         private void btnAdd_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
+            // odradjen custom control 
+
 
             if(ProvjeriHeader("Manage Partners"))
             {
@@ -759,7 +734,7 @@ namespace PetConn.WinUI.Home_Panels
             UC_PoslovnicaUpsert.lblHeader.Text = "Add place of business";
             UC_PoslovnicaUpsert.Visible = true;
             panel3.Controls.Add(UC_PoslovnicaUpsert);
-            UC_PoslovnicaUpsert.Location = new Point(20, 500);
+            UC_PoslovnicaUpsert.Location = new Point(20, 450);//500->450
 
             UC_LoadLokacija(UC_PoslovnicaUpsert.cmbLokacija, false);
             UC_LoadPartneri(0, UC_PoslovnicaUpsert.cmbPartner, false);
@@ -851,13 +826,9 @@ namespace PetConn.WinUI.Home_Panels
 
                 uc_partneri_delete=new UC_PartneriDelete();
                 //testMetodaDGV(uc_partneri_delete, "UC_Delete_Partner", new Point(20, 500));
-                Helper.DodajKontrolu(uc_partneri_delete, "UC_Delete_Partner", new Point(20, 500), panel3);
-                //
-               
-          
-                uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
-
+                Helper.DodajKontrolu(uc_partneri_delete, "UC_Delete_Partner", new Point(20, 450), panel3);//500->450
                 
+                uc_partneri_delete.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
 
                 uc_partneri_delete.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
                 {
@@ -870,11 +841,9 @@ namespace PetConn.WinUI.Home_Panels
 
                 UC_KorisniciEditDelete uc_korisniciEditDelete = new UC_KorisniciEditDelete();
                 //testMetodaDGV(uc_korisniciEditDelete, "UC_Delete_Partner", new Point(20, 500));
-                Helper.DodajKontrolu(uc_korisniciEditDelete, "UC_Delete_Partner", new Point(20, 500), panel3);
+                Helper.DodajKontrolu(uc_korisniciEditDelete, "UC_Delete_Partner", new Point(20, 450), panel3);//500->450
 
                 uc_korisniciEditDelete.dataGridView1.DataSource = await _serviceKorisnici.Get<List<Korisnik>>(null);
-
-
 
                 uc_korisniciEditDelete.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
                 {
@@ -889,14 +858,10 @@ namespace PetConn.WinUI.Home_Panels
 
             uc_PoslovnicaDelete = new UC_PoslovniceDelete();
             //testMetodaDGV(uc_PoslovnicaDelete, "UC_Delete", new Point(20, 500));
-            Helper.DodajKontrolu(uc_PoslovnicaDelete, "UC_Delete", new Point(20, 500), panel3);
-
-
+            Helper.DodajKontrolu(uc_PoslovnicaDelete, "UC_Delete", new Point(20, 450), panel3);//500->450
 
             uc_PoslovnicaDelete.DataSource = await _servicePoslovnica.Get<List<Poslovnica>>(null);
             uc_PoslovnicaDelete.dataGridView1.ClearSelection();
-
-            
 
             uc_PoslovnicaDelete.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
             {
@@ -973,7 +938,7 @@ namespace PetConn.WinUI.Home_Panels
                 uc_partneri_edit = new UC_PartneriEdit();
 
                 //testMetodaDGV(uc_partneri_edit, "UC_Edit_Partner", new Point(20, 500));
-                Helper.DodajKontrolu(uc_partneri_edit, "UC_Edit_Partner", new Point(20, 500), panel3);
+                Helper.DodajKontrolu(uc_partneri_edit, "UC_Edit_Partner", new Point(20, 450), panel3);//500->450
 
 
                 uc_partneri_edit.dataGridView1.DataSource = await _serviceP.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId = VrstaPartneraID });
@@ -991,11 +956,9 @@ namespace PetConn.WinUI.Home_Panels
             uc_PoslovnicaUpdate = new UC_PoslovniceUpdate();
 
             //testMetodaDGV(uc_PoslovnicaUpdate, "UC_Update", new Point(20, 500)); 
-            Helper.DodajKontrolu(uc_PoslovnicaUpdate, "UC_Update", new Point(20, 500), panel3);
-
+            Helper.DodajKontrolu(uc_PoslovnicaUpdate, "UC_Update", new Point(20, 450), panel3);//500->450
 
             SetPoslovnicaUpdateDGV();
-
 
             uc_PoslovnicaUpdate.dataGridView1.CellContentClick += delegate (object sen, DataGridViewCellEventArgs er)
             {
@@ -1014,9 +977,8 @@ namespace PetConn.WinUI.Home_Panels
                 {
 
                     UC_HelpInsert edit = new UC_HelpInsert();
-                    Helper.DodajKontrolu(edit, "UC_Partner", new Point(20, 500),panel3);
+                    Helper.DodajKontrolu(edit, "UC_Partner", new Point(20, 450),panel3);//500->450
                     //Helper.DodajKontrolu(uc_PoslovnicaUpdate, "UC_Update", new Point(20, 500), panel3);
-
 
                     Set_HelpInsert_UCs(edit, _partner);
  
@@ -1046,7 +1008,7 @@ namespace PetConn.WinUI.Home_Panels
                 
                 UC_PoslovnicaUpsert = new UCPoslovnicaUpsert();
                 //testMetodaDGV(UC_PoslovnicaUpsert, "Poslovnica", new Point(740, 500));
-                Helper.DodajKontrolu(UC_PoslovnicaUpsert, "Poslovnica", new Point(740, 500), panel3);
+                Helper.DodajKontrolu(UC_PoslovnicaUpsert, "Poslovnica", new Point(740, 450), panel3);//500->450
                 
                 UC_LoadLokacijaUpdate(UC_PoslovnicaUpsert.cmbLokacija, _posl);
                 UC_LoadPartneriUpdate(0, UC_PoslovnicaUpsert.cmbPartner, _posl);
@@ -1097,7 +1059,6 @@ namespace PetConn.WinUI.Home_Panels
             UC_PoslovnicaUpsert.lblHeader.Text = "Edit place of business";
         }
        
-       
         private void UC_btnDodajSliku_Click(object sender, EventArgs e, UCPoslovnicaUpsert uc)
         {
             var result = UC_PoslovnicaUpsert.openFileDialog1.ShowDialog();
@@ -1110,7 +1071,6 @@ namespace PetConn.WinUI.Home_Panels
 
                 request.Slika = file;
 
-
                 Image image = Image.FromFile(fileName);//ucitali sliku sa putanje
                 UC_PoslovnicaUpsert.pictureBoxPoslovnica.Image = image;//prikazali u boxu
 
@@ -1118,7 +1078,6 @@ namespace PetConn.WinUI.Home_Panels
                 thumb.Save(Path.ChangeExtension(fileName, "thumb"));
                 request.SlikaThumb = Helper.FromImageToByteTHUMB(thumb);//radi ali nesto ne valja
                 
-
             }
 
         }
@@ -1127,12 +1086,10 @@ namespace PetConn.WinUI.Home_Panels
         {
             KorisniciEditProfil uc_editProfil = new KorisniciEditProfil();
             //testMetoda(uc_editProfil, "UrediKorisnickiProfil", new Point(20,  500));
-            Helper.DodajKontrolu(uc_editProfil, "UrediKorisnickiProfil", new Point(20, 500), panel3);
+            Helper.DodajKontrolu(uc_editProfil, "UrediKorisnickiProfil", new Point(20, 450), panel3);//500->450
             //groupBox1.Visible = false;
             //panel3.Controls.Add(uc_editProfil);//nije potebno s obzxirom da sam vec dodao u helper metodi
-
-            
-            
+    
         }
 
        
