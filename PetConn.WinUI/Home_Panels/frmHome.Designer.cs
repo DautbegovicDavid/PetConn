@@ -31,9 +31,9 @@ namespace PetConn.WinUI.Home_Panels
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
             this.btnMaximize = new System.Windows.Forms.Button();
@@ -94,8 +94,9 @@ namespace PetConn.WinUI.Home_Panels
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(850, 47);
+            this.panel1.Size = new System.Drawing.Size(1133, 58);
             this.panel1.TabIndex = 0;
             // 
             // lblKorisnickoIme
@@ -103,9 +104,10 @@ namespace PetConn.WinUI.Home_Panels
             this.lblKorisnickoIme.AutoSize = true;
             this.lblKorisnickoIme.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKorisnickoIme.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblKorisnickoIme.Location = new System.Drawing.Point(212, 14);
+            this.lblKorisnickoIme.Location = new System.Drawing.Point(283, 17);
+            this.lblKorisnickoIme.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblKorisnickoIme.Name = "lblKorisnickoIme";
-            this.lblKorisnickoIme.Size = new System.Drawing.Size(78, 24);
+            this.lblKorisnickoIme.Size = new System.Drawing.Size(102, 29);
             this.lblKorisnickoIme.TabIndex = 4;
             this.lblKorisnickoIme.Text = "korisnik:";
             // 
@@ -116,9 +118,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximize.Image")));
-            this.btnMaximize.Location = new System.Drawing.Point(759, 0);
+            this.btnMaximize.Location = new System.Drawing.Point(1012, 0);
+            this.btnMaximize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(44, 44);
+            this.btnMaximize.Size = new System.Drawing.Size(59, 54);
             this.btnMaximize.TabIndex = 7;
             this.btnMaximize.UseVisualStyleBackColor = true;
             this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
@@ -130,9 +133,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(709, 0);
+            this.btnMinimize.Location = new System.Drawing.Point(945, 0);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(44, 44);
+            this.btnMinimize.Size = new System.Drawing.Size(59, 54);
             this.btnMinimize.TabIndex = 0;
             this.btnMinimize.UseVisualStyleBackColor = true;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
@@ -145,10 +149,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(806, 0);
+            this.btnClose.Location = new System.Drawing.Point(1075, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(44, 44);
+            this.btnClose.Size = new System.Drawing.Size(59, 54);
             this.btnClose.TabIndex = 0;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -158,9 +162,10 @@ namespace PetConn.WinUI.Home_Panels
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Snow;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 29);
+            this.label1.Size = new System.Drawing.Size(220, 36);
             this.label1.TabIndex = 3;
             this.label1.Text = "PetConn Home panel";
             // 
@@ -176,9 +181,10 @@ namespace PetConn.WinUI.Home_Panels
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 47);
+            this.panel2.Location = new System.Drawing.Point(0, 58);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(61, 433);
+            this.panel2.Size = new System.Drawing.Size(81, 533);
             this.panel2.TabIndex = 1;
             // 
             // pictureBoxProfileInfo
@@ -186,9 +192,10 @@ namespace PetConn.WinUI.Home_Panels
             this.pictureBoxProfileInfo.BackColor = System.Drawing.Color.LightSeaGreen;
             this.pictureBoxProfileInfo.Enabled = false;
             this.pictureBoxProfileInfo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxProfileInfo.Image")));
-            this.pictureBoxProfileInfo.Location = new System.Drawing.Point(38, 235);
+            this.pictureBoxProfileInfo.Location = new System.Drawing.Point(51, 289);
+            this.pictureBoxProfileInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxProfileInfo.Name = "pictureBoxProfileInfo";
-            this.pictureBoxProfileInfo.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxProfileInfo.Size = new System.Drawing.Size(27, 25);
             this.pictureBoxProfileInfo.TabIndex = 1;
             this.pictureBoxProfileInfo.TabStop = false;
             this.pictureBoxProfileInfo.Visible = false;
@@ -200,10 +207,11 @@ namespace PetConn.WinUI.Home_Panels
             this.txtNotifikacija.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtNotifikacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNotifikacija.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtNotifikacija.Location = new System.Drawing.Point(40, 119);
+            this.txtNotifikacija.Location = new System.Drawing.Point(53, 146);
+            this.txtNotifikacija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNotifikacija.Name = "txtNotifikacija";
             this.txtNotifikacija.ReadOnly = true;
-            this.txtNotifikacija.Size = new System.Drawing.Size(18, 20);
+            this.txtNotifikacija.Size = new System.Drawing.Size(23, 23);
             this.txtNotifikacija.TabIndex = 6;
             this.txtNotifikacija.Text = "3";
             this.txtNotifikacija.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -217,9 +225,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnTakeABreak.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnTakeABreak.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTakeABreak.Image = ((System.Drawing.Image)(resources.GetObject("btnTakeABreak.Image")));
-            this.btnTakeABreak.Location = new System.Drawing.Point(5, 378);
+            this.btnTakeABreak.Location = new System.Drawing.Point(7, 465);
+            this.btnTakeABreak.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTakeABreak.Name = "btnTakeABreak";
-            this.btnTakeABreak.Size = new System.Drawing.Size(53, 52);
+            this.btnTakeABreak.Size = new System.Drawing.Size(71, 64);
             this.btnTakeABreak.TabIndex = 5;
             this.btnTakeABreak.UseVisualStyleBackColor = false;
             this.btnTakeABreak.Click += new System.EventHandler(this.btnTakeABreak_Click);
@@ -229,9 +238,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnUrediProfil.FlatAppearance.BorderSize = 0;
             this.btnUrediProfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUrediProfil.Image = ((System.Drawing.Image)(resources.GetObject("btnUrediProfil.Image")));
-            this.btnUrediProfil.Location = new System.Drawing.Point(5, 235);
+            this.btnUrediProfil.Location = new System.Drawing.Point(7, 289);
+            this.btnUrediProfil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUrediProfil.Name = "btnUrediProfil";
-            this.btnUrediProfil.Size = new System.Drawing.Size(53, 52);
+            this.btnUrediProfil.Size = new System.Drawing.Size(71, 64);
             this.btnUrediProfil.TabIndex = 4;
             this.btnUrediProfil.UseVisualStyleBackColor = true;
             this.btnUrediProfil.Click += new System.EventHandler(this.btnUrediProfil_Click);
@@ -241,9 +251,10 @@ namespace PetConn.WinUI.Home_Panels
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(5, 119);
+            this.button4.Location = new System.Drawing.Point(7, 146);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(53, 52);
+            this.button4.Size = new System.Drawing.Size(71, 64);
             this.button4.TabIndex = 3;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -253,9 +264,10 @@ namespace PetConn.WinUI.Home_Panels
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(5, 61);
+            this.button3.Location = new System.Drawing.Point(7, 75);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(53, 52);
+            this.button3.Size = new System.Drawing.Size(71, 64);
             this.button3.TabIndex = 2;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -265,9 +277,10 @@ namespace PetConn.WinUI.Home_Panels
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(5, 177);
+            this.button2.Location = new System.Drawing.Point(7, 218);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(53, 52);
+            this.button2.Size = new System.Drawing.Size(71, 64);
             this.button2.TabIndex = 1;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -277,9 +290,10 @@ namespace PetConn.WinUI.Home_Panels
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(5, 3);
+            this.button1.Location = new System.Drawing.Point(7, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 52);
+            this.button1.Size = new System.Drawing.Size(71, 64);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -294,9 +308,10 @@ namespace PetConn.WinUI.Home_Panels
             this.panelSlide.Controls.Add(this.ucPartners_VetStation);
             this.panelSlide.Controls.Add(this.ucPartners_PetShop);
             this.panelSlide.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelSlide.Location = new System.Drawing.Point(61, 47);
+            this.panelSlide.Location = new System.Drawing.Point(81, 58);
+            this.panelSlide.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelSlide.Name = "panelSlide";
-            this.panelSlide.Size = new System.Drawing.Size(240, 433);
+            this.panelSlide.Size = new System.Drawing.Size(320, 533);
             this.panelSlide.TabIndex = 2;
             // 
             // ucPartners_Apartment
@@ -305,12 +320,12 @@ namespace PetConn.WinUI.Home_Panels
             this.ucPartners_Apartment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ucPartners_Apartment.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ucPartners_Apartment.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_Apartment.Location = new System.Drawing.Point(0, 278);
-            this.ucPartners_Apartment.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_Apartment.Location = new System.Drawing.Point(0, 342);
+            this.ucPartners_Apartment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ucPartners_Apartment.Name = "ucPartners_Apartment";
             this.ucPartners_Apartment.nazivPartnera = "Apartments";
             this.ucPartners_Apartment.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_Apartment.petShopImage")));
-            this.ucPartners_Apartment.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_Apartment.Size = new System.Drawing.Size(320, 81);
             this.ucPartners_Apartment.TabIndex = 5;
             this.ucPartners_Apartment.Click += new System.EventHandler(this.ucPartners_Apartment_Click);
             // 
@@ -320,12 +335,12 @@ namespace PetConn.WinUI.Home_Panels
             this.ucPartners_PetCarer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ucPartners_PetCarer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ucPartners_PetCarer.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_PetCarer.Location = new System.Drawing.Point(0, 354);
-            this.ucPartners_PetCarer.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_PetCarer.Location = new System.Drawing.Point(0, 436);
+            this.ucPartners_PetCarer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ucPartners_PetCarer.Name = "ucPartners_PetCarer";
             this.ucPartners_PetCarer.nazivPartnera = "Pet Carers";
             this.ucPartners_PetCarer.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_PetCarer.petShopImage")));
-            this.ucPartners_PetCarer.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_PetCarer.Size = new System.Drawing.Size(320, 81);
             this.ucPartners_PetCarer.TabIndex = 4;
             this.ucPartners_PetCarer.Click += new System.EventHandler(this.ucPartners_PetCarer_Click);
             // 
@@ -335,13 +350,13 @@ namespace PetConn.WinUI.Home_Panels
             this.ucPartners_Hotel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ucPartners_Hotel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ucPartners_Hotel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_Hotel.Location = new System.Drawing.Point(0, 202);
-            this.ucPartners_Hotel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_Hotel.Location = new System.Drawing.Point(0, 249);
+            this.ucPartners_Hotel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ucPartners_Hotel.Name = "ucPartners_Hotel";
             this.ucPartners_Hotel.nazivPartnera = "Hotels";
-            this.ucPartners_Hotel.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.ucPartners_Hotel.Padding = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.ucPartners_Hotel.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_Hotel.petShopImage")));
-            this.ucPartners_Hotel.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_Hotel.Size = new System.Drawing.Size(320, 81);
             this.ucPartners_Hotel.TabIndex = 3;
             this.ucPartners_Hotel.Click += new System.EventHandler(this.ucPartners_Hotel_Click);
             // 
@@ -350,9 +365,10 @@ namespace PetConn.WinUI.Home_Panels
             this.txtSlidePanelTitle.AutoSize = true;
             this.txtSlidePanelTitle.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSlidePanelTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.txtSlidePanelTitle.Location = new System.Drawing.Point(70, 15);
+            this.txtSlidePanelTitle.Location = new System.Drawing.Point(93, 18);
+            this.txtSlidePanelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtSlidePanelTitle.Name = "txtSlidePanelTitle";
-            this.txtSlidePanelTitle.Size = new System.Drawing.Size(65, 23);
+            this.txtSlidePanelTitle.Size = new System.Drawing.Size(82, 29);
             this.txtSlidePanelTitle.TabIndex = 2;
             this.txtSlidePanelTitle.Text = "Partners";
             // 
@@ -362,12 +378,12 @@ namespace PetConn.WinUI.Home_Panels
             this.ucPartners_VetStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ucPartners_VetStation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ucPartners_VetStation.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_VetStation.Location = new System.Drawing.Point(0, 126);
-            this.ucPartners_VetStation.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_VetStation.Location = new System.Drawing.Point(0, 155);
+            this.ucPartners_VetStation.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ucPartners_VetStation.Name = "ucPartners_VetStation";
             this.ucPartners_VetStation.nazivPartnera = "Vet Stations";
             this.ucPartners_VetStation.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_VetStation.petShopImage")));
-            this.ucPartners_VetStation.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_VetStation.Size = new System.Drawing.Size(320, 81);
             this.ucPartners_VetStation.TabIndex = 0;
             this.ucPartners_VetStation.Click += new System.EventHandler(this.ucPartners_VetStation_Click);
             // 
@@ -377,12 +393,12 @@ namespace PetConn.WinUI.Home_Panels
             this.ucPartners_PetShop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ucPartners_PetShop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ucPartners_PetShop.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucPartners_PetShop.Location = new System.Drawing.Point(0, 50);
-            this.ucPartners_PetShop.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.ucPartners_PetShop.Location = new System.Drawing.Point(0, 62);
+            this.ucPartners_PetShop.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ucPartners_PetShop.Name = "ucPartners_PetShop";
             this.ucPartners_PetShop.nazivPartnera = "Pet Shops";
             this.ucPartners_PetShop.petShopImage = ((System.Drawing.Image)(resources.GetObject("ucPartners_PetShop.petShopImage")));
-            this.ucPartners_PetShop.Size = new System.Drawing.Size(240, 66);
+            this.ucPartners_PetShop.Size = new System.Drawing.Size(320, 81);
             this.ucPartners_PetShop.TabIndex = 1;
             this.ucPartners_PetShop.Click += new System.EventHandler(this.ucPartners1_PetShop_Click);
             // 
@@ -401,9 +417,10 @@ namespace PetConn.WinUI.Home_Panels
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(301, 47);
+            this.panel3.Location = new System.Drawing.Point(401, 58);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(549, 433);
+            this.panel3.Size = new System.Drawing.Size(732, 533);
             this.panel3.TabIndex = 3;
             // 
             // panelAddDelEd
@@ -411,9 +428,10 @@ namespace PetConn.WinUI.Home_Panels
             this.panelAddDelEd.Controls.Add(this.btnDelete);
             this.panelAddDelEd.Controls.Add(this.btnAdd);
             this.panelAddDelEd.Controls.Add(this.btnEdit);
-            this.panelAddDelEd.Location = new System.Drawing.Point(42, 391);
+            this.panelAddDelEd.Location = new System.Drawing.Point(56, 481);
+            this.panelAddDelEd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelAddDelEd.Name = "panelAddDelEd";
-            this.panelAddDelEd.Size = new System.Drawing.Size(386, 36);
+            this.panelAddDelEd.Size = new System.Drawing.Size(515, 44);
             this.panelAddDelEd.TabIndex = 1;
             // 
             // btnDelete
@@ -424,9 +442,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDelete.Location = new System.Drawing.Point(277, 3);
+            this.btnDelete.Location = new System.Drawing.Point(369, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(109, 28);
+            this.btnDelete.Size = new System.Drawing.Size(145, 34);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -440,9 +459,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAdd.Location = new System.Drawing.Point(0, 3);
+            this.btnAdd.Location = new System.Drawing.Point(0, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(109, 28);
+            this.btnAdd.Size = new System.Drawing.Size(145, 34);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -456,9 +476,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Coral;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnEdit.Location = new System.Drawing.Point(137, 3);
+            this.btnEdit.Location = new System.Drawing.Point(183, 4);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(109, 28);
+            this.btnEdit.Size = new System.Drawing.Size(145, 34);
             this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -469,9 +490,10 @@ namespace PetConn.WinUI.Home_Panels
             this.lblManageBtnSHeader.AutoSize = true;
             this.lblManageBtnSHeader.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblManageBtnSHeader.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblManageBtnSHeader.Location = new System.Drawing.Point(491, 393);
+            this.lblManageBtnSHeader.Location = new System.Drawing.Point(655, 484);
+            this.lblManageBtnSHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblManageBtnSHeader.Name = "lblManageBtnSHeader";
-            this.lblManageBtnSHeader.Size = new System.Drawing.Size(165, 23);
+            this.lblManageBtnSHeader.Size = new System.Drawing.Size(209, 29);
             this.lblManageBtnSHeader.TabIndex = 4;
             this.lblManageBtnSHeader.Text = "Manage Business places";
             // 
@@ -480,9 +502,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Location = new System.Drawing.Point(454, 391);
+            this.btnRefresh.Location = new System.Drawing.Point(606, 483);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(31, 32);
+            this.btnRefresh.Size = new System.Drawing.Size(41, 39);
             this.btnRefresh.TabIndex = 10;
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -492,9 +515,10 @@ namespace PetConn.WinUI.Home_Panels
             this.panelFilterControls.Controls.Add(this.cmbGradovi);
             this.panelFilterControls.Controls.Add(this.cmbVrstaPartnera);
             this.panelFilterControls.Controls.Add(this.cmbPartneri);
-            this.panelFilterControls.Location = new System.Drawing.Point(174, 13);
+            this.panelFilterControls.Location = new System.Drawing.Point(232, 16);
+            this.panelFilterControls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelFilterControls.Name = "panelFilterControls";
-            this.panelFilterControls.Size = new System.Drawing.Size(328, 30);
+            this.panelFilterControls.Size = new System.Drawing.Size(437, 37);
             this.panelFilterControls.TabIndex = 6;
             // 
             // cmbGradovi
@@ -504,9 +528,10 @@ namespace PetConn.WinUI.Home_Panels
             this.cmbGradovi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGradovi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cmbGradovi.FormattingEnabled = true;
-            this.cmbGradovi.Location = new System.Drawing.Point(228, 3);
+            this.cmbGradovi.Location = new System.Drawing.Point(304, 4);
+            this.cmbGradovi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbGradovi.Name = "cmbGradovi";
-            this.cmbGradovi.Size = new System.Drawing.Size(92, 23);
+            this.cmbGradovi.Size = new System.Drawing.Size(121, 26);
             this.cmbGradovi.TabIndex = 3;
             // 
             // cmbVrstaPartnera
@@ -516,9 +541,10 @@ namespace PetConn.WinUI.Home_Panels
             this.cmbVrstaPartnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbVrstaPartnera.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cmbVrstaPartnera.FormattingEnabled = true;
-            this.cmbVrstaPartnera.Location = new System.Drawing.Point(5, 2);
+            this.cmbVrstaPartnera.Location = new System.Drawing.Point(7, 2);
+            this.cmbVrstaPartnera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbVrstaPartnera.Name = "cmbVrstaPartnera";
-            this.cmbVrstaPartnera.Size = new System.Drawing.Size(102, 23);
+            this.cmbVrstaPartnera.Size = new System.Drawing.Size(135, 26);
             this.cmbVrstaPartnera.TabIndex = 5;
             this.cmbVrstaPartnera.SelectedIndexChanged += new System.EventHandler(this.cmbVrstaPartnera_SelectedIndexChanged);
             // 
@@ -529,9 +555,10 @@ namespace PetConn.WinUI.Home_Panels
             this.cmbPartneri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPartneri.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cmbPartneri.FormattingEnabled = true;
-            this.cmbPartneri.Location = new System.Drawing.Point(113, 2);
+            this.cmbPartneri.Location = new System.Drawing.Point(151, 2);
+            this.cmbPartneri.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbPartneri.Name = "cmbPartneri";
-            this.cmbPartneri.Size = new System.Drawing.Size(109, 23);
+            this.cmbPartneri.Size = new System.Drawing.Size(144, 26);
             this.cmbPartneri.TabIndex = 2;
             // 
             // btnFilter
@@ -539,9 +566,10 @@ namespace PetConn.WinUI.Home_Panels
             this.btnFilter.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFilter.BackgroundImage")));
             this.btnFilter.FlatAppearance.BorderSize = 0;
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilter.Location = new System.Drawing.Point(137, 11);
+            this.btnFilter.Location = new System.Drawing.Point(183, 14);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(31, 32);
+            this.btnFilter.Size = new System.Drawing.Size(41, 39);
             this.btnFilter.TabIndex = 4;
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
@@ -551,10 +579,10 @@ namespace PetConn.WinUI.Home_Panels
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(5, 13);
-            this.label2.Margin = new System.Windows.Forms.Padding(5);
+            this.label2.Location = new System.Drawing.Point(7, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 25);
+            this.label2.Size = new System.Drawing.Size(173, 33);
             this.label2.TabIndex = 1;
             this.label2.Text = "PRIKAZ PODATAKA";
             // 
@@ -567,10 +595,11 @@ namespace PetConn.WinUI.Home_Panels
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(20, 66);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(20);
+            this.groupBox1.Location = new System.Drawing.Point(27, 81);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(506, 318);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(675, 391);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista svih ";
@@ -580,37 +609,38 @@ namespace PetConn.WinUI.Home_Panels
             // 
             this.dgvPodaci.AllowUserToAddRows = false;
             this.dgvPodaci.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.DarkCyan;
-            this.dgvPodaci.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkCyan;
+            this.dgvPodaci.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPodaci.BackgroundColor = System.Drawing.Color.Teal;
             this.dgvPodaci.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPodaci.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.DarkCyan;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPodaci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPodaci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPodaci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DarkCyan;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPodaci.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DarkCyan;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPodaci.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPodaci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPodaci.EnableHeadersVisualStyles = false;
             this.dgvPodaci.GridColor = System.Drawing.Color.White;
-            this.dgvPodaci.Location = new System.Drawing.Point(3, 26);
-            this.dgvPodaci.Margin = new System.Windows.Forms.Padding(20);
+            this.dgvPodaci.Location = new System.Drawing.Point(4, 33);
+            this.dgvPodaci.Margin = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.dgvPodaci.Name = "dgvPodaci";
             this.dgvPodaci.ReadOnly = true;
-            this.dgvPodaci.Size = new System.Drawing.Size(500, 289);
+            this.dgvPodaci.RowHeadersWidth = 51;
+            this.dgvPodaci.Size = new System.Drawing.Size(667, 354);
             this.dgvPodaci.TabIndex = 0;
             this.dgvPodaci.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvPodaci_DataError);
             // 
@@ -620,15 +650,16 @@ namespace PetConn.WinUI.Home_Panels
             // 
             // frmHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
-            this.ClientSize = new System.Drawing.Size(850, 480);
+            this.ClientSize = new System.Drawing.Size(1133, 591);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelSlide);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmHome";

@@ -29,15 +29,12 @@ namespace PetConn.WinUI.UserControls
         {
             InitializeComponent();
             dataGridView1.AutoGenerateColumns = false;
-            
-
         }
         public async Task LoadDGV()
         {
             List<Korisnik> lista = await _serviceKorisniciBezRole.Get<List<Korisnik>>(null);
             dataGridView1.DataSource = lista;
             BrojKorisnika = lista.Count();
-
         }
         public async Task<int> GetBrojKorisnika()
         {
@@ -107,6 +104,7 @@ namespace PetConn.WinUI.UserControls
             int x = 0;
             if (int.TryParse(cmbVrstePartnera.SelectedValue.ToString(), out int idVP))//erorr istraziti 30.04.2021 glavni button pa na sve usere
                 x = idVP;
+            //opet errror Promijeniti dizajn svega
             var partneri = await _servicePartneri.Get<List<Partner>>(new PartneriSearchRequest { VrstaPartneraId=x});
             partneri.Insert(0, new Partner());
             cmbPartneri.DataSource = partneri;

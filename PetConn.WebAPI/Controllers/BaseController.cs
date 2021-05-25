@@ -31,7 +31,7 @@ namespace PetConn.WebAPI.Controllers
         {
             return  _service.Get(request);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Uposlenik")]
         [HttpGet("{id}")]
         public Task<ActionResult<TModel>> GetByID(int id)
         {

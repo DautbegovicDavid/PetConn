@@ -31,7 +31,6 @@ namespace PetConn.WinUI.Helpers
         }
         public static void DodajKontrolu(UserControl uc, string nazivKontrole, Point p,Panel panel)
         {
-           
             if (panel.Controls.Find(nazivKontrole, true).Length == 1)
                 return;
             uc.Name = nazivKontrole;
@@ -39,15 +38,11 @@ namespace PetConn.WinUI.Helpers
             uc.Show();
             panel.Controls.Add(uc);
             uc.Visible = true;//za dgv
-
-
         }
         public static void UcDodajKontrolu(Control c,UserControl uc, string nazivKontrole, Point p)
         {
-          
             if (c.Controls.Find(nazivKontrole, true).Length == 1)
-                return;
-            
+                return;  
             uc.Name = nazivKontrole;
             uc.Location = p;
             uc.Show();
@@ -60,7 +55,6 @@ namespace PetConn.WinUI.Helpers
                 if (item.Name == nazivKontrole)
                     c.Controls.Remove(item);
             }
-           
         }
        
     }

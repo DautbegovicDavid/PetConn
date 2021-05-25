@@ -98,8 +98,6 @@ namespace PetConn.WebAPI.Controllers
             {
                 throw new Exception("The authorization header is either empty or isn't Basic.");
             }
-
-
         }
         [HttpGet("getUlogaIDs/{id}")]
         public List<int> getUlogeIDs(int id)

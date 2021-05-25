@@ -25,13 +25,10 @@ namespace PetConn.WinUI.Login_Register
         APIService _serviceGetIDKorisnik = new APIService("Korisnici/getID");
         APIService _serviceGetUlogasID = new APIService("Korisnici/getUlogaIDs");
         APIService _serviceUloge = new APIService("Uloge");
-
         APIService _serviceUposlenik = new APIService("Uposlenik");
         APIService _servicePartner = new APIService("Partner/IDsByVrstaPartneraID");
         APIService _servicePartnerGet = new APIService("Partner");
-
         APIService _serviceUPOSLENICI = new APIService("Uposlenik");
-
 
         public frmLogin()
         {
@@ -41,11 +38,6 @@ namespace PetConn.WinUI.Login_Register
         private void frmLogin_Load(object sender, EventArgs e)
         {
         }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
         
         private async void btnLogin_Click(object sender, EventArgs e)
         {
@@ -54,12 +46,10 @@ namespace PetConn.WinUI.Login_Register
             try
             {
 
-                
                 APIService.UserName = txtUsername.Text;
                 APIService.Password = txtPassword.Text;
                 APIService.PartnerID = 0;
                 List<Korisnik> kor= await _service.Get<List<Korisnik>>(new KorisnikSearchRequest { KorisnickoIme=txtUsername.Text});
-
                 
                 //imam korisnika
 
@@ -70,20 +60,18 @@ namespace PetConn.WinUI.Login_Register
 
                 }
                 Korisnik k = kor.First();
+
                 if (k.Email.Equals("test@email.com") &&
                     k.Ime.Equals("Unesi ime") &&
                     k.Prezime.Equals("Unesi prezime") &&
                     k.Telefon.Equals("000/000-000"))
                     APIService.EditovanProfil = false;
-                else APIService.EditovanProfil = true;
+                else 
+                    APIService.EditovanProfil = true;
 
-                
-                
-                
                 //imam ID
                 int korisnikID = await _serviceGetIDKorisnik.Get<int>(new KorisnikSearchRequest { KorisnickoIme = txtUsername.Text });
               
-
                 //Imam listu ulog koje su dodijeljne
                 List<int> listaUloga= await _serviceGetUlogasID.GetbyID<List<int>>(korisnikID);
                 if(listaUloga.Count==0)
@@ -91,19 +79,17 @@ namespace PetConn.WinUI.Login_Register
                     MessageBox.Show("You have Not been AUTHORIZED to use system yet !\n \n*Please Contact your supervisor.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                
-                Uloge u = await _serviceUloge.GetbyID<Uloge>(listaUloga.First());
-                APIService.Uloga = u.Naziv;
 
+                Uloge u=await _serviceUloge.GetbyID<Uloge>(listaUloga.First());//ovdje pada za sve osim admina
+
+                APIService.Uloga = u.Naziv;
 
                 int VrstaPartneraID=await _serviceVP.GetVrstaPartneraID<int>(new VrstaPartnera { Naziv = "Pet Shop" });
                 int PetShopVpID = await _serviceVP.GetVrstaPartneraID<int>(new VrstaPartnera { Naziv = "Pet Shop" });
                 int VetShopVpID = await _serviceVP.GetVrstaPartneraID<int>(new VrstaPartnera { Naziv = "Vet Station" });
 
-
                 //// Get Partnere s obzirom na vrstu Partnera
                 List<int> IDsPartneri = await _servicePartner.Get<List<int>>(new PartneriSearchRequest { VrstaPartneraId=VrstaPartneraID});
-
 
                 List<Uposlenik> uposlenici = await _serviceUPOSLENICI.Get<List<Uposlenik>>(new UposlenikSearchRequest { KorisnikId=korisnikID});
                 
@@ -126,22 +112,14 @@ namespace PetConn.WinUI.Login_Register
                     }
                 }
 
-
-
-
-
-
-               
-
-
                 new frmHome().Show();
                 //new frmHomePetShop().Show();
                 Hide();     
-
                 
             }
             catch(Exception ex){
-                MessageBox.Show(ex.Message, "Atuhentikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Pogresna Lozinka", "Authentifikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //ex.Message
             }
         }
 
@@ -150,12 +128,6 @@ namespace PetConn.WinUI.Login_Register
             new frmRegister().Show();
             Hide();
         }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (cbPassVisibilty.Checked)           
@@ -179,14 +151,8 @@ namespace PetConn.WinUI.Login_Register
             var result = MessageBox.Show(message, caption,
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Exclamation);
-
-            // If the no button was pressed ...  
             if (result == DialogResult.Yes)
-            {
-                // cancel the closure of the form.  
                 Close();
-
-            }
         }
     }
 }

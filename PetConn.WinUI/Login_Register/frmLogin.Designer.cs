@@ -168,7 +168,6 @@ namespace PetConn.WinUI.Login_Register
             this.label7.Size = new System.Drawing.Size(143, 32);
             this.label7.TabIndex = 12;
             this.label7.Text = "Get Started";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // imageList1
             // 
